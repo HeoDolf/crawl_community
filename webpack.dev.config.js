@@ -33,6 +33,13 @@ module.exports = {
                     { loader:'css-loader' }
                 ],
                 include: defaultIncludes
+            },
+            {
+                test: /\.(jpg|png|gif|svg|pdf|ico)$/,
+                use: [
+                    { loader:'file-loader' },
+                ],
+                include: defaultIncludes
             }
         ]
     },
@@ -44,7 +51,7 @@ module.exports = {
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('development')
         }),
-        new webpack.HotModuleReplacementPlugin()    // For hot-loader\
+        new webpack.HotModuleReplacementPlugin()
     ],
     devtool: 'cheap-source-map',
     devServer: {
@@ -53,6 +60,15 @@ module.exports = {
             colors: true,
             chunks: false,
             children: false
+        },
+        
+        historyApiFallback: true,
+        inline: true,
+        proxy: {
+            '**': {
+                target: 'http://localhost:3000/',
+                secure: false
+            }
         }
     }
 }

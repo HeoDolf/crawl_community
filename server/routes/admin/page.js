@@ -1,5 +1,5 @@
 const express = require('express');
-const { Page, Community } = require('./../models');
+const { Page, Community } = require('./../../models');
 
 const Router = express.Router();
 
@@ -29,11 +29,10 @@ Router.post('/page', (req,res)=>{
         });
     });
 });
-// Find
+// Find One
 Router.get('/page/:title', (req,res)=>{
     Page.findOne({
             title:req.params.title, 
-            
             _creator:session.user._id
         })
         .populate({ path:'_community' })
@@ -44,11 +43,29 @@ Router.get('/page/:title', (req,res)=>{
             });
         });
 });
+// Find All
 Router.get('/page', (req,res)=>{
-    Page.find(function(error, page){
-        if( error ) return res.status(500).json({errorCode: 500, error: error });
+    Page.find(
+        {   // Condition
+            _creator: session.user._id,
+        },
+        {   // Selector
+            _id: 0, _creator: 0, __v: 0
+        },
+        {   // Option
+            sort: { index: 1 }
+        }
+    ).populate({
+        path: '_community',
+        select: 'name name_kor -_id'
+    }).exec(function(error, pages){
+        if( error ) return res.status(500).json({
+            errorCode: 500, 
+            error: error,
+            msg: "Page Find Error"
+        });
         return res.status(200).json({
-            page
+            list: pages
         });
     });
 }); 

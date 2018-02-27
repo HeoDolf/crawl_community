@@ -1,7 +1,7 @@
 const express = require('express');
 const Router = express.Router();
 
-const { Community } = require('./../models');
+const { Community } = require('./../../models');
 
 // Insert
 Router.post('/community', (req,res)=>{
@@ -50,11 +50,15 @@ Router.get('/community', (req,res)=>{
         { /* Display */ },
         // Handle Callback
         (error, exists)=>{
-        if( error ) throw error;
+        if( error ) return res.status(500).json({
+            errorCode: 500,
+            error: error,
+            msg: 'Get Community Error'
+        });
         return res.status(200).json({
             community: exists
         });
-    }).populate()
+    });
 });
 
 // Delete

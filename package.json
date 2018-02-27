@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prod": "webpack --config webpack.build.config.js && electron --noDevServer .",
+    "db": "mongod -dbpath c:\\progamming\\mongodb\\data",
+    "server": "nodemon ./server",
+    "prod": "webpack --config webpack.build.config.js",
     "build": "webpack --config webpack.build.config.js",
-    "dev": "webpack-dev-server --hot --host 0.0.0.0 --port 4000 --config=./webpack.dev.config.js"
+    "dev": "webpack-dev-server --hot --host localhost --port 4000 --config=./webpack.dev.config.js"
   },
   "author": "",
   "license": "ISC",
@@ -37,6 +39,7 @@
     "babel-register": "^6.26.0",
     "babili-webpack-plugin": "^0.1.2",
     "css-loader": "^0.28.9",
+    "file-loader": "^1.1.10",
     "html-webpack-plugin": "^2.30.1",
     "style-loader": "^0.20.1",
     "webpack": "^3.11.0",

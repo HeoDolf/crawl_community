@@ -1,7 +1,7 @@
 const express = require('express');
 const Router = express.Router();
 
-const { Community, Board } = require('./../models');
+const { Community, Board } = require('./../../models');
 
 // Insert
 Router.post('/board', (req,res)=>{
@@ -55,6 +55,79 @@ Router.get('/board', (req,res)=>{
             board
         });
     });
+});
+
+// 이건 크롤링 할 때
+Router.get('/board/:community/:board', (req,res)=>{
+    console.log( req.params );
+    Community.findOne(
+        {
+            name: req.params.community
+        }, 
+        function(error, community){
+            if( error ) return res.status(500).json({
+                errorCode: 500, 
+                error: error,
+                community,
+                msg: "Community Find Error"
+            });
+
+            Board.findOne(
+                {
+                    name: req.params.board,
+                    _community: community._id
+                },
+                {
+                    _id: 0, __v: 0
+                },
+                function(error, board){
+                    if( error ) return res.status(500).json({
+                        errorCode: 500,
+                        error: error,
+                        msg: "Board Find Error"
+                    });
+                    return res.status(200).json({
+                        board
+                    });
+                }
+            )
+        }
+    )
+});
+
+Router.get('/board/:community', (req,res)=>{
+    Community.findOne(
+        {
+            name: req.params.community
+        }, 
+        function(error, community){
+            if( error ) return res.status(500).json({
+                errorCode: 500, 
+                error: error,
+                community,
+                msg: "Community Find Error"
+            });
+
+            Board.find(
+                {
+                    _community: community._id
+                },
+                {
+                    _id: 0, name: 1, name_kor: 1, intervalTime: 1, uri: 1
+                },
+                function(error, boards){
+                    if( error ) return res.status(500).json({
+                        errorCode: 500,
+                        error: error,
+                        msg: "Board Find Error"
+                    });
+                    return res.status(200).json({
+                        list: boards
+                    });
+                }
+            )
+        }
+    )
 });
 
 module.exports = Router;
