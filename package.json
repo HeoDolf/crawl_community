@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./index.js"
+    "prod": "webpack --config webpack.build.config.js && electron --noDevServer .",
+    "build": "webpack --config webpack.build.config.js",
+    "dev": "webpack-dev-server --hot --host 0.0.0.0 --port 4000 --config=./webpack.dev.config.js"
   },
   "author": "",
   "license": "ISC",

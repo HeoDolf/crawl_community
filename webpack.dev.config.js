@@ -36,7 +36,6 @@ module.exports = {
             }
         ]
     },
-    target: 'electron-renderer',
     plugins:[
         new HtmlWebpackPlugin({
             template: helper.root( 'public/index.html' ),
@@ -54,14 +53,6 @@ module.exports = {
             colors: true,
             chunks: false,
             children: false
-        },
-        setup() {
-            spawn(
-                'electron', ['.'],
-                { shell: true, env: process.env, stdio: 'inherit' }
-            )
-            .on('close', code => process.exit(0))
-            .on('error', spawnError => console.error(spawnError));
         }
     }
 }
