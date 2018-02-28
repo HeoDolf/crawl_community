@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "db": "mongod -dbpath c:\\progamming\\mongodb\\data",
+    "db": "mongod -dbpath c:\\programming\\mongodb\\data",
     "server": "nodemon ./server",
     "prod": "webpack --config webpack.build.config.js",
     "build": "webpack --config webpack.build.config.js",

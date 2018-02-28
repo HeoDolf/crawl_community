@@ -1,7 +1,9 @@
 // import
 const express = require('express');
 const bodyParser = require('body-parser');
-const mongoose = require('./config/database');
+const mongoose = require('./config/database.js');
+const sessionConfig = require('./config/session.js');
+
 const fs = require('fs');
 
 const app = express();
@@ -10,6 +12,8 @@ const PORT = process.env.PORT || 3000;
 // Configure
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
+app.use(sessionConfig);
+
 app.use('/', express.static('./../public'));
 // Handle Error 
 app.use(function(error, req, res, next){

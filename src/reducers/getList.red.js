@@ -4,9 +4,11 @@ import {
 
 const initState = {
     status: "INIT",
-    list: []
+    list: [],
+    maxLength: 5
 }
 export function PageReducer( state = initState, action ){
+    console.log( "[reducer]", state );
     switch( action.type ){
         case GET_PAGES.READY:
             return Object.assign({}, state, {
@@ -17,9 +19,13 @@ export function PageReducer( state = initState, action ){
                 status: "FAILURE",
             });
         case GET_PAGES.SUCCESS:
+            let fillEmpty = new Array( initState.maxLength ).fill('empty');
+            for(let index in action.list ){
+                fillEmpty[index] = action.list[index];
+            }
             return Object.assign({}, state, {
                 status: "SUCCESS",
-                list: action.list
+                list: fillEmpty
             });
         default:
             return state;

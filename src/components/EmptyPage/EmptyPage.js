@@ -4,7 +4,7 @@ import './EmptyPage.css'
 
 const EmptyPage = ({/* props */})=>{
     return (
-        <div className="page empty valign-wrapper">
+        <div className="page-wrapper valign-wrapper">
             <div className="img-wrapper">
                 <img src={ image }/>
             </div>

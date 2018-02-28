@@ -6,7 +6,7 @@ const Header = ({ onPageChange, logined, pages, active })=>{
     const myPages = pages.map((page, index)=>{
         return (
             <li key={index} className={ active === index ? 'active' : '' }>
-                <a onClick={ ()=>{onPageChange( index )} }>{page.title}</a>
+                <a onClick={ ()=>{onPageChange( index )} }>{index} {page.title}</a>
             </li>
         )
     });
@@ -16,7 +16,7 @@ const Header = ({ onPageChange, logined, pages, active })=>{
             <div className="wrapper">
                 <ul className="page-box">
                     <li className={ active === -1 ? 'active' : '' }>
-                        <a onClick={ ()=>{onPageChange(-1)} }>Home</a>
+                        <a onClick={ ()=>{onPageChange(-1)} }>-1 Home</a>
                     </li>
                     { myPages }
                 </ul>
