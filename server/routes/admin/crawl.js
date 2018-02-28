@@ -8,13 +8,15 @@ const Router = express.Router();
 // 아니면 한번 보낸 데이터는 거기서 저장하는게 나을지..
 // 최초 1회는 세션에 저장해서보내고, 
 // 그 이후에는 client에서 저장하면서 하면..
-// client가 너무 무거워 지겠구나
+// client가 너무 무거워 지겠구나  
 // 그럼 server에서 저장해서 보내는 걸로
 Router.get('/crawler/:community/:board', (req,res)=>{
     let session = req.session;
     const community = req.params.community;
     const board = req.params.board;
     const baseTime = req.query.baseTime;
+
+    console.log( community, board, baseTime );
     
     const crawled = carwler(community, board, baseTime)
     crawled.then((data)=>{

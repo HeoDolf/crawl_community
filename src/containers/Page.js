@@ -2,7 +2,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 // Components
-import { BoardLayout } from './../components'
+import { BoardItem } from './../components'
+// actions
+import { getContentList } from './../actions/crawler.act.js'
 
 const defaultProps = {
     board: []
@@ -21,7 +23,7 @@ class Page extends React.Component {
     /**
      * Life Cycle
      */
-    componentWillReceiveProps(){
+    componentWillReceiveProps(nextProps){
         if( nextProps.page && nextProps.board ){
             const community = nextProps.page._community.name;
             const board = nextProps.board.list[0].name;
@@ -42,23 +44,21 @@ class Page extends React.Component {
         console.log("[page is unmount]");
     }
     render(){
-        let board = [];
-        if( this.props.page !== 'empty' ){
-            if( this.props.board.status === 'SUCCESS' ){
-                board = this.props.board.list.map((board, index)=>{
-                    return (
-                        <div key={index} className={`board ${board.name}`}>
-                            <a>{ board.name }</a>
-                        </div>
-                    )
-                });
-            }
-        }
         return (
             <div className="page-wrapper">
-                <a>{this.props.page.title}</a>
-                <div className="board">
-                    { board }
+                <a>{this.props.page.title} {this.props.page._community.name}</a>
+                <div>
+                {
+                    this.props.board.list
+                    ? this.props.board.list.map((board, index)=>{
+                        return (
+                            <BoardItem key={ index }
+                                community={ this.props.page._community.name }
+                                board={ board }/>
+                        )
+                    })
+                    : null
+                }
                 </div>
             </div>
         )
@@ -68,9 +68,18 @@ Page.defaultProps = defaultProps;
 
 const mapStateToProps = (state)=>{
     return {
-        board: state.BoardReducer
+        board: state.BoardReducer,
+        content: state.CrawlerReducer
+    }
+}
+const mapDispatchToProps = (dispatch)=>{
+    return {
+        onContentCrawler: ( community, board, baseTime )=>{
+            dispatch(getContentList( community, board, baseTime ));
+        }
     }
 }
 export default connect(
     mapStateToProps,
+    mapDispatchToProps
 )(Page)

@@ -32,7 +32,6 @@ export function getBoardList( community ){
         });
     }
 }
-
 function setReady( types ){
     return { 
         type: types.READY
