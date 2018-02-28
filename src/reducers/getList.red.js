@@ -8,7 +8,6 @@ const initState = {
     maxLength: 5
 }
 export function PageReducer( state = initState, action ){
-    console.log( "[reducer]", state );
     switch( action.type ){
         case GET_PAGES.READY:
             return Object.assign({}, state, {

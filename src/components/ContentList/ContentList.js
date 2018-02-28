@@ -21,7 +21,9 @@ const ContentList = ({ contents })=>{
     return (
         <ul className="content-list collection">
         {
-            contents.map((content, index)=><ContentItem key={index} content={content}/>)
+            contents
+            ? contents.map((content, index)=><ContentItem key={index} content={content}/>)
+            : null
         }
         </ul>
     )

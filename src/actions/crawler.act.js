@@ -1,6 +1,7 @@
 import {
     GET_CONTENTS
 } from './ActionTypes'
+import axios from 'axios'
 
 export function getContentList( community, board, baseTime ){
     return (dispatch)=>{
@@ -8,7 +9,7 @@ export function getContentList( community, board, baseTime ){
         
         const params = {params:{baseTime:baseTime}}
         axios.get(`/api/crawler/${community}/${board}`, params)
-            .then((resopnse)=>{
+            .then((response)=>{
                 dispatch(setSuccess( GET_CONTENTS, response.data.contents, response.data.pages ));
             })
             .catch((error)=>{

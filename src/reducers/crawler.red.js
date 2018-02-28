@@ -6,7 +6,6 @@ const initState = {
     pages: []
 }
 export default function CrawlerReducer( state = initState, action ){
-    console.log( "[reducer]", state );
     switch( action.type ){
         case GET_CONTENTS.READY:
             return Object.assign({}, state, {

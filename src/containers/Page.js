@@ -24,12 +24,6 @@ class Page extends React.Component {
      * Life Cycle
      */
     componentWillReceiveProps(nextProps){
-        if( nextProps.page && nextProps.board ){
-            const community = nextProps.page._community.name;
-            const board = nextProps.board.list[0].name;
-            const baseTime = '15:00:00';
-            const intervalTime = nextProps.board.list[0].intervalTime;
-        }
     }
     componentWillUpdate(nextProps, nextState){
         if( JSON.stringify(this.props.page) !== JSON.stringify(nextProps.page)){
@@ -52,9 +46,10 @@ class Page extends React.Component {
                     this.props.board.list
                     ? this.props.board.list.map((board, index)=>{
                         return (
-                            <BoardItem key={ index }
-                                community={ this.props.page._community.name }
-                                board={ board }/>
+                            <BoardItem 
+                                key={ index } 
+                                community={this.props.page._community.name} 
+                                current={ board } />
                         )
                     })
                     : null
@@ -68,18 +63,9 @@ Page.defaultProps = defaultProps;
 
 const mapStateToProps = (state)=>{
     return {
-        board: state.BoardReducer,
-        content: state.CrawlerReducer
-    }
-}
-const mapDispatchToProps = (dispatch)=>{
-    return {
-        onContentCrawler: ( community, board, baseTime )=>{
-            dispatch(getContentList( community, board, baseTime ));
-        }
+        board: state.BoardReducer
     }
 }
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+    mapStateToProps
 )(Page)

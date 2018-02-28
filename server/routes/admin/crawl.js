@@ -29,7 +29,7 @@ Router.get('/crawler/:community/:board', (req,res)=>{
     
         res.status(200).json({
             pages: data.pages,
-            contents: data.contents
+            list: data.contents
         });
     });
     crawled.catch((error)=>{
