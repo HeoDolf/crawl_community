@@ -2,6 +2,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
+import moment from 'moment'
 // Components
 import { ContentList } from './../../components'
 // StyleSheet
@@ -47,22 +48,19 @@ class BoadrItem extends React.Component {
             method: 'get',
             cancelToken: new this.cancel.token((c)=>{ this.cancel.exec = c })
         }).then((response)=>{
-
-            const newList = response.data.list;
-            const oldList = this.state.content.list.new.concat( this.state.content.list.old );
+            const newList = response.data.list.new;
+            const oldList = response.data.list.old;
+            // const oldList = this.state.content.list.new.concat( this.state.content.list.old );
             const baseTime = newList.length > 0 ? newList[0].date[1] : this.state.baseTime;
 
-            console.log( `[${community}-${board}]`, newList, oldList );
+            console.log( `[${community}-${board}]`, baseTime );
 
             this.setState(Object.assign({}, this.state, {
                 load: true,
                 baseTime: baseTime,                
                 content: {
                     pages: response.data.pages,
-                    list: {
-                        new: newList,
-                        old: oldList
-                    }
+                    list: response.data.list
                 }
             }));
         }).catch((error)=>{
@@ -110,11 +108,10 @@ class BoadrItem extends React.Component {
     
             this.interval = setInterval(()=>{
                 this.getContentList( community, board, baseTime );
-            }, 3000);
+            }, 5000);
         }
     }
     shouldComponentUpdate(nextProps, nextState){
-        console.log( "[should]",nextState.content.list )
         return true;
     }
 
@@ -140,7 +137,10 @@ class BoadrItem extends React.Component {
         return (
             <div className={`board ${this.props.board.name}`}>
                 <div className="board-name">
-                    <a>{ this.props.board.name }</a>
+                    <a>{ this.props.board.name }</a>/
+                    <a>{ this.state.content.list.new.length }</a>/
+                    <a>{ this.state.content.list.old.length }</a>/
+                    <a>{ this.state.baseTime }</a>
                     { this.state.load ? loaded : preloader }
                 </div>
                 <div className="board-list-wrapper">

@@ -83,16 +83,14 @@ Router.get('/board/:community', (req,res)=>{
                         error: error,
                         msg: "Board Find Error"
                     });
-                    req.session.contents = boards.map((board, index)=>{
+                    req.session.board = boards.map((board, index)=>{
                         return {
                             community: req.params.community,
                             board: board.name,
                             baseTime: "00:00:00",
                             contents: []
                         }
-                    });              
-                    console.log( req.session );
-
+                    });
                     return res.status(200).json({
                         list: boards
                     });

@@ -27,7 +27,7 @@ module.exports = {
                 const date = [ TODAY, uploadTime ];
                 
                 if( uploadTime.split(':').length == 1 
-                    || baseTime > new Date(date.join(' ')).getTime() ){ 
+                    || baseTime >= new Date(date.join(' ')).getTime() ){ 
                         checkNextPage = false;
                         break; 
                 }
@@ -69,7 +69,7 @@ module.exports = {
                 const date = [ TODAY, uploadTime ];
 
                 if( uploadTime.split(':').length == 1 
-                    || baseTime > new Date(date.join(' ')).getTime() ){ 
+                    || baseTime >= new Date(date.join(' ')).getTime() ){ 
                         checkNextPage = false;
                         break; 
                 }
