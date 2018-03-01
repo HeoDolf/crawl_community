@@ -12,27 +12,17 @@ const defaultProps = {
 class Page extends React.Component {
     constructor(props, context){
         super(props, context);
-        this.state = {}
-        this.state.board = props.board;
     }
     /**
      * Servicies
      */
+    // BoardList 여기서 호출하자 
 
 
-    /**
+     /**
      * Life Cycle
      */
     componentWillReceiveProps(nextProps){
-    }
-    componentWillUpdate(nextProps, nextState){
-        if( JSON.stringify(this.props.page) !== JSON.stringify(nextProps.page)){
-            return true;
-        }
-        if( JSON.stringify(this.props.board) !== JSON.stringify(nextProps.board)){
-            return true;
-        }
-        return false;
     }
     componentWillUnmount(){
         console.log("[page is unmount]");
@@ -49,7 +39,8 @@ class Page extends React.Component {
                             <BoardItem 
                                 key={ index } 
                                 community={this.props.page._community.name} 
-                                current={ board } />
+                                board={ board }>
+                            </BoardItem>
                         )
                     })
                     : null

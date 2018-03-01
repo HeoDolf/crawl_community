@@ -57,44 +57,6 @@ Router.get('/board', (req,res)=>{
     });
 });
 
-// 이건 크롤링 할 때
-Router.get('/board/:community/:board', (req,res)=>{
-    console.log( req.params );
-    Community.findOne(
-        {
-            name: req.params.community
-        }, 
-        function(error, community){
-            if( error ) return res.status(500).json({
-                errorCode: 500, 
-                error: error,
-                community,
-                msg: "Community Find Error"
-            });
-
-            Board.findOne(
-                {
-                    name: req.params.board,
-                    _community: community._id
-                },
-                {
-                    _id: 0, __v: 0
-                },
-                function(error, board){
-                    if( error ) return res.status(500).json({
-                        errorCode: 500,
-                        error: error,
-                        msg: "Board Find Error"
-                    });
-                    return res.status(200).json({
-                        board
-                    });
-                }
-            )
-        }
-    )
-});
-
 Router.get('/board/:community', (req,res)=>{
     Community.findOne(
         {
@@ -121,6 +83,16 @@ Router.get('/board/:community', (req,res)=>{
                         error: error,
                         msg: "Board Find Error"
                     });
+                    req.session.contents = boards.map((board, index)=>{
+                        return {
+                            community: req.params.community,
+                            board: board.name,
+                            baseTime: "00:00:00",
+                            contents: []
+                        }
+                    });              
+                    console.log( req.session );
+
                     return res.status(200).json({
                         list: boards
                     });
@@ -129,5 +101,9 @@ Router.get('/board/:community', (req,res)=>{
         }
     )
 });
+
+function initSession(){
+    
+}
 
 module.exports = Router;

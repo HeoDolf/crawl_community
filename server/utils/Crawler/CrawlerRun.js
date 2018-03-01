@@ -35,9 +35,16 @@ module.exports = function( comName, bodName, baseTime ){
         // Run Crawl
         let loginUser = null;
         if( board.withLogin === 1 ){
-            loginUser = {
-                username: 'dnjsakf',
-                password: 'wjddns1'
+            if( comName === 'ygosu' ){
+                loginUser = {
+                    username: 'vvve12',
+                    password: 'wjddns1'
+                }
+            } else if ( comName === 'gezip' ){
+                loginUser = {
+                    username: 'dnjsakf',
+                    password: 'wjddns1'
+                }
             }
         }
         const crawler = new Crawler( board, baseTime, loginUser );

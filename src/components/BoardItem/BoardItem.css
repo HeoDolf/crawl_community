@@ -1,0 +1,25 @@
+@media screen and ( max-width: 1050px ) {
+    .board { float: left; width: 100%; }
+}
+@media screen and ( min-width: 1051px ) {
+    .board { float: left; width: 50%; }
+}
+
+.board { margin-bottom: 10px; height: auto; max-height: 350px; }
+
+.board .board-name { z-index: 2; position: relative; height: 2rem; }
+.board .board-name a { font-size: 1.5rem; }
+.board .board-name .preloader-wrapper.small { width: 1.5rem; height: 1.5rem; }
+.board .board-name i.small { font-size: 1.5rem; }
+
+.board .board-list-wrapper::-webkit-scrollbar { display: none; }
+.board .board-list-wrapper {
+    z-index: 3;
+    position: relative;
+    width: 100%;    
+    height: auto;
+    max-height: calc(350px - 2rem);
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+}

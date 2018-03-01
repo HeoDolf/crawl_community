@@ -16,20 +16,20 @@ Router.get('/crawler/:community/:board', (req,res)=>{
     const board = req.params.board;
     const baseTime = req.query.baseTime;
 
-    console.log( community, board, baseTime );
-    
     const crawled = carwler(community, board, baseTime)
     crawled.then((data)=>{
-        saveSession(session,{
+        const index = saveSession(session, {
             community: community,
             board: board,
             baseTime: baseTime,
-            content: data.contents
+            contents: data.contents
         });
-    
+
+        console.log( board, index, data.contents.length );
+
         res.status(200).json({
             pages: data.pages,
-            list: data.contents
+            list: index === -1 ? [] : data.contents
         });
     });
     crawled.catch((error)=>{
@@ -38,16 +38,24 @@ Router.get('/crawler/:community/:board', (req,res)=>{
 });
 
 function saveSession( session, data ){
-    let exist = -1;
-    if( !session.contents ){ session.contents = []; }
+    let index = -1;
+    // if( !session.contents ){ session.contents = []; }    // board.js 에서 생서
     for(let i = 0; i < session.contents.length; i++){
         if( session.contents[i].community === data.community
             && session.contents[i].board === data.board ){
-                exist = i;
+                index = i;
                 break;
             }
     }
-    ( exist == -1 ? session.contents.push( data ) : session.contents[exist] = data );
+    const sessContents = session.contents[index].contents;
+    if( sessContents.length > 0 ){
+        console.log( "[Same Last Item]", sessContents[0].no === data.contents[0].no, sessContents[0].no, data.contents[0].no );
+        if( sessContents[0].no === data.contents[0].no ){
+            return -1;
+        }
+    }
+    session.contents[index].contents = data.contents.concat(sessContents);
+    return index;
 }
 
 module.exports = Router;
