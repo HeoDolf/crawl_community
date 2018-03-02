@@ -6,6 +6,7 @@ module.exports = mongoose.model('page', new Schema(
         title: String,
         _creator: { type: Schema.Types.ObjectId, ref: 'member' },
         _community: { type: Schema.Types.ObjectId, ref: 'community' },
+        _board: [{type: Schema.Types.ObjectId, ref: 'board'}],
         index: { type: Number, default: -1 },
         display: { type: Number, enum:[0,1], default: 1 },          // 0 none, 1 show
         layout: {

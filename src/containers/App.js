@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 // Actions
 import { getPageList, getBoardList } from './../actions/getList.act.js'
 // Components
-import { Header, SideButton, EmptyPage } from './../components'
+import { Header, EmptyPage, SideButton  } from './../components'
 import Page from './Page.js'
 import Home from './Home.js'
 
@@ -12,7 +12,7 @@ const defaultProps = {
     description: "Main App",
     initPage: {
         index: -1,
-        page: null
+        page: 'home'
     }
 }
 
@@ -33,7 +33,7 @@ class App extends React.Component {
         this.setState( Object.assign({}, this.state, {
             current: {
                 index: pageIndex,
-                page: pageIndex > -1 ? this.props.page.list[pageIndex] : null   // null is 'Home'
+                page: pageIndex > -1 ? this.props.page.list[pageIndex] : 'home'
             }
         }));
     }
@@ -43,20 +43,17 @@ class App extends React.Component {
     componentDidMount(){
         this.props.getPageList();
     }
-    componentWillUpdate(nextProps, nextState){
-        if( nextProps.page.list !== this.props.page.list ){
-            return true;
-        }
-        if( nextState.current.index !== this.state.current.index ){
-            if( nextState.current.index !== -1 && nextState.current.page !== 'empty' ){
-                this.props.getBoardList( nextState.current.page._community.name );
-            }
-            return true;
-        }
-        return false;
-    }
 
     render(){
+        let PageWrapper;
+        if( this.state.current.page === 'empty' ){
+            PageWrapper = <EmptyPage />
+        } else if ( this.state.current.page === 'home' ){
+            PageWrapper = <Home />
+        } else {
+            PageWrapper = <Page page={ this.state.current.page } />
+        }
+
         return (
             <div id="app">
                 <Header 
@@ -66,11 +63,7 @@ class App extends React.Component {
                     active={ this.state.current.index }
                     />
                 <section className="page">
-                {
-                    this.state.current.page !== null 
-                    ? <Page page={ this.state.current.page } />
-                    : <Home />
-                }
+                { PageWrapper }
                 </section>
                 <SideButton disable={-1}/>
             </div>
@@ -81,14 +74,12 @@ App.defaultProps = defaultProps;
 
 const mapStateToProps = (state)=>{
     return {
-        page: state.PageReducer,
-        board: state.BoardReducer
+        page: state.PageReducer
     }
 }
 const mapDispatchToProps = (dispatch)=>{
     return {
-        getPageList: ()=>dispatch( getPageList() ),
-        getBoardList: (community)=>dispatch( getBoardList(community) )
+        getPageList: ()=>dispatch( getPageList()),
     }
 }
 export default connect(

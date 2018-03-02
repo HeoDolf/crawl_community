@@ -23,70 +23,64 @@ class BoadrItem extends React.Component {
                     old: []
                 },
             },
-            baseTime: "00:00:00",
+            baseTime: "12:00:00",
             view: [0, 5]
         }
+
         // Local
         this.cancel = {
             token: axios.CancelToken,
             exec: null
         }
-        this.cancel.source = this.cancel.token.source();
+        this.timeout = null;
 
-        this.getContentList = this.getContentList.bind(this);
+        // Crawler
+        this.getContent = this.getContent.bind(this);
     }
 
     /**
      * Servicies
      */
-    getContentList( community, board, baseTime ){
-        this.setState(Object.assign({}, this.state, {
-            reload: false,
+    getContent( community, board, baseTime ){
+        if( typeof baseTime === 'undefined' ){
+            baseTime = null;
+        }
+        this.setState(Object.assign({}, this.state,{ 
             load: false
         }));
-        
-        const crawl = axios({
-            url: `/api/crawler/${community}/${board}?baseTime=${this.state.baseTime}`,
+        this.crawler = axios({
+            url: `/api/crawler/${community}/${board}?baseTime=`+baseTime,
             method: 'get',
-            cancelToken: this.cancel.source.token
+            // cancelToken: this.cancel.source.token
+            cancelToken: new this.cancel.token((cancel)=>{
+                // 이렇게 만들어야 Indivisual?한 cancel이 만들어지는 듯
+                console.log('[create-token]');
+                this.cancel.exec = cancel
+            })
         }).then((response)=>{
-            if( response ){
-                const newList = response.data.list.new;
-                const oldList = response.data.list.old;
-                baseTime = newList.length > 0 ? newList[0].date[1] : this.state.baseTime;
-    
-                this.setState(Object.assign({}, this.state, {
-                    load: true,
-                    baseTime: baseTime,                
-                    content: {
-                        pages: response.data.pages,
-                        list: response.data.list
-                    }
-                }));
-                return { type: 'update' }
-            }
-        }).catch((error)=>{
-            if( axios.isCancel(error) && error.message.type === 'reload' ){
-                console.log( 'reload' )
-                this.cancel.source = this.cancel.token.source();    // 새로 안만들어주면 무한루프
-                return error.message;
-            } else if( axios.isCancel(error) && error.message.type === 'unmount' ){
-                this.getContentList = null;
-                return error.message;
-            }
-            return {type: 'update' }
-        }).then(( final )=>{
-            if( final.type === 'reload' ){
-                this.getContentList( final.data.community, final.data.board, final.data.baseTime );
-            } else if ( final.type === 'update' ) { 
-                setTimeout(()=>{
-                    this.getContentList( community, board, baseTime );
-                }, this.props.board.intervalTime * 1000 );
-            } else {
-                return 'bye'
-            }
+            // Save Response Data
+            console.log('['+board+'-response]');
+            this.setState(Object.assign({}, this.state,{
+                load: true,
+                baseTime: response.data.baseTime,
+                content: {
+                    pages: response.data.pages,
+                    list: response.data.list
+                }
+            }));
+            return { community: community, board: board, baseTime: baseTime }
+        }).then(( next )=>{
+            // Next Crawl
+            console.log('[next-start]', next.community, next.board, next.baseTime );
+            this.timeout = setTimeout(()=>{
+                console.log( "[next-run]\n");
+                this.getContent( next.community, next.board, next.baseTime )
+            }, this.props.board.intervalTime * 1000 );
+        }).catch(( error )=>{
+            console.log('[final-error]', error );
         });
     }
+    
     /**
      * Life Cycle
      */
@@ -95,20 +89,15 @@ class BoadrItem extends React.Component {
         const board = this.props.board.name;
         const baseTime = this.state.baseTime;
 
-        this.getContentList( community, board, baseTime );
+        this.getContent( community, board );
     }
     componentWillReceiveProps(nextProps){
         // When was changed boards.
         if( this.props.board.name !== nextProps.board.name ){
-            // Re-Run
-            const community = nextProps.community;
-            const board = nextProps.board.name;
-            const baseTime = "00:00:00";
-
             // Re-Set
             this.setState(Object.assign({}, this.state, {
-                reload: true,
-                baseTime: baseTime,
+                load: true,
+                baseTime: "12:00:00",
                 content: {
                     pages: [],
                     list: {
@@ -120,37 +109,18 @@ class BoadrItem extends React.Component {
         }
     }
     shouldComponentUpdate(nextProps, nextState){
-        // if( nextState.reload ){
-        //     const reload = {
-        //         type: 'reload',
-        //         data: {
-        //             community: nextProps.community,
-        //             board: nextProps.board.name,
-        //             baseTime: nextState.baseTime
-        //         }
-        //     }
-        //     console.log('[change]', reload.data );
-        // }
+        if( this.props.board.name !== nextProps.board.name ){
+            this.cancel.exec('cancel');
+            if( this.timeout ) clearTimeout( this.timeout );
+            this.getContent( nextProps.community, nextProps.board.name, null );
+        }
         return true;
     }
 
     componentWillUpdate(){
-        if( this.state.reload ){
-            const reload = {
-                type: 'reload',
-                data: {
-                    community: this.props.community,
-                    board: this.props.board.name,
-                    baseTime: this.state.baseTime
-                }
-            }
-            console.log('[change]', reload.data );
-            this.cancel.source.cancel(reload)     // prev-axios-cancel
-        }
     }
 
     componentWillUnmount(){
-        this.cancel.source.cancel({type: 'unmount'})     // prev-axios-cancel
         console.log('[BoardItem-UnMount]');
     }
 

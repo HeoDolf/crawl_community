@@ -83,25 +83,14 @@ Router.get('/board/:community', (req,res)=>{
                         error: error,
                         msg: "Board Find Error"
                     });
-                    req.session.board = boards.map((board, index)=>{
-                        return {
-                            community: req.params.community,
-                            board: board.name,
-                            baseTime: "00:00:00",
-                            contents: []
-                        }
-                    });
+                        
                     return res.status(200).json({
-                        list: boards
+                        list: boards 
+                        // list: boards.slice(0,1) 
                     });
                 }
             )
         }
     )
 });
-
-function initSession(){
-    
-}
-
 module.exports = Router;

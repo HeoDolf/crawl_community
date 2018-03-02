@@ -13,7 +13,7 @@ export function getPageList( /* user_id? */ ){
             dispatch(setSuccess( GET_PAGES, response.data.list ));
         });
         request.catch((error)=>{
-            dispatch(setFailure( GET_PAGES, error.response.data ));
+            dispatch(setFailure( GET_PAGES, error.response ));
         });
     }
 }
@@ -28,7 +28,7 @@ export function getBoardList( community ){
             dispatch(setSuccess( GET_BOARD, response.data.list ));
         });
         request.catch((error)=>{
-            dispatch(setFailure( GET_BOARD, error.response.data ));
+            dispatch(setFailure( GET_BOARD, error.response ));
         });
     }
 }

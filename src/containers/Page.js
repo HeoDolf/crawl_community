@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 // Components
 import { BoardItem } from './../components'
 // actions
-import { getContentList } from './../actions/crawler.act.js'
+import { getBoardList } from './../actions/getList.act.js'
 
 const defaultProps = {
     board: []
@@ -12,17 +12,24 @@ const defaultProps = {
 class Page extends React.Component {
     constructor(props, context){
         super(props, context);
+        console.log( props.page );
     }
     /**
      * Servicies
      */
-    // BoardList 여기서 호출하자 
+    // 크롤러를 여기서 실행하면 어떻게 될까..?
 
-
-     /**
+    /**
      * Life Cycle
      */
+    componentDidMount(){
+        this.props.getBoardList( this.props.page._community.name );
+    }
     componentWillReceiveProps(nextProps){
+        if( JSON.stringify(this.props.page) !== JSON.stringify(nextProps.page)){
+            // Change to Page
+            this.props.getBoardList( nextProps.page._community.name );
+        }
     }
     componentWillUnmount(){
         console.log("[page is unmount]");
@@ -31,10 +38,9 @@ class Page extends React.Component {
         return (
             <div className="page-wrapper">
                 <a>{this.props.page.title} {this.props.page._community.name}</a>
-                <div>
-                {
-                    this.props.board.list
-                    ? this.props.board.list.map((board, index)=>{
+                <div className="board-wrapper">
+                { 
+                    this.props.board.list.map((board, index)=>{
                         return (
                             <BoardItem 
                                 key={ index } 
@@ -43,7 +49,6 @@ class Page extends React.Component {
                             </BoardItem>
                         )
                     })
-                    : null
                 }
                 </div>
             </div>
@@ -57,6 +62,21 @@ const mapStateToProps = (state)=>{
         board: state.BoardReducer
     }
 }
+const mapDispatchToProps = (dispatch)=>{
+    return {
+        getBoardList: ( community )=>dispatch( getBoardList( community ) )
+    }
+}
 export default connect(
-    mapStateToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(Page)
+
+// const mapStateToProps = (state)=>{
+//     return {
+//         board: state.BoardReducer
+//     }
+// }
+// export default connect(
+//     mapStateToProps
+// )(Page)
