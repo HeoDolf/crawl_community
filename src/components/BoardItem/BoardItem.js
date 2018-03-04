@@ -121,6 +121,8 @@ class BoadrItem extends React.Component {
     }
 
     componentWillUnmount(){
+        this.cancel.exec('cancel');
+        if( this.timeout ) clearTimeout( this.timeout );
         console.log('[BoardItem-UnMount]');
     }
 
@@ -142,7 +144,7 @@ class BoadrItem extends React.Component {
         return (
             <div className={`board ${this.props.board.name}`}>
                 <div className="board-name">
-                    <a>{ this.props.board.name }</a>/
+                    <a>{ this.props.board.name_kor }</a>/
                     <a>{ this.state.content.list.new.length }</a>/
                     <a>{ this.state.content.list.old.length }</a>/
                     <a>{ this.state.baseTime }</a>

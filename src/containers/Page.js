@@ -45,9 +45,8 @@ class Page extends React.Component {
                             <BoardItem 
                                 key={ index } 
                                 community={this.props.page._community.name} 
-                                board={ board }>
-                            </BoardItem>
-                        )
+                                board={ board }/>
+                        );
                     })
                 }
                 </div>
@@ -71,12 +70,3 @@ export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(Page)
-
-// const mapStateToProps = (state)=>{
-//     return {
-//         board: state.BoardReducer
-//     }
-// }
-// export default connect(
-//     mapStateToProps
-// )(Page)

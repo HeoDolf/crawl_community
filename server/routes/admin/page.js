@@ -8,9 +8,10 @@ const session = {
         _id: '5a9133b2625f4f1ce0bd9966'
     }
 }
-
 // Insert
 Router.post('/page', (req,res)=>{
+    console.log( "[WFT]", req.body );
+
     Community.findOne(
         { 
             name:req.body.community
@@ -21,11 +22,12 @@ Router.post('/page', (req,res)=>{
             title: req.body.title,
             _creator: session.user._id,
             _community: exist._id,
-            index: req.body.index
+            index: req.body.index,
+            _board: req.body.board
         });
         page.save(function(error, page){
             if( error ) return res.status(500).json({errorCode: 500, error: error });
-            res.redirect('/api/page');
+            res.redirect('/');
         });
     });
 });

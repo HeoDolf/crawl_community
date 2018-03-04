@@ -35,9 +35,17 @@ module.exports = {
                     { loader:'css-loader' }
                 ],
                 include: defaultIncludes
+            },
+            {
+                test: /\.(jpg|png|gif|svg|pdf|ico)$/,
+                use: [
+                    { loader:'file-loader' },
+                ],
+                include: defaultIncludes
             }
         ]
     },
+    devtool: 'inline-source-map',
     plugins:[
         new HtmlWebpackPlugin({
             template: helper.root( 'public/index.html' ),

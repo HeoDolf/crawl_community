@@ -8,6 +8,7 @@ module.exports = mongoose.model('community', new Schema(
         host: String,
         pageQuery: { type: String, default: "?page="},
         startPage: { type: Number, default: 1 },
+        board: [ {type: Schema.Types.ObjectId, ref: 'board'} ],
         regDate: { type: Date, default: Date.now },
     },
     {

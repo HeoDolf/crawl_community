@@ -31,3 +31,18 @@ app.use('/api', require('./routes') );
 
 // Connect to Server
 app.listen(PORT, ()=>console.log('SERVER CONNECTION!!!', PORT));
+
+if( process.env.NODE_ENV === 'production'){
+    app.get('*', (req,res)=>{
+        fs.readFile('./dist/index.html', (error, data)=>{
+            if( error ) {
+                return res.status(500).json({
+                    errorCode: 500,
+                    error: error
+                });
+            }
+            res.setHeader('Content-Type', 'text/html; charset=utf-8');
+            res.send( data );
+        });
+    });
+}

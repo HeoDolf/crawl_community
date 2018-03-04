@@ -17,12 +17,10 @@ export function getPageList( /* user_id? */ ){
         });
     }
 }
-
 export function getBoardList( community ){
     return ( dispatch )=>{
         dispatch(setReady( GET_BOARD ));
         
-        const url = '/api/board/'+community;
         const request = axios.get('/api/board/'+community, {params:{}})
         request.then((response)=>{
             dispatch(setSuccess( GET_BOARD, response.data.list ));
@@ -32,6 +30,20 @@ export function getBoardList( community ){
         });
     }
 }
+export function getCommunityList( withBoard ){
+    return ( dispatch )=>{
+        dispatch(setReady( GET_COMMUNITY ));
+        
+        const request = axios.get(`/api/community?withBoard=${ withBoard }`)
+        request.then((response)=>{
+            dispatch(setSuccess( GET_COMMUNITY, response.data.list ));
+        });
+        request.catch((error)=>{
+            dispatch(setFailure( GET_COMMUNITY, error.response ));
+        });
+    }
+}
+
 function setReady( types ){
     return { 
         type: types.READY

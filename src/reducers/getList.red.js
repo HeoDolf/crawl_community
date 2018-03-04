@@ -1,10 +1,11 @@
 import {
-    GET_PAGES, GET_COMMUNITY, GET_BOARD, GET_CONTENTS
+    GET_PAGES, GET_COMMUNITY, GET_BOARD
 } from './../actions/ActionTypes'
 
 const initState = {
     status: "INIT",
     list: [],
+    length: 0,
     maxLength: 5
 }
 export function PageReducer( state = initState, action ){
@@ -24,7 +25,8 @@ export function PageReducer( state = initState, action ){
             }
             return Object.assign({}, state, {
                 status: "SUCCESS",
-                list: fillEmpty
+                list: fillEmpty,
+                length: action.list.length
             });
         default:
             return state;
@@ -41,6 +43,25 @@ export function BoardReducer( state = initState, action ){
                 status: "FAILURE",
             });
         case GET_BOARD.SUCCESS:
+            return Object.assign({}, state, {
+                status: "SUCCESS",
+                list: action.list
+            });
+        default:
+            return state;
+    }
+}
+export function CommunityReducer( state = initState, action ){
+    switch( action.type ){
+        case GET_COMMUNITY.READY:
+            return Object.assign({}, state, {
+                status: "READY"
+            });
+        case GET_COMMUNITY.FAILURE:
+            return Object.assign({}, state, {
+                status: "FAILURE",
+            });
+        case GET_COMMUNITY.SUCCESS:
             return Object.assign({}, state, {
                 status: "SUCCESS",
                 list: action.list
