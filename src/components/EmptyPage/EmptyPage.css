@@ -1,4 +1,8 @@
-.page-wrapper.empty .img-wrapper {
+.page .wrapper.empty{
+    width: 100%;
+    height: 100%;
+}
+.page .wrapper.empty .img-wrapper {
     cursor: pointer;
     width: 120px;
     height: 120px;
@@ -7,6 +11,6 @@
     border-radius: 20%;
     box-sizing: border-box;
 }
-.page-wrapper.empty .img-wrapper:hover {
-    background-color: lightgray;
+.page .wrapper.empty .img-wrapper:hover {
+    background-color: rgba(211, 211, 211, 0.926);
 }

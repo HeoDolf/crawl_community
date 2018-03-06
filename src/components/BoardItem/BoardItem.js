@@ -13,7 +13,6 @@ class BoadrItem extends React.Component {
         super(props, context);
         // 상태변환 변수
         this.state = {
-            reload: false,
             load: false,
             // Board Content Info
             content: {
@@ -26,6 +25,9 @@ class BoadrItem extends React.Component {
             baseTime: "12:00:00",
             view: [0, 5]
         }
+
+        // Display Content Count
+        this.display = [0, 5];
 
         // Local
         this.cancel = {
@@ -59,7 +61,8 @@ class BoadrItem extends React.Component {
             })
         }).then((response)=>{
             // Save Response Data
-            console.log('['+board+'-response]');
+            console.log('['+board+'-response]', response.data.list.new.length );
+
             this.setState(Object.assign({}, this.state,{
                 load: true,
                 baseTime: response.data.baseTime,
@@ -68,6 +71,7 @@ class BoadrItem extends React.Component {
                     list: response.data.list
                 }
             }));
+
             return { community: community, board: board, baseTime: baseTime }
         }).then(( next )=>{
             // Next Crawl
@@ -75,7 +79,7 @@ class BoadrItem extends React.Component {
             this.timeout = setTimeout(()=>{
                 console.log( "[next-run]\n");
                 this.getContent( next.community, next.board, next.baseTime )
-            }, this.props.board.intervalTime * 1000 );
+            }, this.props.board.intervalTime * 2000 );
         }).catch(( error )=>{
             console.log('[final-error]', error );
         });
@@ -102,7 +106,7 @@ class BoadrItem extends React.Component {
                     pages: [],
                     list: {
                         new: [],
-                        old: this.state.content.list.old
+                        old: []
                     },
                 }
             }));
@@ -142,20 +146,22 @@ class BoadrItem extends React.Component {
         )
         const loaded = ( <a><i className="material-icons small">check</i></a> )
         return (
-            <div className={`board ${this.props.board.name}`}>
-                <div className="board-name">
-                    <a>{ this.props.board.name_kor }</a>/
-                    <a>{ this.state.content.list.new.length }</a>/
-                    <a>{ this.state.content.list.old.length }</a>/
-                    <a>{ this.state.baseTime }</a>
-                    { this.state.load ? loaded : preloader }
+            <div className={`board-item ${this.props.board.name}`}>
+                <div className="board-title row">
+                    <div className="col s6">
+                        <a>{ this.props.board.name_kor }</a>
+                    </div>
+                    <div className="col s6 right-align">
+                        <a>{ this.state.baseTime }</a>
+                        { this.state.load ? loaded : preloader }
+                    </div>
                 </div>
                 <div className="board-list-wrapper">
                 {
                     this.state.content.list.new
                     ? <ContentList
                             contents={ this.state.content.list }
-                            view={ this.state.view } />
+                            display={ this.display } />
                     : null  
                 }
                 </div>

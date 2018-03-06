@@ -1,19 +1,44 @@
-@media screen and ( max-width: 1050px ) {
-    .board { float: left; width: 100%; }
+@media screen and ( max-width: 960px ) {
+    .board-item { float: left; width: 100%; }
+}
+@media screen and ( min-width: 961px ) and ( max-width: 1050px ) {
+    .board-item { float: left; width: 50%; }
 }
 @media screen and ( min-width: 1051px ) {
-    .board { float: left; width: 50%; }
+    .board-item { float: left; width: 33%; }
 }
 
-.board { margin-bottom: 10px; height: auto; max-height: 350px; }
+.board-item { margin-bottom: 10px; height: 350px; max-height: 350px; }
+.board-item.add .wrapper.ready {
+    cursor: pointer;
+    width: 250px;
+    height: 250px;
+    margin: auto;
+    border-radius: 20%;
+    box-sizing: border-box;
 
-.board .board-name { z-index: 2; position: relative; height: 2rem; }
-.board .board-name a { font-size: 1.5rem; }
-.board .board-name .preloader-wrapper.small { width: 1.5rem; height: 1.5rem; }
-.board .board-name i.small { font-size: 1.5rem; }
+    text-align: center;
+    line-height: 350px;
+}
+.board-item.add .wrapper.write {
+    width: 80%;
+    height: 80%;
 
-.board .board-list-wrapper::-webkit-scrollbar { display: none; }
-.board .board-list-wrapper {
+    padding: 20px 10px;
+
+    border-radius: 20%;
+
+    transition: all .5s ease-in-out;
+}
+.board-item.add:hover .wrapper { background-color: rgb(205, 234, 244); }
+
+.board-item .board-title { z-index: 2; position: relative; height: 2rem; margin-bottom: 10px; }
+.board-item .board-title a { font-size: 1.5rem; }
+.board-item .board-title .preloader-wrapper.small { width: 1.5rem; height: 1.5rem; }
+.board-item .board-title i.small { font-size: 1.5rem; }
+
+.board-item .board-list-wrapper::-webkit-scrollbar { display: none; }
+.board-item .board-list-wrapper {
     z-index: 3;
     position: relative;
     width: 100%;    
@@ -22,4 +47,37 @@
     overflow-x: hidden;
     overflow-y: scroll;
     -ms-overflow-style: none;
+}
+/* .board .board-list-wrapper:hover {
+    box-shadow: 1px 1px 5px black;
+} */
+
+.board-item .content-list{
+    padding: 0px 2.5px;
+}
+.board-item .collection {
+    border: none;
+}
+.board-item .collection-item {
+    padding-right: 52px;
+    min-height: 0!important;
+    margin-bottom: 5px;
+    margin-right: 5px;
+
+    box-shadow: 1px 1px 3px black;
+}
+.board-item .collection-item:hover {
+    background-color: rgba(253, 245, 230, 0.844);
+}
+.board-item .collection-item > .title {
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    white-space: nowrap; 
+    height: 2rem!important;
+    text-overflow: ellipsis!important;
+}
+.board-item .collection-item .writer{
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    white-space: nowrap; 
 }

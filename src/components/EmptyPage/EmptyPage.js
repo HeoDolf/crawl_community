@@ -2,12 +2,20 @@ import React from 'react'
 import image from './../../assets/image/plus-th.png'
 import './EmptyPage.css'
 
-const EmptyPage = ({ modal_id })=>{
+import { PageSetting } from './../../components'
+
+const EmptyPage = ({ handler, options })=>{
+    const modal_id = "CreatePage";
     return (
-        <div className="page-wrapper empty valign-wrapper">
+        <div className="wrapper empty valign-wrapper">
             <div className="img-wrapper">
                 <a href={`#${modal_id}`}><img src={ image }/></a>
             </div>
+            <PageSetting 
+                    id={modal_id} 
+                    title="페이지 생성" 
+                    handler={handler} 
+                    options={options}/>
         </div>
     )
 }

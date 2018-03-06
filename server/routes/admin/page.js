@@ -10,8 +10,6 @@ const session = {
 }
 // Insert
 Router.post('/page', (req,res)=>{
-    console.log( "[WFT]", req.body );
-
     Community.findOne(
         { 
             name:req.body.community
@@ -31,58 +29,28 @@ Router.post('/page', (req,res)=>{
         });
     });
 });
-Router.get('/page/:index/:community', (req,res)=>{
-    Community.findOne(
-        { 
-            name: req.params.community
-        }, 
-        function(error, community){
-            if( error ) return res.status(500).json({errorCode: 500, error: error});
-            Board.find({
-                _community: community._id
-            },null,{
-                select: "_id"
-            }, function(error, boards){
-                if( error ) return res.status(500).json({errorCode: 500, error: error});
-                
-                Page.update(
-                    { 
-                        index: req.params.index
-                    },
-                    {
-                        $set: { 
-                            _board: boards.map((board)=>{
-                                return board.id;
-                            })
-                        }
-                    },
-                    function(error, success){
-                        if( error ) return res.status(500).json({errorCode: 500, error: error});
-                        return res.status(200).json({
-                            success,
-                            boards: boards.map((board)=>{
-                                return board.id;
-                            })
-                        })
-                    });
-            });
-        }
-    );
-});
-// Find One
-Router.get('/page/:title', (req,res)=>{
-    Page.findOne({
-            title:req.params.title, 
-            _creator:session.user._id
-        })
-        .populate({ path:'_community' })
-        .exec(function(error, page){
-            if( error ) return res.status(500).json({errorCode: 500, error: error });
-            return res.status(200).json({
-                page
-            });
+// Delete
+Router.delete('/page', (req,res)=>{
+    Page.remove({
+        _creator: session.user._id,
+        title: req.body.title,
+        index: req.body.index
+    }, function(error, result){
+        if( error ) return res.status(500).json({
+            errorCode: 500,
+            error: error
         });
+        if( result.ok === 0 ) return res.status(401).json({
+            errorCode: 401,
+            error: "Invalid Page Info",
+            msg: ''
+        });
+        res.status(200).json({
+            result: "success"
+        });
+    });
 });
+
 // Find All
 Router.get('/page', (req,res)=>{
     Page.find(
@@ -117,7 +85,7 @@ Router.get('/page', (req,res)=>{
             list: pages
         });
     });
-}); 
+});
 
 function initSession( session, page ){
     // if( !session.page ){ session.page = []; }

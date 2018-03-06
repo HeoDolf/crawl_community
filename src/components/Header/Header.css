@@ -4,5 +4,7 @@
 .main-header ul { line-height: 30px; }
 .main-header ul li { float: left;  margin: 10px 5px; padding: 0 15px; }
 .main-header ul li.active { background-color: rgba(240, 128, 128, 0.7); }
-.main-header ul li a { cursor: pointer; color: black;}
+.main-header ul li a { cursor: pointer; color: black; font-size: 1em; }
 .main-header ul li a:hover { color: red; }
+
+.main-header ul li a i.material-icons { font-size: 1em; }

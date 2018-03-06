@@ -19,9 +19,9 @@ export function PageReducer( state = initState, action ){
                 status: "FAILURE",
             });
         case GET_PAGES.SUCCESS:
-            let fillEmpty = new Array( initState.maxLength ).fill('empty');
-            for(let index in action.list ){
-                fillEmpty[index] = action.list[index];
+            let fillEmpty = action.list;
+            if( fillEmpty.length < initState.maxLength ){
+                fillEmpty.push('empty');
             }
             return Object.assign({}, state, {
                 status: "SUCCESS",

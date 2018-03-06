@@ -3,11 +3,6 @@ import axios from 'axios'
 
 import FixedFooter from './FixedFooter.js'
 
-
-function handleChange(event){
-    console.log( event );
-}
-
 const SelectCommunity = ({ list })=>{
     return (
         <div className="input-field col s12">
@@ -44,7 +39,7 @@ const SelectBoard = ({ list })=>{
         </div>
     )
 }
-const CreatePage = ({ id, title, handler, index, options })=>{
+const PageSetting = ({ id, title, handler, index, options })=>{
     const selected = options.community;
 
     return (
@@ -52,8 +47,8 @@ const CreatePage = ({ id, title, handler, index, options })=>{
             <form id="create_page" className="row">
                 <div className="row">
                     <div className="input-field col s2">
-                        <input id="page_title" name="index" type="text" value={ options.pageIndex } readOnly/>
-                        <label htmlFor="page_title">Title</label>
+                        <input id="page_index" name="index" type="text" value={ options.pageIndex } readOnly/>
+                        <label htmlFor="page_index" className="active">Index</label>
                     </div>
                     <div className="input-field col s10">
                         <input id="page_title" name="title" type="text"/>
@@ -77,4 +72,4 @@ const CreatePage = ({ id, title, handler, index, options })=>{
     )
 }
 
-export default CreatePage
+export default PageSetting
