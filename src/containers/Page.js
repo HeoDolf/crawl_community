@@ -76,7 +76,7 @@ class Page extends React.Component {
         event.preventDefault();
         const data = {
             page: this.props.page._id,
-            board: this.props.community.list[this.state.add.comIndex].board[this.state.add.bodIndex]
+            board: this.props.community.list[this.state.add.comIndex].board[this.state.add.bodIndex]._id
         }
         const addBoard = axios({
             url: '/api/page/board',

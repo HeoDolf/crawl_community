@@ -5,6 +5,11 @@ const { Content } = require('./../../models');
 
 const Router = express.Router();
 
+/**
+ * depatched
+ */
+
+
 // content로 바꿔야됨
 Router.get('/crawler/:community/:board', (req,res)=>{
     const community = req.params.community;
@@ -39,30 +44,6 @@ Router.get('/crawler/:community/:board', (req,res)=>{
         return res.status(error.errorCode).json(error);
     });
 });
-
-Router.get('/content/:community/:board', (req,res)=>{
-    const baseTime = req.query.baseTime;
-    Content.find({
-        name: req.params.board,
-        community : req.params.community,
-        "content.date": {
-            $gt: new Date( baseTime )
-        }
-    },function(error, result){
-        if( error ) return res.status(500).json({
-            errorCode: 500,
-            error: error,
-            msg: "Find Content Error"
-        });
-        return res.status(200).json({
-            list: {
-                new: result
-            }
-        })
-    });
-});
-
-
 
 
 function getSession( session, data ){

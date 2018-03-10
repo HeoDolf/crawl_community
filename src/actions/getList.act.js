@@ -1,9 +1,8 @@
 import axios from 'axios'
 import {
-    GET_PAGES, GET_COMMUNITY, GET_BOARD, GET_CONTENTS
+    GET_PAGES, GET_COMMUNITY, GET_BOARD, GET_CONTENT
 } from './ActionTypes.js'
 
-// Ps. Should logged state. 
 export function getPageList( /* user_id? */ ){
     return ( dispatch )=>{
         dispatch(setReady( GET_PAGES ));
@@ -40,6 +39,29 @@ export function getCommunityList( withBoard ){
         });
         request.catch((error)=>{
             dispatch(setFailure( GET_COMMUNITY, error.response ));
+        });
+    }
+}
+export function getContentList( community, board ){
+    return ( dispatch )=>{
+        let url = ['/api', 'content'];
+
+        if( typeof community === 'string' ){
+            url.push( community );
+        }
+        if( typeof board === 'string' ){
+            url.push( board );
+        }
+
+        dispatch(setReady( GET_CONTENT ));
+
+        const request = axios.get( url.join('/') )
+        request.then((response)=>{
+            console.log( response.data.list );
+            dispatch(setSuccess( GET_CONTENT, response.data.list ));
+        });
+        request.catch((error)=>{
+            dispatch(setFailure( GET_CONTENT, error.response ));
         });
     }
 }

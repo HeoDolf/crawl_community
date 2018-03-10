@@ -9,12 +9,14 @@ const crawler = require('./../server/utils/Crawler');
 const DELAY = 10000;
 
 const communityInfo = new Promise((resolve, reject)=>{
-    Community.find({
-        name: 'ygosu'
-    },{
+    Community.find(
+    {
+        name: 'humoruniv',
+    },
+    {
         _id: 0, name: 1, board: 1
     }).populate({
-        path:"board",
+        path: "board",
         select: 'name -_id'
     }).exec(function(error, communities){
         if( error ) return reject({
@@ -46,7 +48,7 @@ const communityInfo = new Promise((resolve, reject)=>{
 });
 communityInfo.then(( data )=>{
     try {
-        // Handle Crawler: loop
+        // // Handle Crawler: loop
         for(let index=0; index < data.length; index++){
             // const index = 0;
             const community = data[index].community
@@ -87,7 +89,7 @@ function handleCrawler( error, result, info ){
                 }
             }, function(error, updated){
                 if( error ) return console.error( error );
-                console.log('[update]', contents.length );
+                console.log(`[update ${info.community} ${info.board}]`, contents.length );
                 return crawler(info.community, info.board, DELAY, handleCrawler);
             });
         });

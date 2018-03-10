@@ -1,321 +1,1531 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="ko">
 <head>
-<title>ì¸ë²¤ | ì¢…í•© ê²Œì„ ì»¤ë®¤ë‹ˆí‹° INVEN</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="Keywords" content="" />
-<meta name="Description" content="" />
-<link rel="shortcut icon" type="image/x-icon" href="http://www.inven.co.kr/favicon.ico?v=2" />
-<script type="text/javascript" src="http://www.inven.co.kr/common/lib/js/common_new.js?v=150518"></script>
-<style type="text/css">
-body { margin: 0; padding: 0; }
-#err404Wrap {
-	width: 100%;
-	height: 95%;
-	float: left;
-	clear: both;
-}
-#err404Wrap tr,
-#err404Wrap td {
-	height: 100%;
-}
-#err404Wrap td.wrap {
-	width: 654px;
-	height: 100%;
-	text-align: center;
-}
-#err404Wrap div.hide {
-	visibility: hidden;
-}
-#err404 {
-	width: 654px;
-	height: auto;
-	display: inline;
-}
-#err404,
-#err404 a {
-	font-family: dotum, ë‹ì›€;
-	font-size: 9pt;
-	color: #000000;
-	text-decoration: none;
-}
-#err404 div,
-#err404 h1,
-#err404 h2,
-#err404 ul,
-#err404 li,
-#err404 dl,
-#err404 dt,
-#err404 dd {
-	float: left;
-	display: inline;
-	margin: 0;
-	padding: 0;
-}
-/* ìƒë‹¨ */
-#err404 dl.inven {
-	width: 654px;
-	height: auto;
-}
-#err404 dl.inven dt a {
-	float: left;
-	display: inline;
-	width: 135px;
-	height: 0px;
-	_height: 58px;
-	padding-top: 58px;
-	overflow: hidden;
-	background: url(http://static.inven.co.kr/image_2011/common/common/logo_135x39.gif) left 13px no-repeat;
-	margin: 0 0 0 16px;
-}
-#err404 dl.inven dd {
-	float: right;
-	width: 183px;
-	_width: 211px;
-	height: 14px;
-	_height: 16px;
-	padding: 2px 0 0 28px;
-	margin: 41px 0 0 0;
-	overflow: hidden;
-	background: url(http://static.inven.co.kr/image/www/error/icon_speaker.gif) left top no-repeat;
-	text-align: left;
-	letter-spacing: -1px;
-	color: #004F49;
-}
-/* ì¤‘ë‹¨ */
-#err404 .detail {
-	width: 100%;
-	height: auto;
-	margin: 5px 0 0 0;
-}
-#err404 .detailTop {
-	width: 654px;
-	height: 4px;
-	overflow: hidden;
-	background: url(http://static.inven.co.kr/image/www/error/wrap_654_gblue_top.gif) left top no-repeat;
-}
-#err404 .detailMid {
-	width: 654px;
-	height: auto;
-	background: url(http://static.inven.co.kr/image/www/error/wrap_654_gblue_mid.gif) left top repeat-y;
-	padding-bottom: 16px;
-}
-#err404 .detailBot {
-	width: 654px;
-	height: 5px;
-	overflow: hidden;
-	background: url(http://static.inven.co.kr/image/www/error/wrap_654_gblue_bot.gif) left top no-repeat;
-}
-#err404 .detailBody {
-	width: 587px;
-	height: 360px;
-	margin: 24px 0 0 35px;
-	background: url(http://static.inven.co.kr/image/www/error/bg_char_girl.gif) left top no-repeat;
-}
-#err404 .detailBody h1 {
-	width: 337px;
-	height: 0px;
-	_height: 24px;
-	padding-top: 24px;
-	overflow: hidden;
-	background: url(http://static.inven.co.kr/image/www/error/text_sorry.gif) left top no-repeat;
-	margin: 29px 0 0 202px;
-}
-#err404 .detailBody h2 {
-	width: 345px;
-	height: 0px;
-	_height: 32px;
-	padding-top: 32px;
-	overflow: hidden;
-	background: url(http://static.inven.co.kr/image/www/error/text_404.gif) left top no-repeat;
-	margin: 19px 0 0 201px;
-}
-#err404 .detailBody .message {
-	width: 434px;
-	height: 140px;
-	_width: 466px;
-	_height: 197px;
-	padding: 57px 0 0 32px;
-	margin: 11px 0 0 121px;
-	background: url(http://static.inven.co.kr/image/www/error/bg_say.gif) left top no-repeat;
-}
-#err404 .detailBody .message span { float: left; display: inline; clear: both; width: 100%; text-align: left; }
-#err404 .detailBody .message span.title { color: #F77622; font-weight: bold; height: 14px; overflow: hidden; }
-#err404 .detailBody .message span.content { color: #494949; line-height: 22px; margin-top: 19px; }
-#err404 .detailBody div.home {
-	margin: 13px 0 0 258px;
-}
-#err404 .detailBody div.home a {
-	width: 192px;
-	height: 17px;
-	_height: 24px;
-	padding: 7px 0 0 13px;
-	text-align: center;
-	overflow: hidden;
-	float: left;
-	display: inline;
-	font-weight: bold;
-	letter-spacing: -1px;
-	background: url(http://static.inven.co.kr/image/www/error/bttn_192x24_reddot.gif) left top no-repeat;
-}
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-/* ì¸ë²¤ì‚¬ì´íŠ¸ */
-#err404 .invenSites {
-	width: 643px;
-	height: auto;
-	clear: both;
-	margin: 9px 0 0 7px;
-}
-#err404 .invenSites h4 {
-	width: 606px;
-	_width: 643px;
-	height: 19px;
-	_height: 28px;
-	padding: 9px 0 0 37px;
-	margin: 0px;
-	overflow: hidden;
-	text-align: left;
-	color: #FFFFFF;
-	font-family: gulim, êµ´ë¦¼;
-	font-size: 9pt;
-	font-weight: bold;
-	background: url(http://static.inven.co.kr/image/www/error/title_green.gif) left top no-repeat;
-}
-#err404 .siteList {
-	width: 622px;
-	height: auto;
-	clear: both;
-	margin: 10px 0 0 10px;
-}
-#err404 .siteList .siteListTop {
-	width: 622px;
-	height: 5px;
-	overflow: hidden;
-	background: url(http://static.inven.co.kr/image/www/error/wrap_622_blue_top.gif) left top no-repeat;
-}
-#err404 .siteList .siteListMid {
-	width: 622px;
-	height: auto;
-	background: url(http://static.inven.co.kr/image/www/error/wrap_622_blue_mid.gif) left top repeat-y;
-}
-#err404 .siteList .siteListBot {
-	width: 622px;
-	height: 5px;
-	overflow: hidden;
-	background: url(http://static.inven.co.kr/image/www/error/wrap_622_blue_bot.gif) left top no-repeat;
-}
-#err404 .siteList ul {
-	width: 600px;
-	height: auto;
-	margin: 3px 0 0 6px;
-	padding-bottom: 11px;
-}
-#err404 .siteList ul li {
-	width: 90px;
-	height: 21px;
-	margin: 8px 0 0 10px;
-}
-#err404 .siteList ul li a {
-	float: left;
-	display: inline;
-	width: 90px;
-	height: 15px;
-	_height: 21px;
-	padding: 6px 0 0 0;
-	text-align: center;
-	font-family: dotum,ë‹ì›€;
-	font-size: 11px;
-	color: #535353;
-	font-weight: bold;
-	text-decoration: none;
-	letter-spacing: -1px;
-	background: url(http://static.inven.co.kr/image/www/error/bttn_90x21_green.gif) left top no-repeat;
-}
-</style>
+<title>&#40;´ë±âÀÚ·á&#41;  - Çàº¹ÇÑ À¯¸Ó, ¿ô±ä´ëÇĞ¿¡ ¿À¼Ì½À´Ï´Ù !!</title>
+<meta name="title" content="&#40;´ë±âÀÚ·á&#41; " />
+<meta name="writer" content="¿ô±ä´ëÇĞ"><meta name="description" content="&#40;´ë±âÀÚ·á&#41;  :::: Çàº¹ÇÑ À¯¸Ó, ¿ô±ä´ëÇĞ" />
+<meta name="keywords" content="¿ô±äÀ¯¸Ó ¿ô±äÀÚ·á humor Ä¿¹Â´ÏÆ¼" />
+<link href="/css/default.css?tmp=20180119-1-20180310" rel="stylesheet" type="text/css" />
+<script language="javascript" src="/js/common_070619.js?tmp=20171215-20180310"></script>
+<script src="/js/websql.js?tmp=20170530-1-20180310"></script>
+<script language="javascript" src="/js/pong_070619.js"></script>
+<script language="javascript" src="/js/jquery-1.11.1.min.js"></script> 
+
 </head>
 
-<body>
+<body id="body" style="margin:0;"> <!--  Åë°è PVS --><div style="width:0px;height:0px;overflow:hidden;"><iframe src='http://pv.humoruniv.com/pv/pv_iframe.html?REFERER=' width='0' height='0' marginwidth='0' marginheight='0' scrolling='no' frameborder='0'></iframe></div>
 
-<table id="err404Wrap" border="0" cellpadding="0" cellspacing="0">
-<tr>
-<td><div class="hide">&nbsp;</div></td>
-<td class="wrap">
 
-<div id="err404">
-	<dl class="inven">
-		<dt><a href="http://www.inven.co.kr" onfocus="this.blur();">Inven</a></dt>
-		<dd>ë‹¹/ì‹ /ì´/ê¿ˆ/ê¾¸/ëŠ”/ì„¸/ìƒ/ì¸/ë²¤</dd>
-	</dl>
+<!-- °¡¿îµ¥Á¤·Ä -->
+<div style="width:100%;"><div style="position:relative; width:1000px; margin:0 auto;">
+<div id="wrap_head">
+  <div id="head_main">
+<!--    <div id="logo"><a href="/main.html" target="_self" name="top"><img src="/images/hu_logo.gif" /></a></div>//-->
+    <div id="branch">
 
-	<div class="detail">
-		<div class="detailTop"></div>
-		<div class="detailMid">
-			<div class="detailBody">
-				<h1>ì„œë¹„ìŠ¤ ì´ìš©ì— ë¶ˆí¸ì„ ë“œë ¤ ëŒ€ë‹¨íˆ ì£„ì†¡í•©ë‹ˆë‹¤.</h1>
-				<h2>ìš”ì²­í•˜ì‹  í˜ì´ì§€ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.</h2>
-				<div class="message">
-					<span class="title">ì„œë¹„ìŠ¤ ì´ìš©ì— ë¶ˆí¸ì„ ë“œë ¤ ì£„ì†¡í•©ë‹ˆë‹¤.
-<br/></span>
-					<span class="content">ì…ë ¥í•˜ì‹  í˜ì´ì§€ê°€ ì‚­ì œë˜ì—ˆê±°ë‚˜ ì´ë¦„ì´ ë³€ê²½ë˜ì—ˆê±°ë‚˜<br/>
-ì¼ì‹œì ìœ¼ë¡œ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.<br/>
-ë¨¼ì € 'F5'í‚¤ë¥¼ ì´ìš©í•˜ì—¬ ìƒˆë¡œê³ ì¹¨ í•´ë³´ì‹œê³ <br/>
-í˜ì´ì§€ì˜ ì£¼ì†Œë¥¼ ì˜¬ë°”ë¥´ê²Œ ì…ë ¥í–ˆëŠ”ì§€ ë‹¤ì‹œ í•œë²ˆ í™•ì¸í•´ ë³´ì‹œê¸° ë°”ëë‹ˆë‹¤.
-</span>
-				</div>
-				<div class="home"><a href="http://www.inven.co.kr" onfocus="this.blur();">ì¸ë²¤ ì´ˆê¸°í™”ë©´ìœ¼ë¡œ ê°€ê¸°</a></div>
-			</div>
-			<div class="invenSites">
-				<h4>ì¸ë²¤ì‚¬ì´íŠ¸ ë°”ë¡œ ê°€ê¸°</h4>
-				<div class="siteList">
-					<div class="siteListTop"></div>
-					<div class="siteListMid">
-						<ul>
-													<li><a href="https://www.invenglobal.com/" onfocus="this.blur();">InvenGlobal</a></li>
-													<li><a href="http://www.inven.co.kr/webzine/" onfocus="this.blur();">ì›¹ì§„ ì¸ë²¤</a></li>
-													<li><a href="http://indie.inven.co.kr/" onfocus="this.blur();">ì¸ë”” ì¸ë²¤</a></li>
-													<li><a href="http://vr.inven.co.kr/" onfocus="this.blur();">VR ì¸ë²¤</a></li>
-													<li><a href="http://mobilegame.inven.co.kr" onfocus="this.blur();">ëª¨ë°”ì¼ê²Œì„ ì¸ë²¤</a></li>
-													<li><a href="http://esports.inven.co.kr" onfocus="this.blur();">eìŠ¤í¬ì¸  ì¸ë²¤</a></li>
-													<li><a href="http://lcb.inven.co.kr" onfocus="this.blur();">LoL ëŒ€í•™ìƒë°°í‹€</a></li>
-													<li><a href="http://recruit.inven.co.kr/" onfocus="this.blur();">ë¦¬í¬ë£¨íŠ¸</a></li>
-													<li><a href="http://ibs.inven.co.kr" onfocus="this.blur();">ì¸ë²¤ ë°©ì†¡êµ­</a></li>
-													<li><a href="http://mogong.inven.co.kr/" onfocus="this.blur();">ëª¨ë°”ì¼ ê³µëµ ì¸ë²¤</a></li>
-													<li><a href="http://it.inven.co.kr" onfocus="this.blur();">IT ì¸ë²¤</a></li>
-													<li><a href="http://imart.inven.co.kr" onfocus="this.blur();">ì•„ì´ë§ˆíŠ¸</a></li>
-													<li><a href="http://imart.inven.co.kr/event/?giftType=5" onfocus="this.blur();">ì‚¬ì „ë“±ë¡</a></li>
-													<li><a href="http://igc.inven.co.kr/" onfocus="this.blur();">IGC</a></li>
-													<li><a href="http://www.inven.co.kr/board/powerbbs.php?come_idx=5013&iskin=webzine" onfocus="this.blur();">í”„ë¦°íŒ… í‹°ì…”ì¸ </a></li>
-													<li><a href="https://www.marketinven.com/" onfocus="this.blur();">ë§ˆì¼“ì¸ë²¤</a></li>
-													<li><a href="http://destiny2.inven.co.kr/" onfocus="this.blur();">ë°ìŠ¤í‹°ë‹ˆ2</a></li>
-													<li><a href="http://ingress.inven.co.kr/" onfocus="this.blur();">ì¸ê·¸ë ˆìŠ¤</a></li>
-													<li><a href="http://pentastorm.inven.co.kr/" onfocus="this.blur();">íœíƒ€ìŠ¤í†°</a></li>
-													<li><a href="http://gf.inven.co.kr/" onfocus="this.blur();">ì†Œë…€ì „ì„ </a></li>
-													<li><a href="http://onmyoji.inven.co.kr/" onfocus="this.blur();">ìŒì–‘ì‚¬</a></li>
-													<li><a href="http://pubg.inven.co.kr/" onfocus="this.blur();">ë°°í‹€ê·¸ë¼ìš´ë“œ</a></li>
-													<li><a href="http://majestia.inven.co.kr/" onfocus="this.blur();">ë§ˆì œìŠ¤í‹°ì•„</a></li>
-													<li><a href="http://lineagem.inven.co.kr/" onfocus="this.blur();">ë¦¬ë‹ˆì§€M</a></li>
-													<li><a href="http://sc.inven.co.kr/" onfocus="this.blur();">ìŠ¤íƒ€í¬ë˜í”„íŠ¸</a></li>
-													<li><a href="http://tfo.inven.co.kr/" onfocus="this.blur();">íƒ€ì´íƒ„í´ ì˜¨ë¼ì¸</a></li>
-													<li><a href="http://teram.inven.co.kr/" onfocus="this.blur();">í…Œë¼M</a></li>
-												</ul>
-					</div>
-					<div class="siteListBot"></div>
-				</div>
-			</div>
+	<!-- GNB -->
 
-		</div>
-		<div class="detailBot"></div>
+				
+	<div class="humor_gnb">
+			<span class="humor_logo" style="margin-left:15px;"><a href="/main.html" target="_self"><img src="/images/gnb/humor_logo.gif" width="153" height="42" title="¿ô±ä´ëÇĞ" /></span></a>
+	        <ul class="humor_menu">
+
+
+			
+			<li>
+			<img src="/images/blt_newnew.gif">
+			<a href="http://web.humoruniv.com/board/humor/list.html?table=face"><img src="//web.humoruniv.com/images/gnb/lnb_hu_face.gif" alt="³ÊÀÇ ¾ó±¼Àº"
+				onmouseover="this.src='//web.humoruniv.com/images/gnb/lnb_hu_face_on.gif';" onmouseout="this.src='//web.humoruniv.com/images/gnb/lnb_hu_face.gif'"
+				/></a>
+
+			<li>
+				<a href="http://web.humoruniv.com/cr/cr_list.html">
+				<img src="/images/gnb/lnb_hu_cr.gif" alt="À¥¼Ò¼³" onmouseover="this.src='//web.humoruniv.com/images/gnb/lnb_hu_cr_on.gif';" onmouseout="this.src='//web.humoruniv.com/images/gnb/lnb_hu_cr.gif'"
+				/></a>
+
+			<li><a href="http://web.humoruniv.com/chat/chat_list.html"><img src="//web.humoruniv.com/images/gnb/lnb_hu_chat.gif" alt="¿ô´ëÃ¤ÆÃ"
+				onmouseover="this.src='//web.humoruniv.com/images/gnb/lnb_hu_chat_on.gif';" onmouseout="this.src='//web.humoruniv.com/images/gnb/lnb_hu_chat.gif'"
+				/></a>
+
+			<li><a href="http://web.humoruniv.com/board/humor/list.html?table=wphoto"><img src="//web.humoruniv.com/images/gnb/lnb_hu_web2.gif" class="auto_over" alt="¿ô±ä¿©´ë" onmouseover="this.src='//web.humoruniv.com/images/gnb/lnb_hu_web2_on.gif'" onmouseout="this.src='//web.humoruniv.com/images/gnb/lnb_hu_web2.gif'"/></a></li>
+
+			<li class="bgnone"><a href="http://avatar.humoruniv.com/item/item.html?mode=home"><img src="//web.humoruniv.com/images/gnb/lnb_hu_item.gif" class="auto_over" alt="¾ÆÀÌÅÛ¸ô" onmouseover="this.src='//web.humoruniv.com/images/gnb/lnb_hu_item_on.gif'" onmouseout="this.src='//web.humoruniv.com/images/gnb/lnb_hu_item.gif'"/></a></li>
+		</ul>
+    </div>
+    <!--//GNB¼öÁ¤ yicha0701-->
+   </div>
+  </div>
+
+
+
+<!--
+	<div style="position:absolute;top:20px;left:595px;">
+		<img width="154" height="32" src="/images/you_can_do_it.gif">
 	</div>
-	<div style="width: 5px; height: 5px;" onclick="login();"></div>
+-->
+	<!-- Çì´õ ¿ìÃø ±¤°í ¿µ¿ª -->
+	<div id="djb_new" style="width:200px;">
+		<div style="float:left;margin-top:8px;" id="daejabo"></div>
+	</div>
+	<!-- Çì´õ ¿ìÃø ±¤°í ¿µ¿ª -->
 
+
+
+
+<!--¿À¸¥ÂÊ ³¯°³ ¿µ¿ª-->
+
+<!-- ·Î±×ÀÎÇÑ È¸¿ø º¸±â -->
+<div id="side_wings" name="side_wings" style="position:absolute; margin-left:913px; margin-top:10px; z-index:100; width:87px;"></div>
+
+<!-- ·Î±×ÀÎÇÑ ¸í´Ü º¸¿©ÁÖ´Â ·¹ÀÌ¾î(¹İÅõ¸í)-->
+<div id="login_view" style="position:absolute; margin-left:700px; margin-top:10px; width:210px; z-index:99; visibility:hidden;">
+<table width="210" height="194" border="0" cellpadding="0" cellspacing="0" style="background-color:#5454C8; border:1px solid #212193; filter:alpha(opacity:90);">
+  <tr>
+    <td class="al_c">
+      <table width="180" height="200" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+	  <td height="163" valign="middle"><iframe name="login_user_list" width="180" height="163" marginwidth=0 marginheight=0 hspace=0 vspace=0 frameborder=0 scrolling=no src="/user/login_idview.html"></iframe></td>
+	</tr>
+	<tr><td height="42" class="wht"><strong>Tip</strong> ¾ÆÀÌµğ¸¦ Å¬¸¯ÇÏ½Ã¸é ÂÊÁö¸¦ <br />º¸³»½Ç ¼ö ÀÖ½À´Ï´Ù!</td></tr>
+	<tr>
+	  <td height="23" valign="top"><a href="javascript:OnOff_Layers()"><img src="/images/btn_close_loglist.gif" alt="close" style="cursor:pointer;" /></a></td>
+	</tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</div>
+  <div id="head_slg_new">
+   <form name="search_form" action="/search/search.html?section=all" method="get">
+    <ul>
+
+		<li><input type="text" name="search_text" id="search_text" style="width:140px; height:15px; padding-top:2px; color:#ed1746; font-size:12px;" x-webkit-speech /></li>
+		<li><input type="image" src="/images/btn_sub_sch.gif" /></li>
+	</ul>
+   </form>
+  </div>
+
+</div><!--wrap_head end-->
+
+
+
+<style type="text/css" media="all">
+	#wrap_ctgr{display:block;width:670px;}
+	#ctgr_new {width:875px;position:relative;overflow:hidden;}
+	#wrap_right_list_new{display:inline-block;position:absolute;top:39px;right:0px;width:200px;height:715px;}
+	#cnts_list_new {display:inline-block;margin-top:0px;*margin-top:0px;_margin-top:0px;}
+	#cnts_list_new .w_date{color:#666;}
+	#cnts_list_new .w_time{color:#686;}
+
+</style>
+
+
+<!--Áß´Ü ÄÁÅÙÃ÷ ·¦ ½ÃÀÛ-->
+<div id="wrap_mdd">
+  <div id="b_list_exp1" style="left:810px; top:202px; position:absolute; display:none">
+
+  </div>
+  <div id="b_list_exp2" style="left:135px; top:195px; position:absolute; display:none">
+
+  </div>
+
+  <!--³×ºñ°ÔÀÌ¼Ç ¹Ù-->
+  <div id="wrap_gnb">
+	
+<script>
+	var is_login = 0;
+</script>
+
+<div id="wrap_login" style="padding:0 0 0 0;margin:0 0 5px 0;">
+<div id="login_box_mem" style="height:66px;padding:7px 0 5px 0;">
+	<dl>
+		<dd class="al_c" style="padding-top:4px;">
+			<a href="https://web.humoruniv.com/user/login.html"><span style="font-weight:normal;width:60px;display: inline-block; border:1px solid #bbb; padding: 5px 15px 5px 15px; cursor: pointer; color: #333; font-size: 12px; line-height: 12px;text-align:center;border-radius:2px;">·Î±×ÀÎ</span></a>
+		</dd>
+	</dl>
+	<dl style="padding-top:6px;">
+		<dd class="al_c">
+			<a href="http://web.humoruniv.com/user/reg/registration.html">È¸¿ø°¡ÀÔ</a>
+			&nbsp;
+			<a href="javascript:WhatMyPass()">ID Ã£±â</a><input type="hidden" name="url" value="" />
+		</dd>
+	</dl>
+</div>
+</div>
+        
+<style>
+	.woman_menu {background:#FFFAFB;border:1px solid #FF86A1;margin:0 0 5px 0;padding: 0 0 0 0;}
+	.woman_menu .dot {background:url(/images/list_dot.gif) left 3px no-repeat;padding:0px 0 0 5px;}
+	.wrap_gnb .dot {background:url(/images/list_dot.gif) left 3px no-repeat;padding:0px 0 0 5px;}
+	.wrap_spc .dot {background:url(/images/list_dot.gif) left 3px no-repeat;padding:0px 0 0 5px;}
+
+</style>
+<style>
+#wrap_gnb .wrap_gnb .rank { padding:0px; margin:0px; position:relative; float:right; top:445px; width:25px; }
+#wrap_gnb .fear {color:#ED1746;}
+#fear_div {
+	-webkit-transform: rotateZ(0deg);
+	-webkit-transition: -webkit-transform 2s ease-in-out;
+}
+#fear_div:hover {
+  -webkit-text-stroke-width: 0.4px;
+  -webkit-transform: rotateZ(-7deg);
+}
+#wrap_gnb .underline{border-bottom:1px solid #d7d7d7;margin-bottom:6px !important; padding-bottom:3px;}
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+	<div class="wrap_gnb" style="padding-top:0px;">
+		<dl style="border-bottom:1px dashed #d7d7d7;">
+			<dt style="color:#AA53CF;">¿ô´ë ½ºÆä¼È</dt>
+				<dd><img src="http://web.humoruniv.com/images/blt_mbest.gif" width="9" height="10" border="0" /> <a href="http://web.humoruniv.com/board/best/index.html">¿ù°£ º£½ºÆ®</a></dd>
+				<dd><img src="http://web.humoruniv.com/images/blt_mbest.gif" width="9" height="10" border="0" /> <a href="http://web.humoruniv.com/board/humor/comment_search.html">´ä±Û º£½ºÆ®</a></dd>
+				<dd class="sub" style="margin-left:8px;"><a href="http://web.humoruniv.com/board/humor/comment_search.html?st=day">´ä±Û °Ë»ö</a></dd>
+		</dl>
+
+			<dl style="border-bottom:1px dashed #d7d7d7;">
+				<dd><img src="http://web.humoruniv.com/images/ic_face.png?tmp=20" width="10" height="10" border="0" /> <span ><a href="http://web.humoruniv.com/board/humor/list.html?table=face">³ÊÀÇ ¾ó±¼Àº</a></span>
+
+				<div style="display:inline-block;vertical-align:top;margin-left:2px;"><img src="/images/sun_img_new.gif"></div>
+
+				</dd>
+				<dd class="sub" style="margin-left:8px;"> <a href="http://web.humoruniv.com/ai/andromeda.html">¾Èµå·Î¸Ş´Ù</a></dd>
+			</dl>
+
+
+			<dl style="">
+				<dd ><img src="http://web.humoruniv.com/images/blt_cr.gif" width="9" height="10" border="0" /> <a href="http://web.humoruniv.com/cr/cr_list.html">À¥¼Ò¼³</a></dd>
+				<dd class="sub" style="margin-left:8px;"><a href="http://web.humoruniv.com/cr/cr_my_recent.html">MY À¥¼Ò¼³</a></dd>
+			</dl>
+
+		<dl>
+			<dt class="hu">À¯¸Ó/À¥Å÷</dt>
+				<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=pds">¿ô±ä ÀÚ·á</a></dd>
+				<dd class="sub   bd "><a href="http://web.humoruniv.com/board/humor/list.html?table=pdswait">´ë±â ÀÚ·á</a></dd>
+
+				<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=funtitle">¿ô±ä Á¦¸ñ </a></dd>
+				<dd class="sub "><a href="http://web.humoruniv.com/board/humor/list.html?table=titlewait">´ë±â Á¦¸ñ</a></dd>
+
+				<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=kin">Áö½Ä KIN</a></dd>
+				<dd class="sub "><a href="http://web.humoruniv.com/board/humor/list.html?table=otl">Áö½Ä OTL</a></dd>
+
+				<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=art_toon"> ¿ô´ëÅ÷</a></dd>
+				<dd class="sub "><a href="http://web.humoruniv.com/board/humor/list.html?table=nova_toon"> ½Å¿¹Å÷</a></dd>
+		</dl>
+
+		<dl>
+			<dt class="cre">Ã¢ÀÛ/¿¹¼ú</dt>
+				<dd >
+					<div id="fear_div"> <a href="http://web.humoruniv.com/board/humor/list.html?table=fear" class="fear">°øÆ÷</a> </div>
+				</dd>
+				<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=photo">»çÁø</a>
+								</dd>
+				<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=picture">±×¸²³«¼­</a></dd>
+				<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=guest">¿ô±ä À¯¸Ó</a></dd>
+				<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=novel">¿ô´ë ¹®ÇĞ</a></dd>
+				<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=mild">µû¶æÇÑ±Û</a></dd>
+		</dl>
+
+
+
+		<dl>
+			<dt class="rst">Ä£¸ñ/ÈŞ°Ô½Ç</dt>
+				<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=free">¿ÎÀÚÁö²¬</a></dd>
+				<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=wphoto">³²³à»çÁø</a></dd>
+				<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=poll">¿ô´ë Poll</a></dd>
+				<dd><a href="http://web2.humoruniv.com/fortune/index.html">¿ô´ë »Ì±â</a></dd>
+				<dd><a href="http://web.humoruniv.com/battle/battle.html">¿ô´ë ¹èÆ²</a></dd>
+		</dl>
+
+		
+	
+
+	
+
+		<dl style="padding-bottom:1px;margin-bottom:3px;border-bottom:1px dashed #d7d7d7;">
+			<dt class="thm">Å×¸¶ °Ô½ÃÆÇ</dt>
+								<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=game">°ÔÀÓ</a></dd>
+				<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=thema2">¸¸È­</a></dd>
+				<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=lol">LOL</a>
+								</dd>
+
+				<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=cook">¿ä¸®</a>
+								</dd>
+
+
+				<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=pride">½ºÆ÷Ã÷</a></dd>
+				<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=muzik">À½¾Ç</a>
+				<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=thema3">¿µÈ­</a></dd>
+				<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=animaluniv">µ¿¹°´ëÇĞ</a></dd>
+				<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=com">ÄÄÇ»ÅÍ</a></dd>
+				<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=moofama">¹«Çù ÆÇÅ¸Áö</a></dd>
+		</dl>
+		<dl>
+
+				<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=workshop">Á÷Àå</a></dd>
+				<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=solo">¼Ö·Î</a></dd>
+				<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=love">¿°Àå</a></dd>
+				<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=spnatural">ÃÊÀÚ¿¬Çö»ó</a></dd>
+				<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=car">ÀÚµ¿Â÷</a></dd>
+				<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=sns">SNS</a></dd>
+				<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=dump">°í¹Î</a></dd>
+				<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=studying">À¯ÇĞ</a></dd>
+				<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=memory">Ãß¾ï</a></dd>
+				<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=program">ÇÁ·Î±×·¡¹Ö</a></dd>
+				<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=sympathy">°ø°¨</a></dd>
+				<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=phone">ÈŞ´ëÆù</a></dd>
+				<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=army">±º´ë</a></dd>
+				<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=worldcup">¿ùµåÄÅ</a></dd>
+				<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=cabinet">»ç¹°ÇÔ PR</a></dd>
+				
+		</dl>
+		<!--
+		<dl>
+				<dd ><a href="http://web.humoruniv.com/board/humor/list.html?table=marketing">¿ô´ëÈ«º¸ (Á¾·á)</a></dd>
+		</dl>
+		-->
+								<dl>
+			<dt style="color:#A05555">¿ô´ë ·©Å·°ÔÀÓ</dt>
+			
+			<dd class="sub"><a href="http://web.humoruniv.com/board/humor/read.html?table=pds&number=425701"> ¹èÆ®Å¬¸¯</a></dd>
+			<dd class="sub"><a href="http://web.humoruniv.com/board/humor/read.html?table=pdswait&number=3273553"> ¶ó½ºÆ® ¿øÀÌ¾î <span style='font-size:10px;font-family:Arial;font-style:italic'></span></a></dd>
+			<dd class="sub"><a href="http://web.humoruniv.com/board/humor/read.html?table=pdswait&number=3274382"> ¿ô´ë´åÁö</a></dd>
+		</dl>
+
+		<dl>
+			<dt class="svc">¿ô´ë ¼­ºñ½º</dt>
+				<dd><a href="http://web.humoruniv.com/cash/cash_charge_break.html">¿ô´ë °³³ä</a></dd>
+				<dd><a href="http://avatar.humoruniv.com/item/item.html">¾ÆÀÌÅÛ ¸ô</a></dd>
+				<dd><img src="http://web.humoruniv.com/images/blt_er.gif" alt="" />&nbsp;<a href="javascript:OhMyGod()">»ó»ç°¡ ¶¸¾î¿ä!</a></dd>
+						</dl>
+	</div>
+
+
+
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
+		  </div>
+
+
+
+
+  <div id="wrap_cnts" style="position:relative;"><!--width:880px º»¹® + ¿À¸¥ÂÊ ÇÁ·¹ÀÓ-->
+
+
+
+
+
+
+<div id="wrap_ctgr">
+
+
+
+<!--Ä«Å×°í¸®/´ëÀÚº¸-->
+  <div id="ctgr_new">
+    <div class="ct_t"><img src="/images/blt_b.gif" class="ct_bl" /><a href="list.html?table=pdswait" class="bo">´ë±âÀÚ·á</a></div>
+	
+
+	<div class="slc_c">|
+
+
+
+		<a href="list.html?table=pdswait&st=day" >¿À´ÃÀÇº£½ºÆ®</a> |
+		<a href="list.html?table=pdswait&st=week" >ÁÖ°£º£½ºÆ®</a> |
+		<a href="list.html?table=pdswait&st=month" >¿ù°£º£½ºÆ®</a> |
+			</div>
+
+
+
+	<div class="slc_c">¢Ñ Çàº¹À» ÁÖ´Â ¿ô±äÀÚ·á/°ø°¨ÀÚ·á/ÇÖÀÌ½´ÀÚ·á </div>
+
+
+
+
+  </div>
+<!--/ctgr_new : Ä«Å×°í¸®/´ëÀÚº¸ ³¡-->
+ 
+	
+<style type="text/css" media="all">
+	#bbs_best{display:inline-block;width:670px;padding:0 0 0px 0;*padding-bottom:4px;_padding-bottom:0px;}
+	#bbs_best dl{float:left;display:inline-block;width:305px;padding:0 0 0 0;margin:10px 0 0px 10px; *margin-bottom:10px;_margin-bottom:5px;}
+	#bbs_best dt{padding:0;margin:0 0 5px 0;font-weight:bold;color:#FF6900;}
+	#bbs_best dt a{color:#FF6900;}
+
+	#bbs_best dd{display:inline-block;float:left;width:300px;text-overflow: ellipsis;overflow:hidden;white-space:nowrap;margin:2px 0 2px 5px;padding:2px 0 2px 0;}
+	#bbs_best .subj{display:inline-block;float:left;width:195px;overflow:hidden;}
+	#bbs_best .subj a:hover{text-decoration:underline;}
+	#bbs_best .ok{display:inline-block;float:right;width:30px;text-align:right;margin-left:2px;font-size:11px;color:#ff6900;*float:none;}
+	#bbs_best .nick{display:inline-block;float:right;width:70px;overflow:hidden; margin-left:2px;font-size:11px;color:#999;*float:none;}
+	#bbs_best .nick span:hover{text-decoration:underline;}
+
+	#bbs_best .top{font-weight:bold;}
+	#bbs_best .right_border{padding-right:5px;border-right:1px dotted #aaa;}
+</style>
+<div id="bbs_best">
+	<dl class="right_border">
+		<dt>
+			<img src="/images/best_crown.gif">
+			<a href="list.html?table=pdswait&st=day">
+				´ë±âÀÚ·á
+												 ¿À´ÃÀÇ								º£½ºÆ®
+			</a>
+		</dt>
+																			<dd>
+					<span class="subj"><a href="/board/humor/read.html?table=pdswait&st=day&page=0&number=5392175&from=best" class="li"> <img src="/images/best_1.gif">  Æú¾Æ¿ô 4 : ¸ÓÇÇ¾ÆÁÖ¸Ó´ÏÀÇ ÀÇÀÚ</a></span>
+					<span class="ok">35</span>
+					<span class="nick">
+						<span style="cursor:pointer;cursor:hand" onclick="pong2('¹ÌÅ¸ÄÉ½ºÁî', 'ponmiddle_downbest_pong_0');"><span class=hu_nick_txt>¹ÌÅ¸ÄÉ½ºÁî</span><div id="ponmiddle_downbest_pong_0" name="ponmiddle_downbest_pong_0" style="position:absolute;visibility:visible;z-index:100;"></div></span>
+					</span>
+				</dd>
+																			<dd>
+					<span class="subj"><a href="/board/humor/read.html?table=pdswait&st=day&page=0&number=5393209&from=best" class="li"> <img src="/images/best_2.gif">  ¼öÁö ´àÀº ¹ıÁ¶ÀÎ</a></span>
+					<span class="ok">34</span>
+					<span class="nick">
+						<span style="cursor:pointer;cursor:hand" onclick="pong2('·Î»ç·ÎÀÌ³Ä¿Ë', 'ponmiddle_downbest_pong_1');"><span class=hu_nick_txt>·Î»ç·ÎÀÌ³Ä¿Ë</span><div id="ponmiddle_downbest_pong_1" name="ponmiddle_downbest_pong_1" style="position:absolute;visibility:visible;z-index:100;"></div></span>
+					</span>
+				</dd>
+																			<dd>
+					<span class="subj"><a href="/board/humor/read.html?table=pdswait&st=day&page=0&number=5395305&from=best" class="li"> <img src="/images/best_3.gif">  ¸Ş°¥ Áá³ª ¸¹³×</a></span>
+					<span class="ok">32</span>
+					<span class="nick">
+						<span style="cursor:pointer;cursor:hand" onclick="pong2('ºô·±¿¬ÇÕ', 'ponmiddle_downbest_pong_2');"><span class=hu_nick_txt>ºô·±¿¬ÇÕ</span><div id="ponmiddle_downbest_pong_2" name="ponmiddle_downbest_pong_2" style="position:absolute;visibility:visible;z-index:100;"></div></span>
+					</span>
+				</dd>
+																			<dd>
+					<span class="subj"><a href="/board/humor/read.html?table=pdswait&st=day&page=0&number=5395362&from=best" class="li"> <img src="/images/best_4.gif">  ¾ö¸¶¶ó°í ¸ğµç °ÍÀ» ¾Ë°í ÀÖÁö´Â ¾Ê´Ü´Ù.jpg</a></span>
+					<span class="ok">25</span>
+					<span class="nick">
+						<span style="cursor:pointer;cursor:hand" onclick="pong2('¶±ººÀÌ»Õ»Ñ', 'ponmiddle_downbest_pong_3');"><span class=hu_nick_txt>¶±ººÀÌ»Õ»Ñ</span><div id="ponmiddle_downbest_pong_3" name="ponmiddle_downbest_pong_3" style="position:absolute;visibility:visible;z-index:100;"></div></span>
+					</span>
+				</dd>
+																			<dd>
+					<span class="subj"><a href="/board/humor/read.html?table=pdswait&st=day&page=0&number=5395465&from=best" class="li"> <img src="/images/best_5.gif">  ÆĞ·²¸²ÇÈ °ü½É ¸¹ÀÌ °¡Á®Áà</a></span>
+					<span class="ok">23</span>
+					<span class="nick">
+						<span style="cursor:pointer;cursor:hand" onclick="pong2('½ºµôµµÇÔ', 'ponmiddle_downbest_pong_4');"><span class=hu_nick_txt>½ºµôµµÇÔ</span><div id="ponmiddle_downbest_pong_4" name="ponmiddle_downbest_pong_4" style="position:absolute;visibility:visible;z-index:100;"></div></span>
+					</span>
+				</dd>
+				</dl>
+
+	<dl>
+		<dt>
+			<img src="/images/best_crown.gif">
+			<a href="list.html?table=pdswait&st=week">
+				´ë±âÀÚ·á
+								 ÁÖ°£ 								º£½ºÆ®
+			</a>
+		</dt>
+
+																			<dd>
+					<span class="subj"><a href="/board/humor/read.html?table=pdswait&st=day&page=0&number=5371169&from=best" class="li"><img src="/images/best_1.gif"> ÀÎ»ı ¸¶Áö¸·ÀÌ¶ó°í »ı°¢ÇÏ°í ÇÑ °øºÎ °á±¹ ¾ÈµÆ³×¿ä..</a></span>
+					<span class="ok">36</span>
+					<span class="nick">
+						<span style="cursor:pointer;cursor:hand" onclick="pong2('½½ÇÂ³ëµ¿ÀÚ', 'ponmiddle_downbest_pong2_0');"><span class=hu_nick_txt>½½ÇÂ³ëµ¿ÀÚ</span><div id="ponmiddle_downbest_pong2_0" name="ponmiddle_downbest_pong2_0" style="position:absolute;visibility:visible;z-index:100;"></div></span>
+					</span>
+				</dd>
+																			<dd>
+					<span class="subj"><a href="/board/humor/read.html?table=pdswait&st=day&page=0&number=5392175&from=best" class="li"><img src="/images/best_2.gif"> Æú¾Æ¿ô 4 : ¸ÓÇÇ¾ÆÁÖ¸Ó´ÏÀÇ ÀÇÀÚ</a></span>
+					<span class="ok">35</span>
+					<span class="nick">
+						<span style="cursor:pointer;cursor:hand" onclick="pong2('¹ÌÅ¸ÄÉ½ºÁî', 'ponmiddle_downbest_pong2_1');"><span class=hu_nick_txt>¹ÌÅ¸ÄÉ½ºÁî</span><div id="ponmiddle_downbest_pong2_1" name="ponmiddle_downbest_pong2_1" style="position:absolute;visibility:visible;z-index:100;"></div></span>
+					</span>
+				</dd>
+																			<dd>
+					<span class="subj"><a href="/board/humor/read.html?table=pdswait&st=day&page=0&number=5393209&from=best" class="li"><img src="/images/best_3.gif"> ¼öÁö ´àÀº ¹ıÁ¶ÀÎ</a></span>
+					<span class="ok">34</span>
+					<span class="nick">
+						<span style="cursor:pointer;cursor:hand" onclick="pong2('·Î»ç·ÎÀÌ³Ä¿Ë', 'ponmiddle_downbest_pong2_2');"><span class=hu_nick_txt>·Î»ç·ÎÀÌ³Ä¿Ë</span><div id="ponmiddle_downbest_pong2_2" name="ponmiddle_downbest_pong2_2" style="position:absolute;visibility:visible;z-index:100;"></div></span>
+					</span>
+				</dd>
+																			<dd>
+					<span class="subj"><a href="/board/humor/read.html?table=pdswait&st=day&page=0&number=5395305&from=best" class="li"><img src="/images/best_4.gif"> ¸Ş°¥ Áá³ª ¸¹³×</a></span>
+					<span class="ok">32</span>
+					<span class="nick">
+						<span style="cursor:pointer;cursor:hand" onclick="pong2('ºô·±¿¬ÇÕ', 'ponmiddle_downbest_pong2_3');"><span class=hu_nick_txt>ºô·±¿¬ÇÕ</span><div id="ponmiddle_downbest_pong2_3" name="ponmiddle_downbest_pong2_3" style="position:absolute;visibility:visible;z-index:100;"></div></span>
+					</span>
+				</dd>
+																			<dd>
+					<span class="subj"><a href="/board/humor/read.html?table=pdswait&st=day&page=0&number=5368645&from=best" class="li"><img src="/images/best_5.gif"> Ã¢¿ø °í¾çÀÌ¸¦ Ã£°íÀÖ¾î¿ä ²ÀÁ»ºÁÁÖ¼¼¿ä ºÎÅ¹µå¸³´Ï´Ù</a></span>
+					<span class="ok">31</span>
+					<span class="nick">
+						<span style="cursor:pointer;cursor:hand" onclick="pong2('»ß»²', 'ponmiddle_downbest_pong2_4');"><span class=hu_nick_txt>»ß»²</span><div id="ponmiddle_downbest_pong2_4" name="ponmiddle_downbest_pong2_4" style="position:absolute;visibility:visible;z-index:100;"></div></span>
+					</span>
+				</dd>
+				</dl>
+</div>
+<div style="clear:both;display:block; height:2px; background:url(/images/dots.gif) repeat-x center;"></div><!-- cached list --><!-- °Ô½ÃÆÇ °øÁö -->
+
+
+
+
+	<div id="CmAdView2" style="clear:both;padding:7px 0 0 0px;_padding:0px 0 0 0px;"></div>
+
+<!-- cached list -->
+
+
+</div> <!-- /end of wrap_mdd -->
+
+  <!-- wrap_cnts ½ÃÀÛ-->
+    <div id="cnts_list_new">
+
+
+
+
+
+
+<!--¸®½ºÆ®-->
+<div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<table width="670" border="0" cellpadding="0" cellspacing="0" class="list_hd5">
+	  <tr>
+		<td width="75" class="pd_t3">ÀÌ¹ÌÁö</td>
+		<td width="260" class="pd_t3">Á¦¸ñ</td>
+			<td width="155" class="pd_t3">ÀÛ¼ºÀÚ</td>
+			<td width="85" class="pd_t3">µî·ÏÀÏ</td>
+		<td width="40" class="pd_t3">Á¶È¸¼ö</td>
+		<td width="55" class="pd_t3">ÃßÃµ/¹İ´ë</td>
+	  </tr>
+	</table>
+
+<!-- list start -->
+<style>
+	#cnts_list_new .thumb{width:60px;height:40px;border-right:1px solid #ddd;}
+	#cnts_list_new .thumb_big{width:100px;height:75px;border-right:1px solid #ddd;}
+	#cnts_list_new .thumb_square{width:75px;height:75px;border-right:1px solid #ddd;}
+	#cnts_list_new .list_sbj2{overflow:display;}
+</style>
+
+<table width="670" border="0" bordercolor="red" cellpadding="0" cellspacing="0"
+	
+	>
+
+
+		
+			
+	<!-- pds thumbnail foreach start -->
+	 <tr id="li_chk_pdswait-5395518" height="40"
+					 >
+		<td width="75" class="li_num" align="center" valign="center"><div style='position:relative'>
+						<a href="read.html?table=pdswait&pg=0&number=5395518">
+									<img src="http://t.huv.kr/thumb_crop_resize.php?url=http://down.humoruniv.com/hwiparambbs/data/pdswait/a_3469600800_de277c3cb2b4ea75225960d48b9946edb72151f2.jpg?SIZE=60x40" class="thumb">
+							</a>
+							</div></td>
+		<td width="260" class="li_sbj" style="word-break: break-all;" >
+
+									
+			<a href="read.html?table=pdswait&pg=0&number=5395518"
+			 class="li">³ª ¸ø»ı°å´Ù°í ³ó´ãÇÑ°Çµ¥
+															</a>
+		</td>
+			<td width="155" class="li_icn">
+			<table width="158" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+				  <td width="30"><img class='hu_icon' src="/images/icon-humoruniv.png" width="25" height="25" style='width:25px;height:25px;' /></td>
+				  <td width="128" class="g6"><span style="cursor:pointer;cursor:hand" onclick="pong2('¾ÆºüºñÅ¸¹Î', 'ponlt5395518');"><span class=hu_nick_txt>¾ÆºüºñÅ¸¹Î</span><div id="ponlt5395518" name="ponlt5395518" style="position:absolute;visibility:visible;z-index:100;"></div></span></td>
+				</tr>
+			  </table>
+		</td>
+	        <td width="90" class="li_date">
+			<span class="w_date">2018-03-10</span>
+			<span class="w_time">19:07</span>
+		</td>
+		<td width="40" class="li_und">
+												0
+							
+					</td>
+		<td width="50" class="li_und">
+			<span class="o">0</span>  / <font color="#4444dd">0</font> 		</td>
+	  </tr>
+		 				
+	<!-- pds thumbnail foreach start -->
+	 <tr id="li_chk_pdswait-5395517" height="40"
+					 >
+		<td width="75" class="li_num" align="center" valign="center"><div style='position:relative'>
+						<a href="read.html?table=pdswait&pg=0&number=5395517">
+									<img src="/images/thumb_none.gif" style="border-right:1px solid #d7d7d7;" class="thumb">
+							</a>
+							</div></td>
+		<td width="260" class="li_sbj" style="word-break: break-all;" >
+
+									
+			<a href="read.html?table=pdswait&pg=0&number=5395517"
+			 class="li">?? ½ÎÁö¹æ ÀÚ¸® ¹Ş¾Ò´Âµ¥ Àü¿¡ ¾ÉÀº ¾ÆÀú¾¾ÀÇ ¿ô´ë¾ÆÀÌµğ°¡ ¶á´Ù
+															</a>
+		</td>
+			<td width="155" class="li_icn">
+			<table width="158" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+				  <td width="30"><img class='hu_icon' src="http://i.huv.kr:8080/b8f1b8b7c8fab6a9c4f0c7c7bdba.jpg?c=1" width="25" height="25" style='width:25px;height:25px;' /></td>
+				  <td width="128" class="g6"><span style="cursor:pointer;cursor:hand" onclick="pong2('¸ñ¸·Èú¶©ÄğÇÇ½º', 'ponlt5395517');"><span class=hu_nick_txt>¸ñ¸·Èú¶©ÄğÇÇ½º</span><div id="ponlt5395517" name="ponlt5395517" style="position:absolute;visibility:visible;z-index:100;"></div></span></td>
+				</tr>
+			  </table>
+		</td>
+	        <td width="90" class="li_date">
+			<span class="w_date">2018-03-10</span>
+			<span class="w_time">19:06</span>
+		</td>
+		<td width="40" class="li_und">
+												0
+							
+					</td>
+		<td width="50" class="li_und">
+			<span class="o">0</span>  / <font color="#4444dd">0</font> 		</td>
+	  </tr>
+		 				
+	<!-- pds thumbnail foreach start -->
+	 <tr id="li_chk_pdswait-5395516" height="40"
+					 >
+		<td width="75" class="li_num" align="center" valign="center"><div style='position:relative'>
+						<a href="read.html?table=pdswait&pg=0&number=5395516">
+									<img src="http://t.huv.kr/thumb_crop_resize.php?url=http://down.humoruniv.com/hwiparambbs/data/pdswait/a_4708842842_d025312cef58f8dbaf74ec617e826efbdb9093d5.png?SIZE=60x40" class="thumb">
+							</a>
+							</div></td>
+		<td width="260" class="li_sbj" style="word-break: break-all;" >
+
+									
+			<a href="read.html?table=pdswait&pg=0&number=5395516"
+			 class="li">Çö ½Ã´ë ¿ÇÁö¸øÇÑ »ı°¢À» °¡Áø ±×³àµéÀ» À§ÇÑ ¸» feat ´ÏÃ¼
+				<span class="list_comment_num"> [1]</span>											</a>
+		</td>
+			<td width="155" class="li_icn">
+			<table width="158" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+				  <td width="30"><img class='hu_icon' src="/images/icon-humoruniv.png" width="25" height="25" style='width:25px;height:25px;' /></td>
+				  <td width="128" class="g6"><span style="cursor:pointer;cursor:hand" onclick="pong2('±¹¹ÎÇàº¹ÁÖÃ¥', 'ponlt5395516');"><span class=hu_nick_txt>±¹¹ÎÇàº¹ÁÖÃ¥</span><div id="ponlt5395516" name="ponlt5395516" style="position:absolute;visibility:visible;z-index:100;"></div></span></td>
+				</tr>
+			  </table>
+		</td>
+	        <td width="90" class="li_date">
+			<span class="w_date">2018-03-10</span>
+			<span class="w_time">19:06</span>
+		</td>
+		<td width="40" class="li_und">
+												0
+							
+					</td>
+		<td width="50" class="li_und">
+			<span class="o">0</span>  / <font color="#4444dd">0</font> 		</td>
+	  </tr>
+		 				
+	<!-- pds thumbnail foreach start -->
+	 <tr id="li_chk_pdswait-5395515" height="40"
+					 >
+		<td width="75" class="li_num" align="center" valign="center"><div style='position:relative'>
+						<a href="read.html?table=pdswait&pg=0&number=5395515">
+									<img src="http://t.huv.kr/thumb_crop_resize.php?url=http://down.humoruniv.com/hwiparambbs/data/pdswait/a_6647183259_5872295333218974d9d479f950770abc60f94ed7.gif?SIZE=60x40" class="thumb">
+							</a>
+							</div></td>
+		<td width="260" class="li_sbj" style="word-break: break-all;" >
+
+									
+			<a href="read.html?table=pdswait&pg=0&number=5395515"
+			 class="li">ÈÄ´ÙÈÄ´ÙÈÄ´Ùº¸ÀÌ
+															</a>
+		</td>
+			<td width="155" class="li_icn">
+			<table width="158" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+				  <td width="30"><img class='hu_icon' src="http://i.huv.kr:8080/c1a4c7d0c0bbb3c8b3c8.jpg?c=4" width="25" height="25" style='width:25px;height:25px;' /></td>
+				  <td width="128" class="g6"><span style="cursor:pointer;cursor:hand" onclick="pong2('Á¤ÇĞÀ»³È³È', 'ponlt5395515');"><span class=hu_nick_txt>Á¤ÇĞÀ»³È³È <img src="/images/mv_onballoon.gif" width="10" height="12" align="absmiddle"></span><div id="ponlt5395515" name="ponlt5395515" style="position:absolute;visibility:visible;z-index:100;"></div></span></td>
+				</tr>
+			  </table>
+		</td>
+	        <td width="90" class="li_date">
+			<span class="w_date">2018-03-10</span>
+			<span class="w_time">19:05</span>
+		</td>
+		<td width="40" class="li_und">
+												5
+							
+					</td>
+		<td width="50" class="li_und">
+			<span class="o">0</span>  / <font color="#4444dd">0</font> 		</td>
+	  </tr>
+		 				
+	<!-- pds thumbnail foreach start -->
+	 <tr id="li_chk_pdswait-5395514" height="40"
+					 >
+		<td width="75" class="li_num" align="center" valign="center"><div style='position:relative'>
+						<a href="read.html?table=pdswait&pg=0&number=5395514">
+									<img src="http://t.huv.kr/thumb_crop_resize.php?url=http://down.humoruniv.com/hwiparambbs/data/pdswait/a_3494438483_f06d66553d0aef2f2a19bf5df39a4108ad954ae6.jpg?SIZE=60x40" class="thumb">
+							</a>
+							</div></td>
+		<td width="260" class="li_sbj" style="word-break: break-all;" >
+
+									
+			<a href="read.html?table=pdswait&pg=0&number=5395514"
+			 class="li">Æ÷ÄÏ¸óÀº 1¼¼´ë°¡ Á¦ÀÏÀë½á
+				<span class="list_comment_num"> [7]</span>											</a>
+		</td>
+			<td width="155" class="li_icn">
+			<table width="158" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+				  <td width="30"><img class='hu_icon' src="http://i.huv.kr:8080/c7d8bdac5377616e.jpg?c=7" width="25" height="25" style='width:25px;height:25px;' /></td>
+				  <td width="128" class="g6"><span style="cursor:pointer;cursor:hand" onclick="pong2('ÇØ½¬Swan', 'ponlt5395514');"><span class=hu_nick_txt><span class="style_type4">ÇØ½¬Swan</span> <img src="/images/mv_onballoon.gif" width="10" height="12" align="absmiddle"></span><div id="ponlt5395514" name="ponlt5395514" style="position:absolute;visibility:visible;z-index:100;"></div></span></td>
+				</tr>
+			  </table>
+		</td>
+	        <td width="90" class="li_date">
+			<span class="w_date">2018-03-10</span>
+			<span class="w_time">19:05</span>
+		</td>
+		<td width="40" class="li_und">
+												5
+							
+					</td>
+		<td width="50" class="li_und">
+			<span class="o">0</span>  / <font color="#4444dd">0</font> 		</td>
+	  </tr>
+		 				
+	<!-- pds thumbnail foreach start -->
+	 <tr id="li_chk_pdswait-5395513" height="40"
+					 >
+		<td width="75" class="li_num" align="center" valign="center"><div style='position:relative'>
+						<a href="read.html?table=pdswait&pg=0&number=5395513">
+									<img src="http://t.huv.kr/thumb_crop_resize.php?url=http://down.humoruniv.com/hwiparambbs/data/pdswait/a_7315368451_750f5e3fe93c90c8cdea41968aef5d25607a94da.png?SIZE=60x40" class="thumb">
+							</a>
+							</div></td>
+		<td width="260" class="li_sbj" style="word-break: break-all;" >
+
+									
+			<a href="read.html?table=pdswait&pg=0&number=5395513"
+			 class="li">¹«µµ Á¾¿µÇÑ´Ù´Âµ¥ ½ÇÈ­³Ä???
+				<span class="list_comment_num"> [2]</span>											</a>
+		</td>
+			<td width="155" class="li_icn">
+			<table width="158" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+				  <td width="30"><img class='hu_icon' src="/images/icon-humoruniv.png" width="25" height="25" style='width:25px;height:25px;' /></td>
+				  <td width="128" class="g6"><span style="cursor:pointer;cursor:hand" onclick="pong2('À¯ºÎ³²È­ÀÌÆÃ', 'ponlt5395513');"><span class=hu_nick_txt>À¯ºÎ³²È­ÀÌÆÃ</span><div id="ponlt5395513" name="ponlt5395513" style="position:absolute;visibility:visible;z-index:100;"></div></span></td>
+				</tr>
+			  </table>
+		</td>
+	        <td width="90" class="li_date">
+			<span class="w_date">2018-03-10</span>
+			<span class="w_time">19:05</span>
+		</td>
+		<td width="40" class="li_und">
+												6
+							
+					</td>
+		<td width="50" class="li_und">
+			<span class="o">1</span>  / <font color="#4444dd">0</font> 		</td>
+	  </tr>
+		 				
+	<!-- pds thumbnail foreach start -->
+	 <tr id="li_chk_pdswait-5395512" height="40"
+					 >
+		<td width="75" class="li_num" align="center" valign="center"><div style='position:relative'>
+						<a href="read.html?table=pdswait&pg=0&number=5395512">
+									<img src="/images/thumb_none.gif" style="border-right:1px solid #d7d7d7;" class="thumb">
+							</a>
+							</div></td>
+		<td width="260" class="li_sbj" style="word-break: break-all;" >
+
+									
+			<a href="read.html?table=pdswait&pg=0&number=5395512"
+			 class="li">ÁıÁÖÀÎ ¾ÆÁÜ¸¶ÀÇ ÀÌ¾ß±â
+				<span class="list_comment_num"> [1]</span>											</a>
+		</td>
+			<td width="155" class="li_icn">
+			<table width="158" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+				  <td width="30"><img class='hu_icon' src="http://i.huv.kr:8080/c1d6bab4c1f8.jpg?c=2" width="25" height="25" style='width:25px;height:25px;' /></td>
+				  <td width="128" class="g6"><span style="cursor:pointer;cursor:hand" onclick="pong2('ÁÖº´Áø', 'ponlt5395512');"><span class=hu_nick_txt>ÁÖº´Áø</span><div id="ponlt5395512" name="ponlt5395512" style="position:absolute;visibility:visible;z-index:100;"></div></span></td>
+				</tr>
+			  </table>
+		</td>
+	        <td width="90" class="li_date">
+			<span class="w_date">2018-03-10</span>
+			<span class="w_time">19:05</span>
+		</td>
+		<td width="40" class="li_und">
+												4
+							
+					</td>
+		<td width="50" class="li_und">
+			<span class="o">1</span>  / <font color="#4444dd">0</font> 		</td>
+	  </tr>
+		 				
+	<!-- pds thumbnail foreach start -->
+	 <tr id="li_chk_pdswait-5395511" height="40"
+					 >
+		<td width="75" class="li_num" align="center" valign="center"><div style='position:relative'>
+						<a href="read.html?table=pdswait&pg=0&number=5395511">
+									<img src="http://t.huv.kr/thumb_crop_resize.php?url=http://down.humoruniv.com/hwiparambbs/data/pdswait/a_8089315118_e41022a0f85ceb0df5988b7ac52b4bb8a4060639.png?SIZE=60x40" class="thumb">
+							</a>
+							</div></td>
+		<td width="260" class="li_sbj" style="word-break: break-all;" >
+
+									
+			<a href="read.html?table=pdswait&pg=0&number=5395511"
+			 class="brn1">¼ºÆòµî ¾Æ½Ã¾Æ 1À§°¡ ¾î´À³ª¶ó°Ô¿ä?
+				<span class="list_comment_num"> [2]</span>											</a>
+		</td>
+			<td width="155" class="li_icn">
+			<table width="158" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+				  <td width="30"><img class='hu_icon' src="/images/icon-humoruniv.png" width="25" height="25" style='width:25px;height:25px;' /></td>
+				  <td width="128" class="g6"><span style="cursor:pointer;cursor:hand" onclick="pong2('¾ÆÁö¾Æ±â´Ï', 'ponlt5395511');"><span class=hu_nick_txt>¾ÆÁö¾Æ±â´Ï</span><div id="ponlt5395511" name="ponlt5395511" style="position:absolute;visibility:visible;z-index:100;"></div></span></td>
+				</tr>
+			  </table>
+		</td>
+	        <td width="90" class="li_date">
+			<span class="w_date">2018-03-10</span>
+			<span class="w_time">19:05</span>
+		</td>
+		<td width="40" class="li_und">
+												35
+							
+					</td>
+		<td width="50" class="li_und">
+			<span class="o">6</span>  / <font color="#4444dd">0</font> 		</td>
+	  </tr>
+		 				
+	<!-- pds thumbnail foreach start -->
+	 <tr id="li_chk_pdswait-5395510" height="40"
+					 >
+		<td width="75" class="li_num" align="center" valign="center"><div style='position:relative'>
+						<a href="read.html?table=pdswait&pg=0&number=5395510">
+									<img src="http://t.huv.kr/thumb_crop_resize.php?url=http://down.humoruniv.com/hwiparambbs/data/pdswait/a_2281056423_cd62346099323eb4d4102b25ae773d361c84d307.jpg?SIZE=60x40" class="thumb">
+							</a>
+							</div></td>
+		<td width="260" class="li_sbj" style="word-break: break-all;" >
+
+									
+			<a href="read.html?table=pdswait&pg=0&number=5395510"
+			 class="li">Àü±âÀåÆÇÀº Áß·ÂÀÌ300¹èÂëµÇ³ª¹Ù
+				<span class="list_comment_num"> [6]</span>											</a>
+		</td>
+			<td width="155" class="li_icn">
+			<table width="158" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+				  <td width="30"><img class='hu_icon' src="http://i.huv.kr:8080/b8deb5b5b8a3.jpg?c=10" width="25" height="25" style='width:25px;height:25px;' /></td>
+				  <td width="128" class="g6"><span style="cursor:pointer;cursor:hand" onclick="pong2('¸Şµµ¸£', 'ponlt5395510');"><span class=hu_nick_txt>¸Şµµ¸£</span><div id="ponlt5395510" name="ponlt5395510" style="position:absolute;visibility:visible;z-index:100;"></div></span></td>
+				</tr>
+			  </table>
+		</td>
+	        <td width="90" class="li_date">
+			<span class="w_date">2018-03-10</span>
+			<span class="w_time">19:05</span>
+		</td>
+		<td width="40" class="li_und">
+												8
+							
+					</td>
+		<td width="50" class="li_und">
+			<span class="o">1</span>  / <font color="#4444dd">0</font> 		</td>
+	  </tr>
+		 				
+	<!-- pds thumbnail foreach start -->
+	 <tr id="li_chk_pdswait-5395509" height="40"
+					 >
+		<td width="75" class="li_num" align="center" valign="center"><div style='position:relative'>
+						<a href="read.html?table=pdswait&pg=0&number=5395509">
+									<img src="http://t.huv.kr/thumb_crop_resize.php?url=http://down.humoruniv.com/hwiparambbs/data/pdswait/a_8593154700_32cf1093982e37d987b10c3a204a8ca1ad9fadb2.png?SIZE=60x40" class="thumb">
+							</a>
+							</div></td>
+		<td width="260" class="li_sbj" style="word-break: break-all;" >
+
+									
+			<a href="read.html?table=pdswait&pg=0&number=5395509"
+			 class="li">¿Í...¹®º¹ÀÌÇü À½Áß ³ª¿Ô³×
+				<span class="list_comment_num"> [2]</span>											</a>
+		</td>
+			<td width="155" class="li_icn">
+			<table width="158" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+				  <td width="30"><img class='hu_icon' src="http://i.huv.kr:8080/6c54686543726f73736c.jpg?c=1" width="25" height="25" style='width:25px;height:25px;' /></td>
+				  <td width="128" class="g6"><span style="cursor:pointer;cursor:hand" onclick="pong2('lTheCrossl', 'ponlt5395509');"><span class=hu_nick_txt>lTheCrossl</span><div id="ponlt5395509" name="ponlt5395509" style="position:absolute;visibility:visible;z-index:100;"></div></span></td>
+				</tr>
+			  </table>
+		</td>
+	        <td width="90" class="li_date">
+			<span class="w_date">2018-03-10</span>
+			<span class="w_time">19:05</span>
+		</td>
+		<td width="40" class="li_und">
+												14
+							
+					</td>
+		<td width="50" class="li_und">
+			<span class="o">2</span>  / <font color="#4444dd">0</font> 		</td>
+	  </tr>
+		 				
+	<!-- pds thumbnail foreach start -->
+	 <tr id="li_chk_pdswait-5395508" height="40"
+					 >
+		<td width="75" class="li_num" align="center" valign="center"><div style='position:relative'>
+						<a href="read.html?table=pdswait&pg=0&number=5395508">
+									<img src="http://t.huv.kr/thumb_crop_resize.php?url=http://down.humoruniv.com/hwiparambbs/data/pdswait/a_2574619719_858975b0df33554a54dabdeb65480039f424f0ce.jpg?SIZE=60x40" class="thumb">
+							</a>
+							</div></td>
+		<td width="260" class="li_sbj" style="word-break: break-all;" >
+
+									
+			<a href="read.html?table=pdswait&pg=0&number=5395508"
+			 class="li">ºÎ²ô·¯¿îÁÙ ¾Ë¾Æ¾ßÁö!
+															</a>
+		</td>
+			<td width="155" class="li_icn">
+			<table width="158" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+				  <td width="30"><img class='hu_icon' src="http://i.huv.kr:8080/bff4b4ebb5b5bcadb0fcbbe7bcad.jpg?c=3" width="25" height="25" style='width:25px;height:25px;' /></td>
+				  <td width="128" class="g6"><span style="cursor:pointer;cursor:hand" onclick="pong2('¿ô´ëµµ¼­°ü»ç¼­', 'ponlt5395508');"><span class=hu_nick_txt>¿ô´ëµµ¼­°ü»ç¼­</span><div id="ponlt5395508" name="ponlt5395508" style="position:absolute;visibility:visible;z-index:100;"></div></span></td>
+				</tr>
+			  </table>
+		</td>
+	        <td width="90" class="li_date">
+			<span class="w_date">2018-03-10</span>
+			<span class="w_time">19:04</span>
+		</td>
+		<td width="40" class="li_und">
+												11
+							
+					</td>
+		<td width="50" class="li_und">
+			<span class="o">2</span>  / <font color="#4444dd">0</font> 		</td>
+	  </tr>
+		 				
+	<!-- pds thumbnail foreach start -->
+	 <tr id="li_chk_pdswait-5395507" height="40"
+					 >
+		<td width="75" class="li_num" align="center" valign="center"><div style='position:relative'>
+						<a href="read.html?table=pdswait&pg=0&number=5395507">
+									<img src="http://t.huv.kr/thumb_crop_resize.php?url=http://down.humoruniv.com/hwiparambbs/data/pdswait/a_2741437023_c9fc8346285929b29bc327b7fd67f9deb4cd496e.png?SIZE=60x40" class="thumb">
+							</a>
+							</div></td>
+		<td width="260" class="li_sbj" style="word-break: break-all;" >
+
+									
+			<a href="read.html?table=pdswait&pg=0&number=5395507"
+			 class="li">±İ¿å 5ÀÏÂ÷
+				<span class="list_comment_num"> [2]</span>											</a>
+		</td>
+			<td width="155" class="li_icn">
+			<table width="158" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+				  <td width="30"><img class='hu_icon' src="/images/icon-humoruniv.png" width="25" height="25" style='width:25px;height:25px;' /></td>
+				  <td width="128" class="g6"><span style="cursor:pointer;cursor:hand" onclick="pong2('¼öµµ½Â1', 'ponlt5395507');"><span class=hu_nick_txt>¼öµµ½Â1</span><div id="ponlt5395507" name="ponlt5395507" style="position:absolute;visibility:visible;z-index:100;"></div></span></td>
+				</tr>
+			  </table>
+		</td>
+	        <td width="90" class="li_date">
+			<span class="w_date">2018-03-10</span>
+			<span class="w_time">19:04</span>
+		</td>
+		<td width="40" class="li_und">
+												2
+							
+					</td>
+		<td width="50" class="li_und">
+			<span class="o">1</span>  / <font color="#4444dd">0</font> 		</td>
+	  </tr>
+		 				
+	<!-- pds thumbnail foreach start -->
+	 <tr id="li_chk_pdswait-5395506" height="40"
+					 >
+		<td width="75" class="li_num" align="center" valign="center"><div style='position:relative'>
+						<a href="read.html?table=pdswait&pg=0&number=5395506">
+									<img src="http://t.huv.kr/thumb_crop_resize.php?url=http://down.humoruniv.com/hwiparambbs/data/pdswait/a_7024223070_0ae8b347e71f3b7a30f564e546e838aa16518e7f.png?SIZE=60x40" class="thumb">
+							</a>
+							</div></td>
+		<td width="260" class="li_sbj" style="word-break: break-all;" >
+
+									
+			<a href="read.html?table=pdswait&pg=0&number=5395506"
+			 class="li">ÁøÂ¥ ½Î¿òÀßÇÏ´Â»ç¶÷ÀÌ ÀÏ´ë´Ù¼ö½Î¿ò ÇÏ´Â¹ı¾Ë·ÁÁØ´Ù
+				<span class="list_comment_num"> [20]</span>											</a>
+		</td>
+			<td width="155" class="li_icn">
+			<table width="158" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+				  <td width="30"><img class='hu_icon' src="http://i.huv.kr:8080/c8f7beeeb7cec1eebfc0baeab4f5bdbac5e8.jpg?c=6" width="25" height="25" style='width:25px;height:25px;' /></td>
+				  <td width="128" class="g6"><span style="cursor:pointer;cursor:hand" onclick="pong2('È÷¾î·ÎÁî¿Àºê´õ½ºÅè', 'ponlt5395506');"><span class=hu_nick_txt>È÷¾î·ÎÁî¿Àºê´õ½ºÅè <img src="/images/mv_onballoon.gif" width="10" height="12" align="absmiddle"></span><div id="ponlt5395506" name="ponlt5395506" style="position:absolute;visibility:visible;z-index:100;"></div></span></td>
+				</tr>
+			  </table>
+		</td>
+	        <td width="90" class="li_date">
+			<span class="w_date">2018-03-10</span>
+			<span class="w_time">19:04</span>
+		</td>
+		<td width="40" class="li_und">
+												13
+							
+					</td>
+		<td width="50" class="li_und">
+			<span class="o">1</span>  / <font color="#4444dd">0</font> 		</td>
+	  </tr>
+		 				
+	<!-- pds thumbnail foreach start -->
+	 <tr id="li_chk_pdswait-5395505" height="40"
+					 >
+		<td width="75" class="li_num" align="center" valign="center"><div style='position:relative'>
+						<a href="read.html?table=pdswait&pg=0&number=5395505">
+									<img src="/images/thumb_none.gif" style="border-right:1px solid #d7d7d7;" class="thumb">
+							</a>
+							</div></td>
+		<td width="260" class="li_sbj" style="word-break: break-all;" >
+
+									
+			<a href="read.html?table=pdswait&pg=0&number=5395505"
+			 class="li">»¡¸® ¿Í¹Ù ½Ã¹ß
+				<span class="list_comment_num"> [5]</span>											</a>
+		</td>
+			<td width="155" class="li_icn">
+			<table width="158" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+				  <td width="30"><img class='hu_icon' src="/images/icon-humoruniv.png" width="25" height="25" style='width:25px;height:25px;' /></td>
+				  <td width="128" class="g6"><span style="cursor:pointer;cursor:hand" onclick="pong2('È¦ºÎ¶ö', 'ponlt5395505');"><span class=hu_nick_txt>È¦ºÎ¶ö</span><div id="ponlt5395505" name="ponlt5395505" style="position:absolute;visibility:visible;z-index:100;"></div></span></td>
+				</tr>
+			  </table>
+		</td>
+	        <td width="90" class="li_date">
+			<span class="w_date">2018-03-10</span>
+			<span class="w_time">19:03</span>
+		</td>
+		<td width="40" class="li_und">
+												5
+							
+					</td>
+		<td width="50" class="li_und">
+			<span class="o">0</span>  / <font color="#4444dd">0</font> 		</td>
+	  </tr>
+		 				
+	<!-- pds thumbnail foreach start -->
+	 <tr id="li_chk_pdswait-5395504" height="40"
+					 >
+		<td width="75" class="li_num" align="center" valign="center"><div style='position:relative'>
+						<a href="read.html?table=pdswait&pg=0&number=5395504">
+									<img src="http://t.huv.kr/thumb_crop_resize.php?url=http://down.humoruniv.com/hwiparambbs/data/pdswait/a_2856391032_65f89a5fc3116af07b3a11aa7f8c9f9d0061f3b0.png?SIZE=60x40" class="thumb">
+							</a>
+							</div></td>
+		<td width="260" class="li_sbj" style="word-break: break-all;" >
+
+									
+			<a href="read.html?table=pdswait&pg=0&number=5395504"
+			 class="li">¾Æ ±×°Å º¸°í ½Í´Ù
+				<span class="list_comment_num"> [10]</span>											</a>
+		</td>
+			<td width="155" class="li_icn">
+			<table width="158" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+				  <td width="30"><img class='hu_icon' src="http://i.huv.kr:8080/bbe7b0fac1f3c0bbb8b6bdc3b4c2bbf5.jpg?c=3" width="25" height="25" style='width:25px;height:25px;' /></td>
+				  <td width="128" class="g6"><span style="cursor:pointer;cursor:hand" onclick="pong2('»ç°úÁóÀ»¸¶½Ã´Â»õ', 'ponlt5395504');"><span class=hu_nick_txt><span class="style_type1">»ç°úÁóÀ»¸¶½Ã´Â»õ</span></span><div id="ponlt5395504" name="ponlt5395504" style="position:absolute;visibility:visible;z-index:100;"></div></span></td>
+				</tr>
+			  </table>
+		</td>
+	        <td width="90" class="li_date">
+			<span class="w_date">2018-03-10</span>
+			<span class="w_time">19:02</span>
+		</td>
+		<td width="40" class="li_und">
+												26
+							
+					</td>
+		<td width="50" class="li_und">
+			<span class="o">2</span>  / <font color="#4444dd">0</font> 		</td>
+	  </tr>
+		 				
+	<!-- pds thumbnail foreach start -->
+	 <tr id="li_chk_pdswait-5395503" height="40"
+					 >
+		<td width="75" class="li_num" align="center" valign="center"><div style='position:relative'>
+						<a href="read.html?table=pdswait&pg=0&number=5395503">
+									<img src="/images/thumb_none.gif" style="border-right:1px solid #d7d7d7;" class="thumb">
+							</a>
+							</div></td>
+		<td width="260" class="li_sbj" style="word-break: break-all;" >
+
+									
+			<a href="read.html?table=pdswait&pg=0&number=5395503"
+			 class="li">ÀÛ³â ¿©¸§Âë¿¡ °ŞÀº½ä
+															</a>
+		</td>
+			<td width="155" class="li_icn">
+			<table width="158" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+				  <td width="30"><img class='hu_icon' src="/images/icon-humoruniv.png" width="25" height="25" style='width:25px;height:25px;' /></td>
+				  <td width="128" class="g6"><span style="cursor:pointer;cursor:hand" onclick="pong2('Hibiscuss', 'ponlt5395503');"><span class=hu_nick_txt>Hibiscuss</span><div id="ponlt5395503" name="ponlt5395503" style="position:absolute;visibility:visible;z-index:100;"></div></span></td>
+				</tr>
+			  </table>
+		</td>
+	        <td width="90" class="li_date">
+			<span class="w_date">2018-03-10</span>
+			<span class="w_time">19:02</span>
+		</td>
+		<td width="40" class="li_und">
+												5
+							
+					</td>
+		<td width="50" class="li_und">
+			<span class="o">0</span>  / <font color="#4444dd">0</font> 		</td>
+	  </tr>
+		 				
+	<!-- pds thumbnail foreach start -->
+	 <tr id="li_chk_pdswait-5395502" height="40"
+					 >
+		<td width="75" class="li_num" align="center" valign="center"><div style='position:relative'>
+						<a href="read.html?table=pdswait&pg=0&number=5395502">
+									<img src="http://t.huv.kr/thumb_crop_resize.php?url=http://down.humoruniv.com/hwiparambbs/data/pdswait/a_3857041064_d34913bccbc87dc5e88df6f559fc4a0b6139b5c5.png?SIZE=60x40" class="thumb">
+							</a>
+							</div></td>
+		<td width="260" class="li_sbj" style="word-break: break-all;" >
+
+									
+			<a href="read.html?table=pdswait&pg=0&number=5395502"
+			 class="li">½É½¼Àº ÀÌ¹Ì ¾Ë°í ÀÖ¾ú´Ù
+				<span class="list_comment_num"> [3]</span>											</a>
+		</td>
+			<td width="155" class="li_icn">
+			<table width="158" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+				  <td width="30"><img class='hu_icon' src="/images/icon-humoruniv.png" width="25" height="25" style='width:25px;height:25px;' /></td>
+				  <td width="128" class="g6"><span style="cursor:pointer;cursor:hand" onclick="pong2('Åä¹Ì¿Ã¸®¹ö', 'ponlt5395502');"><span class=hu_nick_txt>Åä¹Ì¿Ã¸®¹ö</span><div id="ponlt5395502" name="ponlt5395502" style="position:absolute;visibility:visible;z-index:100;"></div></span></td>
+				</tr>
+			  </table>
+		</td>
+	        <td width="90" class="li_date">
+			<span class="w_date">2018-03-10</span>
+			<span class="w_time">19:01</span>
+		</td>
+		<td width="40" class="li_und">
+												49
+							
+					</td>
+		<td width="50" class="li_und">
+			<span class="o">2</span>  / <font color="#4444dd">0</font> 		</td>
+	  </tr>
+		 				
+	<!-- pds thumbnail foreach start -->
+	 <tr id="li_chk_pdswait-5395501" height="40"
+					 >
+		<td width="75" class="li_num" align="center" valign="center"><div style='position:relative'>
+						<a href="read.html?table=pdswait&pg=0&number=5395501">
+									<img src="http://t.huv.kr/thumb_crop_resize.php?url=http://down.humoruniv.com/hwiparambbs/data/pdswait/a_1444579111_466ef6d8fd0a407690c20082db19c972b6660065.gif?SIZE=60x40" class="thumb">
+							</a>
+							</div></td>
+		<td width="260" class="li_sbj" style="word-break: break-all;" >
+
+									
+			<a href="read.html?table=pdswait&pg=0&number=5395501"
+			 class="li">³ª ¹ä ¸Ô±¸ °Â¼Ó Àã´ç
+				<span class="list_comment_num"> [6]</span>											</a>
+		</td>
+			<td width="155" class="li_icn">
+			<table width="158" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+				  <td width="30"><img class='hu_icon' src="http://i.huv.kr:8080/564950c2f8b0a2b9fc.jpg?c=2" width="25" height="25" style='width:25px;height:25px;' /></td>
+				  <td width="128" class="g6"><span style="cursor:pointer;cursor:hand" onclick="pong2('VIPÂø°¢¹ü', 'ponlt5395501');"><span class=hu_nick_txt>VIPÂø°¢¹ü</span><div id="ponlt5395501" name="ponlt5395501" style="position:absolute;visibility:visible;z-index:100;"></div></span></td>
+				</tr>
+			  </table>
+		</td>
+	        <td width="90" class="li_date">
+			<span class="w_date">2018-03-10</span>
+			<span class="w_time">19:01</span>
+		</td>
+		<td width="40" class="li_und">
+												9
+							
+					</td>
+		<td width="50" class="li_und">
+			<span class="o">1</span>  / <font color="#4444dd">0</font> 		</td>
+	  </tr>
+		 				
+	<!-- pds thumbnail foreach start -->
+	 <tr id="li_chk_pdswait-5395500" height="40"
+					 >
+		<td width="75" class="li_num" align="center" valign="center"><div style='position:relative'>
+						<a href="read.html?table=pdswait&pg=0&number=5395500">
+									<img src="http://t.huv.kr/thumb_crop_resize.php?url=http://down.humoruniv.com/hwiparambbs/data/pdswait/a_6430500099_57642315baaa252f6f01af64b5ec271e21551596.jpg?SIZE=60x40" class="thumb">
+							</a>
+							</div></td>
+		<td width="260" class="li_sbj" style="word-break: break-all;" >
+
+									
+			<a href="read.html?table=pdswait&pg=0&number=5395500"
+			 class="li">±Ùµ¥ ³ª´Â ¹è±×µµ °íÀÎ¹°ÆÇÀÎÁÙ¾Ë¾Ò°Åµç
+				<span class="list_comment_num"> [6]</span>											</a>
+		</td>
+			<td width="155" class="li_icn">
+			<table width="158" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+				  <td width="30"><img class='hu_icon' src="http://i.huv.kr:8080/4b6964417368.jpg?c=2" width="25" height="25" style='width:25px;height:25px;' /></td>
+				  <td width="128" class="g6"><span style="cursor:pointer;cursor:hand" onclick="pong2('KidAsh', 'ponlt5395500');"><span class=hu_nick_txt>KidAsh</span><div id="ponlt5395500" name="ponlt5395500" style="position:absolute;visibility:visible;z-index:100;"></div></span></td>
+				</tr>
+			  </table>
+		</td>
+	        <td width="90" class="li_date">
+			<span class="w_date">2018-03-10</span>
+			<span class="w_time">19:01</span>
+		</td>
+		<td width="40" class="li_und">
+												49
+							
+					</td>
+		<td width="50" class="li_und">
+			<span class="o">2</span>  / <font color="#4444dd">0</font> 		</td>
+	  </tr>
+		 				
+	<!-- pds thumbnail foreach start -->
+	 <tr id="li_chk_pdswait-5395499" height="40"
+					 >
+		<td width="75" class="li_num" align="center" valign="center"><div style='position:relative'>
+						<a href="read.html?table=pdswait&pg=0&number=5395499">
+									<img src="http://t.huv.kr/thumb_crop_resize.php?url=http://down.humoruniv.com/hwiparambbs/data/pdswait/a_2856988452_9f612dfa8450025fe7bbf9cb1125af5c1ce482df.jpg?SIZE=60x40" class="thumb">
+							</a>
+							</div></td>
+		<td width="260" class="li_sbj" style="word-break: break-all;" >
+
+									
+			<a href="read.html?table=pdswait&pg=0&number=5395499"
+			 class="li">³ª¶û ·£¼±¿¬¾Ö ÇÒ»ç¶÷?
+				<span class="list_comment_num"> [19]</span>											</a>
+		</td>
+			<td width="155" class="li_icn">
+			<table width="158" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+				  <td width="30"><img class='hu_icon' src="http://i.huv.kr:8080/b8b6b9fdbcd2b3e0b1e8b7b0bdba.jpg?c=1" width="25" height="25" style='width:25px;height:25px;' /></td>
+				  <td width="128" class="g6"><span style="cursor:pointer;cursor:hand" onclick="pong2('¸¶¹ı¼Ò³à±è·°½º', 'ponlt5395499');"><span class=hu_nick_txt>¸¶¹ı¼Ò³à±è·°½º</span><div id="ponlt5395499" name="ponlt5395499" style="position:absolute;visibility:visible;z-index:100;"></div></span></td>
+				</tr>
+			  </table>
+		</td>
+	        <td width="90" class="li_date">
+			<span class="w_date">2018-03-10</span>
+			<span class="w_time">19:01</span>
+		</td>
+		<td width="40" class="li_und">
+												39
+							
+					</td>
+		<td width="50" class="li_und">
+			<span class="o">2</span>  / <font color="#4444dd">0</font> 		</td>
+	  </tr>
+		 	            <tr><td height="2" colspan="6"></td></tr>
+                      </table>
+
+      </div>
+
+
+
+
+
+	<div class="paging">
+		<span class="link">
+			<img src="/images/pg_prv.gif" alt="ÀÌÀü" style="vertical-align:middle" />&nbsp; <a href="list.html?table=pdswait&pg=0" class="def"><span class="o_bd">1</span></a> <a href="list.html?table=pdswait&pg=1" class="def">2</a> <a href="list.html?table=pdswait&pg=2" class="def">3</a> <a href="list.html?table=pdswait&pg=3" class="def">4</a> <a href="list.html?table=pdswait&pg=4" class="def">5</a> <a href="list.html?table=pdswait&pg=5" class="def">6</a> <a href="list.html?table=pdswait&pg=6" class="def">7</a> <a href="list.html?table=pdswait&pg=7" class="def">8</a> <a href="list.html?table=pdswait&pg=8" class="def">9</a> <a href="list.html?table=pdswait&pg=9" class="def">10</a>  &nbsp;<a href="list.html?table=pdswait&pg=10"><img src="/images/pg_nxt.gif" alt="´ÙÀ½" style="vertical-align:middle" /></a>
+		</span>
+	</div>
+
+<!--°Ë»ö/±Û¾²±â-->
+    <div id="wrap_li_sch">
+	<div id="write_btn"><a href="write.html?table=pdswait"><img src="/images/btn_write.gif" alt="" /></a></div>
+        <div id="sch">
+		<form name="search" method="get" action="list.html">
+		<input type="hidden" name="table" value="pdswait" />
+		<select name="st" style="width:90px; height:20px">
+			<option value="subject">Á¦¸ñ °Ë»ö</option>
+			<option value="name">ÀÛ¼ºÀÚ °Ë»ö</option>
+					</select>
+
+		<input name="sk" type="text" class="t" value="" size="24"  maxlength="125" style="height:18px;" />
+
+		<select name="searchday" style="width:90px; height:20px">
+		  <option value="1month">ÃÖ±Ù1°³¿ù</option>
+		  <option value="3month">ÃÖ±Ù3°³¿ù</option>
+		  <option value="6month">ÃÖ±Ù6°³¿ù</option>
+		  <option value="1year">ÃÖ±Ù1³â</option>
+		  <option value="all">ÀüÃ¼°Ë»ö(´À¸²)</option>
+        </select>
+
+		
+
+		&nbsp;<input type="image" src="/images/btn_sch.gif" alt="°Ë»ö" />
+		</form>
+	</div> <!-- sch -->
+	</div> <!-- /wrap_li_sch -->
+
+</div><!-- cnts_list -->
+
+    <!--¿À¸¥ÂÊ ÇÁ·¹ÀÓ-->
+    <div id="wrap_right_list_new">
+			
+<script language="javascript">
+<!--
+
+function left_layer_on() {
+        var rndnum = Math.floor(Math.random() * 4); // 0 ~ 3 int
+
+        if (rndnum == 0) {
+                document.getElementById('subtab1').style.display = 'block';
+		document.getElementById('subtab_btn1').src = "/images/rbtn_subtab_1_on.gif";
+        } else if (rndnum == 1) {
+                document.getElementById('subtab2').style.display = 'block';
+		document.getElementById('subtab_btn2').src = "/images/rbtn_subtab_2_on.gif";
+        } else if (rndnum == 2) {
+                document.getElementById('subtab3').style.display = 'block';
+		document.getElementById('subtab_btn3').src = "/images/rbtn_subtab_3_on.gif";
+        } else {
+                document.getElementById('subtab4').style.display = 'block';
+		document.getElementById('subtab_btn4').src = "/images/rbtn_subtab_4_on.gif";
+	}
+}
+
+function subtab(n) {
+	if ( n == 1 ) {
+		document.getElementById('subtab2').style.display = 'none';
+		document.getElementById('subtab3').style.display = 'none';
+		document.getElementById('subtab4').style.display = 'none';
+		document.getElementById('subtab1').style.display = 'block';
+	} else if ( n == 2 ) {
+		document.getElementById('subtab1').style.display = 'none';
+		document.getElementById('subtab3').style.display = 'none';
+		document.getElementById('subtab4').style.display = 'none';
+		document.getElementById('subtab2').style.display = 'block';
+	} else if ( n == 3 ) {
+		document.getElementById('subtab1').style.display = 'none';
+		document.getElementById('subtab2').style.display = 'none';
+		document.getElementById('subtab4').style.display = 'none';
+		document.getElementById('subtab3').style.display = 'block';
+	} else if ( n == 4 ) {
+		document.getElementById('subtab1').style.display = 'none';
+		document.getElementById('subtab2').style.display = 'none';
+		document.getElementById('subtab3').style.display = 'none';
+		document.getElementById('subtab4').style.display = 'block';
+	}
+
+    for(var i = 1; i < 5; i++) {
+        img = document.getElementById('subtab_btn'+i);
+        if ( n == i ) {
+            img.src = "/images/rbtn_subtab_"+i+"_on.gif";
+        } else {
+            img.src = "/images/rbtn_subtab_"+i+"_off.gif";
+        }
+    }
+}
+
+  /**
+   * ÄíÅ°°ª ÃßÃâ
+   * @param cookieName ÄíÅ°¸í
+   */
+  function hu_getCookie( cookieName ) {
+
+    var search = cookieName + "=";
+    var cookie = document.cookie;
+
+    // ÇöÀç ÄíÅ°°¡ Á¸ÀçÇÒ °æ¿ì
+    if( cookie.length > 0 ) {
+      // ÇØ´ç ÄíÅ°¸íÀÌ Á¸ÀçÇÏ´ÂÁö °Ë»öÇÑ ÈÄ Á¸ÀçÇÏ¸é À§Ä¡¸¦ ¸®ÅÏ.
+      startIndex = cookie.indexOf( cookieName );
+
+      // ¸¸¾à Á¸ÀçÇÑ´Ù¸é
+      if( startIndex != -1 ) {
+        // °ªÀ» ¾ò¾î³»±â À§ÇØ ½ÃÀÛ ÀÎµ¦½º Á¶Àı
+        startIndex += cookieName.length;
+
+        // °ªÀ» ¾ò¾î³»±â À§ÇØ Á¾·á ÀÎµ¦½º ÃßÃâ
+        endIndex = cookie.indexOf( ";", startIndex );
+
+        // ¸¸¾à Á¾·á ÀÎµ¦½º¸¦ ¸øÃ£°Ô µÇ¸é ÄíÅ° ÀüÃ¼±æÀÌ·Î ¼³Á¤
+        if( endIndex == -1) endIndex = cookie.length;
+
+        // ÄíÅ°°ªÀ» ÃßÃâÇÏ¿© ¸®ÅÏ
+        return unescape( cookie.substring( startIndex + 1, endIndex ) );
+      }
+    }
+
+    return false;
+  }
+-->
+</script>
+
+
+<style>
+	#list_right_idx {width:200px;margin-top:0px;text-align:center;background-color:white;}
+	#author_top{display:inline-block;width:200px;background:white;text-align:center;padding-top:0px;}
+	#author_best_body{display:block;width:198px;text-align:left;padding:0px 0px 0px 0px;margin:5px 0 0px 0;border:1px solid #d7d7d7;}
+	#author_best_body .ok{color:#FF6900;font-size:11px;}
+</style>
+
+
+<div id="list_right_idx">
+	<div id="author_top">
+		
+		
+			</div>
+
+
+
+
+
+
+
+
+
+
+	<div style="margin-top:5px;z-index:99999999;">
+		<iframe width=200 height=1200 frameborder=0 marginwidth=0 marginheight=0 topmargin=0 scrolling=no src="/board/humor/list_right.html"></iframe>
+	</div>
+
+</div>	    </div>
+
+  </div><!--wrap_cnts ³¡-->
+
+<!--Áß´Ü ÄÁÅÙÃ÷ ·¦ ³¡--></div>
+
+
+
+<!-- ÀĞÀ½ Ã³¸® websql -->
+			<script>
+		var is_readchk_pc = 1;
+		db_start();
+		db_create_readchk();
+		db_query("select * from readchk where  id='pdswait-5395518' or  id='pdswait-5395517' or  id='pdswait-5395516' or  id='pdswait-5395515' or  id='pdswait-5395514' or  id='pdswait-5395513' or  id='pdswait-5395512' or  id='pdswait-5395511' or  id='pdswait-5395510' or  id='pdswait-5395509' or  id='pdswait-5395508' or  id='pdswait-5395507' or  id='pdswait-5395506' or  id='pdswait-5395505' or  id='pdswait-5395504' or  id='pdswait-5395503' or  id='pdswait-5395502' or  id='pdswait-5395501' or  id='pdswait-5395500' or  id='pdswait-5395499' ", readchk_result);
+	</script>
+<!-- /ÀĞÀ½ Ã³¸® websql -->
+
+
+
+<!--footer-->
+<div id="foot">
+  <div id="f_menu" style="padding-bottom:2px;">
+	<a href="/docu/document.html?doc=customercare" class="ft">¹Î¿ø, ¿î¿µÀÚ¸ŞÀÏ, °ü¸®¾È³»</a> |
+	<a href="/docu/document.html?doc=article" class="ft">¼­ºñ½º ÀÌ¿ë¾à°ü</a> |
+	<a href="/docu/document.html?doc=policy" class="ft"><b>°³ÀÎÁ¤º¸Ã³¸®¹æÄ§</b></a> |
+	<a href="/docu/document.html?doc=mailout" class="ft">ÀÌ¸ŞÀÏÁÖ¼Ò ¹«´Ü¼öÁı°ÅºÎ</a> |
+	<a href="/user/reg/withdraw.html" class="ft">È¸¿øÅ»Åğ</a>
+  </div>
+  <div style="width:180px; height:75px; text-align:center;padding-top:15px; float:left"><img src="/images/foot_logo.gif" alt="" width="141" /></div>
+
+  <div style="color:#999999; width:770px; margin-top:7px;margin-left:10px; line-height:20px; float:left; ">
+    (ÁÖ)¿ô±ä´ëÇĞÀç´Ü | »ç¾÷ÀÚµî·Ï¹øÈ£ 107-81-76979 | ¼­¿ï½Ã ¼ÛÆÄ±¸ Ãæ¹Î·Î 66, ÁöÇÏ2Ãş LB-2014 (¹®Á¤µ¿, °¡µçÆÄÀÌºê¶óÀÌÇÁ) | Fax 02-62<b></b>80-90<b><font></font></b>94
+   <br> ´ëÇ¥ÀÌ»ç ÀÌÁ¤¹Î | °³ÀÎÁ¤º¸ º¸È£Ã¥ÀÓÀÚ ÀÌÁ¤¹Î | <a href="/docu/document.html?doc=customercare"><span style="color:#999;">¹Î¿ø, ¿î¿µÀÚ¸ŞÀÏ, °ü¸®¾È³»</span></a> | Åë½ÅÆÇ¸Å¾÷½Å°í Á¦ 2010-¼­¿ï°­³²-01011È£
+   <br> Since 1998.8.24, Copyright (c) 2018 humoruniv.com All right reserved.
+  </div>
 </div>
 
-</td>
-<td><div class="hide">&nbsp;</div></td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-</tr>
-</table>
+<div style="clear:both;"></div> <!-- footer float Á¦°Å -->
+
+</div></div> <!-- //°¡¿îµ¥Á¤·Ä -->
+
+
+
+
+
+<script language="javascript">
+<!--
+
+
+  document.getElementById('side_wings').innerHTML = '<table width="87" border="0" cellspacing="0" cellpadding="0">' +
+    '<tr><td><a href="javascript:OnOff_Layers()"><img src="/images/login_userview.gif" style="cursor:pointer" alt="·Î±×ÀÎÈ¸¿øº¸±â" /></td></tr>' +
+    '<tr height="3"><td></td></tr>' +
+    '</table>';
+-->
+</script>
+
+
+
+
+
+
+
+
+
+
+				<!-- cm ad (list) -->
+			<script type="text/javascript">
+				if(document.getElementById('CmAdView2')){
+					document.getElementById("CmAdView2").innerHTML = '<iframe id="iframe_CmAdView" src="/banner/cm/datawave_cm_list.html" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" frameborder="0" scrolling="no" width="680" height="0"></iframe>';
+				}
+			</script>
+	
+
+<!-- microad -->
+<script>
+	if(document.getElementById('microad_728x90')){
+		document.getElementById("microad_728x90").innerHTML = '	<iframe width="100%" height="90" frameborder="0" marginwidth="0" marginheight="0" topmargin="0" scrolling=no src="/banner/microad/microad_728x90.html"></iframe>';
+	}
+</script>
+<!-- /microad -->
+
+<iframe src="/cpuid.html" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" frameborder="0" scrolling="no" width="0" height="0"></iframe>
+<iframe name="hidden_frame" width="0" height="0" marginwidth=0 marginheight=0 hspace=0 vspace=0 frameborder=0 scrolling=0 src=""></iframe>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-16712934-1']);
+  _gaq.push(['_setSampleRate', '1']);  // GA ¿ù 1000¸¸ ÇÑ°è¸¦ ÇÇÇÏ±â À§ÇÑ ÆÄ¶ó¹ÌÅÍ. °úµµÇÑ Æ®·¡ÇÈÀ» ÁÙÀÌ±â À§ÇØ¼­ 0% ~ 100% ±îÁö ÀÔ·Â °¡´ÉÇÏ¸ç ¼Ò¼ıÁ¡ 2ÀÚ¸® ±îÁö Á¦¾îµÊ.
+  _gaq.push(['_setDomainName', '.humoruniv.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<!-- ³×ÀÌ¹ö ¾Ö³Î¸®Æ½½º -->
+<script type="text/javascript" src="http://wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+if(!wcs_add) var wcs_add = {};
+wcs_add["wa"] = "395c7d0a9352ac";
+wcs_do();
+</script>
+
+
+<script type="text/javascript">
+if(document.getElementById('about_120x600')){
+	document.getElementById("about_120x600").innerHTML = '<iframe src="http://ad.about.co.kr/mad/html/humorunivc/left_top/humorunivc" scrolling="no" frameborder="0" width="120" height="600"></iframe>';
+}
+
+if(document.getElementById('about_120x600_2')){
+	document.getElementById("about_120x600_2").innerHTML = '<iframe src="http://ad.about.co.kr/mad/html/humorunivc/left_middle/humorunivc" scrolling="no" frameborder="0" width="120" height="600"></iframe>';
+}
+</script>
+
+
+
+
+
+
+
+
+
 </body>
 </html>

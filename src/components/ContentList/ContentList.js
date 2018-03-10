@@ -21,7 +21,7 @@ const ContentItem = ({ content, isNew })=>{
             <p className="title"><a target="new-tab" href={content.url}>{ content.title }</a></p>
             <p className="row">
                 <span className="writer col s6 left-align">{ content.writer }</span>
-                <span className="date col s6 right-align">{ content.date[1] /* 0: date, 1: Time */ }</span>
+                <span className="date col s6 right-align">{ content.date_arr[1] /* 0: date, 1: Time */ }</span>
             </p>
             {
                 isNew
@@ -35,18 +35,14 @@ const ContentItem = ({ content, isNew })=>{
 }
 
 const ContentList = ({ contents, display })=>{
-    let list = null;
-    if( contents ){
-        list = contents.new.map((content,index)=>{
-            return <ContentItem key={"new_"+index} content={content} isNew={true} />
-        });
-        list = list.concat(
-            contents.old.slice(display[0], display[1]).map((content,index)=>{
-                return <ContentItem key={"old_"+index} content={content} isNew={false} />
-            })
-         )
+    let list = [];
+    for(let index = 0; index < contents.length; index++){
+        const item = contents[index];
+        list.push(
+            <ContentItem key={index} content={item.content} isNew={true} />
+        )
+        if( list.length >= display[1] ){ break; }
     }
-
     return (
         <div className="content-list">
             <ul className="collection">

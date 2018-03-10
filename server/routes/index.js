@@ -3,5 +3,6 @@ module.exports = [
     require('./admin/community.js'),
     require('./admin/page.js'),
     require('./admin/board.js'),
-    require('./admin/session.js')
+    require('./admin/session.js'),
+    require('./admin/content.js')
 ]

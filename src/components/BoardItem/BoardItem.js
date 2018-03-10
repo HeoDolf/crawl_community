@@ -3,7 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
 // Actions
-import { getPageList } from './../../actions/getList.act.js'
+import { getPageList, getContentList } from './../../actions/getList.act.js'
 // Components
 import { ContentList } from './../../components'
 // StyleSheet
@@ -13,79 +13,47 @@ class BoadrItem extends React.Component {
     constructor(props, context){
         super(props, context);
 
-        // 상태변환 변수
         this.state = {
-            load: false,
-            // Board Content Info
-            content: {
-                pages: [],
-                list: {
-                    new: [],
-                    old: []
-                },
-            },
-            baseTime: "12:00:00",
-            view: [0, 5]
+            loaded: true,
+            content: []
         }
-        this.state.reload = true;
 
         // Display Content Count
         this.display = [0, 5];
 
-        // Local
-        this.cancel = {
-            token: axios.CancelToken,
-            exec: null
-        }
-        this.timeout = null;
-
-        // Crawler
+        // handler 
         this.getContent = this.getContent.bind(this);
-
         this.handleDeleteBoard = this.handleDeleteBoard.bind(this);
     }
 
     /**
      * Servicies
      */
-    getContent( community, board, baseTime ){
-        if( typeof baseTime === 'undefined' ){
-            baseTime = null;
-        }
-        this.setState(Object.assign({}, this.state,{ 
-            load: false
+    getContent( community, board ){
+        this.setState(Object.assign({}, this.state,{
+            loaded: false
         }));
-        this.crawler = axios({
-            url: `/api/crawler/${community}/${board}?baseTime=`+baseTime,
-            method: 'get',
-            // cancelToken: this.cancel.source.token
-            cancelToken: new this.cancel.token((cancel)=>{
-                // 이렇게 만들어야 Indivisual?한 cancel이 만들어지는 듯
-                // console.log('[create-token]');
-                this.cancel.exec = cancel
-            })
-        }).then((response)=>{
-            // Save Response Data
-            console.log('['+board+'-response]', response.data.list.new.length );
-            this.setState(Object.assign({}, this.state,{
-                load: true,
-                baseTime: response.data.baseTime,
-                content: {
-                    pages: response.data.pages,
-                    list: response.data.list
-                }
-            }));
 
-            return { community: community, board: board, baseTime: baseTime }
-        }).then(( next )=>{
-            // Next Crawl
-            console.log('[next-start]', next.community, next.board, next.baseTime );
-            this.timeout = setTimeout(()=>{
-                console.log( "[next-run]\n");
-                this.getContent( next.community, next.board, next.baseTime )
-            }, this.props.board.intervalTime * 2000 );
-        }).catch(( error )=>{
-            console.log('[final-error]', error );
+        let url = ['/api', 'content'];
+        if( typeof community === 'string' ){
+            url.push( community );
+        }
+        if( typeof board === 'string' ){
+            url.push( board );
+        }
+        const req = axios({
+            url: url.join('/'),
+            method: 'get'
+        }).then((response)=>{
+            this.setState(Object.assign({}, this.state, {
+                loaded: true,
+                content: response.data.list
+            }))
+        }).catch((error)=>{
+            console.log( error );
+            this.setState(Object.assign({}, this.state, {
+                loaded: true
+            }));
         });
     }
 
@@ -113,42 +81,22 @@ class BoadrItem extends React.Component {
      * Life Cycle
      */
     componentDidMount(){
-        // 이렇게 호출하면 안될 것 같은뎁...
-        // session이 없는디
-        const sessionCheckAndRun = axios({
-            url: '/api/session/board',
-            meothod: 'get'
-        }).then((response)=>{
-            this.getContent( this.props.board.community, this.props.board.name, null );
-        }).catch((error)=>{
-            console.log("[session-board-check-error]", error);
-        });
+        // TODO: ...
+        const community = this.props.board.community.name;
+        const board = this.props.board.name;
 
+        // this.props.getContentList( community, board 
+        this.getContent( community, board );
     }
     componentWillReceiveProps(nextProps){
+        console.log( nextProps.content );
         if( this.props.board.name !== nextProps.board.name ){
-            // Re-Set
-            this.setState(Object.assign({}, this.state, {
-                load: true,
-                baseTime: "12:00:00",
-                content: {
-                    pages: [],
-                    list: {
-                        new: [],
-                        old: []
-                    },
-                }
-            }));
+            // TODO: Re-Call getContentList
+            const community = nextProps.board.community.name;
+            const board = nextProps.board.name;
+            // this.props.getContentList( community, board );
+            this.getContent( community, board );
         }
-    }
-    shouldComponentUpdate(nextProps, nextState){
-        if( this.state.reload !== nextState.reload || this.props.board.name !== nextProps.board.name ){
-            // Stop Crawling
-            if( this.cancel.exec ){ this.cancel.exec('cancel'); }
-            if( this.timeout ) clearTimeout( this.timeout );
-            this.getContent( nextProps.board.community, nextProps.board.name, null );
-        }
-        return true;
     }
 
     render(){
@@ -176,15 +124,14 @@ class BoadrItem extends React.Component {
                         </a>
                     </div>
                     <div className="col s6 right-align">
-                        <a>{ this.state.baseTime }</a>
-                        { this.state.load ? loaded : preloader }
+                        { this.state.loaded ? loaded : preloader }
                     </div>
                 </div>
                 <div className="board-list-wrapper">
                 {
-                    this.state.content.list.new
+                    this.state.content.length > 0 
                     ? <ContentList
-                            contents={ this.state.content.list }
+                            contents={ this.state.content }
                             display={ this.display } />
                     : null  
                 }
@@ -194,20 +141,25 @@ class BoadrItem extends React.Component {
     }
 
     componentWillUnmount(){
-        // Stop Crawling
-        if( this.cancel.exec ){ this.cancel.exec('cancel'); }
-        if( this.timeout ) clearTimeout( this.timeout );
-        console.log('[BoardItem-UnMount]');
+        // TODO: ...
+    }
+}
+
+const mapStateToProps = (state)=>{
+    return {
+        // 이걸 액션으로 가져오니까, 다같이 공유를 해버리네...
+        content: state.ContentReducer
     }
 }
 
 const mapDispatchToProps = (dispatch)=>{
     return {
         getPageList: ()=>dispatch( getPageList() ),
+        getContentList: ( community, board )=>dispatch( getContentList( community, board ) )
     }
 }
 
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )( BoadrItem )

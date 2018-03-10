@@ -3,12 +3,15 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const fs = require('fs');
-
+// DataBase
 const mongoose = require('./config/database.js');
+// Session
 const sessionConfig = require('./config/session.js');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Socket
 
 // Configure
 app.use(bodyParser.urlencoded({extended:true}));
@@ -16,7 +19,6 @@ app.use(bodyParser.json());
 app.use(sessionConfig);
 
 app.use('/', express.static( path.resolve(__dirname, './../dist') ));
-
 
 // Handle Route
 let filePath = 'public';

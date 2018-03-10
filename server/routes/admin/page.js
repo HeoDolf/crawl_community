@@ -65,7 +65,7 @@ Router.put('/page/board', (req,res)=>{
         _creator: session.user._id,
         _id: req.body.page
     },{
-        $push: { _board : req.body.board._id  }
+        $push: { _board : req.body.board  }
     },function(error, result){
         if( error ) return res.status(500).json({
             errorCode: 500,
@@ -73,26 +73,6 @@ Router.put('/page/board', (req,res)=>{
             msg: ''
         });
         
-        // Session Check
-        if( req.session.board ){
-            let flag = true;
-            for(let i = 0; i < req.session.board.length; i++){
-                console.log('', req.session.board[i].community, req.body.board.community )
-                if( req.session.board[i].community === req.body.board.community 
-                    && req.session.board[i].name === req.body.board.name ){
-                        flag = false;
-                        break;
-                    }
-            }
-            if( flag ){
-                req.session.board.push({
-                    community: req.body.board.community,
-                    board: req.body.board.name,
-                    baseTime: "00:00:00",
-                    contents: []
-                });
-            }
-        }
         res.status(200).json({
             result: result
         });

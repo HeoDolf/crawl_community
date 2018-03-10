@@ -1,5 +1,5 @@
 import {
-    GET_PAGES, GET_COMMUNITY, GET_BOARD
+    GET_PAGES, GET_COMMUNITY, GET_BOARD, GET_CONTENT
 } from './../actions/ActionTypes'
 
 const initState = {
@@ -65,6 +65,26 @@ export function CommunityReducer( state = initState, action ){
             return Object.assign({}, state, {
                 status: "SUCCESS",
                 list: action.list
+            });
+        default:
+            return state;
+    }
+}
+export function ContentReducer( state = initState, action ){
+    switch( action.type ){
+        case GET_CONTENT.READY:
+            return Object.assign({}, state, {
+                status: "READY"
+            });
+        case GET_CONTENT.FAILURE:
+            return Object.assign({}, state, {
+                status: "FAILURE",
+            });
+        case GET_CONTENT.SUCCESS:
+            return Object.assign({}, state, {
+                status: "SUCCESS",
+                list: action.list,
+                lengtH: action.list.length
             });
         default:
             return state;

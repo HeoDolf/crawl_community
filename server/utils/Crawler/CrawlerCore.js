@@ -5,6 +5,8 @@ const fs = require('fs');
 
 const parser = require('./CrawlerParser.js');
 
+const iconv = new Iconv('euc-kr', 'utf-8//translit//ignore');
+
 const Crawler = function( board, user ){
     this.baseDate = {}
     this.baseDate.text = board.lastUpdate;
@@ -102,12 +104,14 @@ Crawler.prototype.scraper = function( page, callback ){
             msg: "Scraping Error"
         });
 
-        let body = buffer.toString();
-        // Convert 'euc-kr' to 'utf-8'
-        // const iconv = new Iconv('euc-kr', 'utf-8');
-        // body = iconv.convert( buffer ).toString();
-         
-        const $ = cheerio.load(body);
+        let body = buffer;
+        if( that.setting.community === 'humoruniv' ){
+            body = iconv.convert( buffer );  // Convert 'euc-kr' to 'utf-8'
+        }
+
+        fs.writeFileSync('./test.html', buffer);
+
+        const $ = cheerio.load( body.toString() );
         const result = that.parser.getContent( $, that.baseDate.time );
         if( result.checkNextPage ){
             return that.scraper( page+=1, function(error, pages, collection){
