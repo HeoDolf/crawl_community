@@ -3,7 +3,7 @@ import image from './../../assets/image/plus-th.png'
 
 const SelectCommunity = ({ list, handler })=>{
     return (
-        <div className="input-field">
+        <div className="community_selector input-field">
             <select id="community_selector" name="community" defaultValue=''>
                 <option value='' disabled>Community</option>
                 {
@@ -22,8 +22,8 @@ const SelectCommunity = ({ list, handler })=>{
 }
 const SelectBoard = ({ list })=>{
     return (
-        <div className="input-field">
-            <select id="board_selector" name="board" defaultValue={['']} multiple={true}>
+        <div className="board_selector input-field">
+            <select id="board_selector" name="board" defaultValue=''>
                 <option value='' disabled>Board</option>
                 {
                     list.map((board, index)=>{

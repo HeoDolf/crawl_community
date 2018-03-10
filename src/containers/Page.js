@@ -1,10 +1,12 @@
 // Libaries, Modules
 import React from 'react'
 import { connect } from 'react-redux'
+import axios from 'axios'
+
 // Actions
 import { getPageList } from './../actions/getList.act.js'
 // Components
-import { BoardItem, BoardItemAdd } from './../components'
+import { BoardItem, BoardItemAdd, PageSetting } from './../components'
 
 const defaultProps = {
     
@@ -13,7 +15,7 @@ const defaultState = {
     add: {
         mode: 'ready',
         comIndex: -1,
-        selected: []
+        bodIndex: -1
     }
 }
 class Page extends React.Component {
@@ -21,6 +23,9 @@ class Page extends React.Component {
         super(props, context);
 
         this.state = defaultState;
+
+        this.handleCreatePage = this.handleCreatePage.bind(this);
+        this.handleDeletePage = this.handleDeletePage.bind(this);
 
         this.handleAddBoard = this.handleAddBoard.bind(this);
         this.handleSubmitBoard = this.handleSubmitBoard.bind(this);
@@ -36,65 +41,156 @@ class Page extends React.Component {
             add: {
                 mode: 'write',
                 comIndex: -1,
-                selected: []
+                bodIndex: -1
             }
-        }));
-    }
-
-    // 이거는 App 에서 받아와야 하지 않을까?
-    // 아니면 여기서 getPageList Action 실행시키면 되겠군
-    handleSubmitBoard( event ){
-        event.preventDefault();
-        
-        this.props.getPageList();
-
-        this.setState(Object.assign({}, this.state, {
-            add: defaultState.add
         }));
     }
     handleCommunitySelector( event ){
         const comIndex = event.target.value;
         if( this.state.add.comIndex !== comIndex ){
+            // set board-selector
             this.setState(Object.assign({}, this.state, {
                 add: {
                     mode: 'write',
                     comIndex: comIndex,
-                    selected: this.state.add.selected
+                    bodIndex: -1
                 }
             }));
         }
     }
     handleBoardSelector( event ){
-        const bodIndex = event.target.querySelectorAll(':checked');
+        const bodIndex = event.target.value;
+        if( this.state.add.bodIndex !== bodIndex ){
+            this.setState(Object.assign({}, this.state, {
+                add: {
+                    mode: 'write',
+                    comIndex: this.state.add.comIndex,
+                    bodIndex: bodIndex
+                }
+            }));
+        }
+    }
+    // 이거는 App 에서 받아와야 하지 않을까?
+    // 아니면 여기서 getPageList Action 실행시키면 되겠군
+    handleSubmitBoard( event ){
+        event.preventDefault();
+        const data = {
+            page: this.props.page._id,
+            board: this.props.community.list[this.state.add.comIndex].board[this.state.add.bodIndex]
+        }
+        const addBoard = axios({
+            url: '/api/page/board',
+            method: 'put',
+            data: data
+        }).then((response)=>{
+            this.props.getPageList();
+        }).catch((error)=>{
+            console.log( error );
+        });
+    }
 
-        // console.log( this.props.community.list[this.state.add.comIndex].board[])
+    handleCreatePage( event ){
+        event.preventDefault();
+        const form = document.querySelector('form#create_page');
+
+        const pagIndex = form.querySelector('[name=index]').value
+        const title = form.querySelector('[name=title]').value;
+
+        if( pagIndex < 0 ){ return false; }
+        if( title.length === 0 || title === '' ){ return false; }
+        
+        const savePage = axios({
+            url: '/api/page',
+            method: 'post',
+            data: {
+                index: pagIndex,
+                title: title
+            } 
+        }).then((response)=>{
+            this.props.getPageList();
+        }).catch((error)=>{
+            console.log('[failure create page...]');
+        });
+    }
+    
+    handleDeletePage( event ){
+        event.preventDefault();
+        if( confirm("정말로 삭제 하시겠습니까?") ){
+            const data = {
+                page: this.props.page._id,
+            }
+            const deletePage = axios({
+                url: '/api/page',
+                method: 'delete',
+                data: data
+            }).then((response)=>{
+                this.props.getPageList();
+            }).catch((error)=>{
+                console.log( error );
+            });
+        }
     }
 
     /**
      * Life Cycle
      */
+    componentDidMount(){
+        console.log('[mounted Page]');
+        if( this.props.page === 'empty' ){
+            // Set Material_modal
+            $('.modal').modal();
+            $('#CreatePage').modal('open');
+            console.log('[modal on!]')
+        } else {
+            if( this.state.add.mode === 'write' ){
+                $('#community_selector, #board_selector').material_select();
+    
+                $('#community_selector').off('change', this.handleCommunitySelector);
+                $('#community_selector').on('change', this.handleCommunitySelector);
+    
+                const board_selector = $('#board_selector');
+                if( board_selector.length > 0 ){
+                    board_selector[0].value = ''
+                    board_selector.off('change', this.handleBoardSelector);
+                    board_selector.on('change', this.handleBoardSelector);
+                }
+            }
+        }
+    }
     
     componentWillReceiveProps(nextProps){
         if( JSON.stringify(nextProps.page) !== JSON.stringify( this.props.page )){
-            $('#community_selector, #board_selector').material_select('destroy');
+            $('#community_selector, #board_selector').material_select();
             this.setState(Object.assign({}, this.state, {
                 add: defaultState.add
             }));
         }
     }
 
+
     render(){
+        if( this.props.page === 'empty' ){
+            return (
+                <PageSetting 
+                    id="CreatePage" 
+                    title="페이지 생성"
+                    handler={{
+                        onAgree: this.handleCreatePage
+                    }}
+                    options={{
+                        pageIndex: this.props.page.length ? this.props.page.length : 0,
+                    }}/>
+            )
+        }
         return (
             <div className="wrapper">
                 <p className="valign-wrapper">
                     <a className="page-title">{this.props.page.title}</a>
-                    /
-                    <a className="page-community">{this.props.page._community.name}</a>
                     <span className="page-setting">
                         <a href="#setting">
                             <i className="material-icons small">settings</i>
                         </a>
-                        <a href="#delete" onClick={()=>this.props.handler.deletePage( this.props.page )}>
+                        <a href="#delete" onClick={ this.handleDeletePage }>
                             <i className="material-icons small">delete</i>
                         </a>
                     </span>
@@ -105,35 +201,45 @@ class Page extends React.Component {
                         return (
                             <BoardItem 
                                 key={ index } 
-                                community={this.props.page._community.name} 
+                                page={ this.props.page } 
                                 board={ board }/>
                         );
                     })
                 }
                 <BoardItemAdd 
-                        mode={ this.state.add.mode }
-                        community={ this.props.community.list }
-                        selected={ this.state.add.comIndex }
-                        handler={{
-                            add: this.handleAddBoard,
-                            submit: this.handleSubmitBoard,
-                            selector: this.handleCommunitySelector
-                        }}/>
+                    mode={ this.state.add.mode }
+                    community={ this.props.community.list }
+                    selected={ this.state.add.comIndex }
+                    handler={{
+                        add: this.handleAddBoard,
+                        submit: this.handleSubmitBoard,
+                        selector: this.handleCommunitySelector
+                    }}/>
                 </div>
-                {/* 여기에 Setting Modal */}
             </div>
         )
     }
 
     componentDidUpdate(prevProps, prevState, prevContext){
-        if( this.state.add.mode === 'write' ){
-            $('#community_selector, #board_selector').material_select();
-
-            $('#community_selector').off('change', this.handleCommunitySelector);
-            $('#community_selector').on('change', this.handleCommunitySelector);
-
-            document.getElementById('board_selector').removeEventListener('blur', this.handleBoardSelector);
-            document.getElementById('board_selector').addEventListener('blur', this.handleBoardSelector);
+        if( this.props.page === 'empty' ){
+            // Set Material_modal
+            $('.modal').modal();
+            $('#CreatePage').modal('open');
+            console.log('[modal on!]')
+        } else {
+            if( this.state.add.mode === 'write' ){
+                $('#community_selector, #board_selector').material_select();
+    
+                $('#community_selector').off('change', this.handleCommunitySelector);
+                $('#community_selector').on('change', this.handleCommunitySelector);
+    
+                const board_selector = $('#board_selector');
+                if( board_selector.length > 0 ){
+                    board_selector[0].value = ''
+                    board_selector.off('change', this.handleBoardSelector);
+                    board_selector.on('change', this.handleBoardSelector);
+                }
+            }
         }
     }
 }

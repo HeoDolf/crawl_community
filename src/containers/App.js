@@ -3,12 +3,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
 // Actions
-import { getPageList, getBoardList, getCommunityList } from './../actions/getList.act.js'
+import { getPageList, getCommunityList } from './../actions/getList.act.js'
 // Components
-import { Header, EmptyPage, SideButton, CreatePage } from './../components'
+import { Header, SideButton } from './../components'
+// Containers 
 import Page from './Page.js'
 import Home from './Home.js'
-import { relative } from 'path';
 
 const defaultProps = {
     description: "Main App",
@@ -31,12 +31,7 @@ class App extends React.Component {
             intervalTime: 1
         }
 
-
         this.handlePageChange = this.handlePageChange.bind(this);
-        this.handleOptionChange = this.handleOptionChange.bind(this);
-        this.handleSavePage = this.handleSavePage.bind(this);
-        this.handleDeletePage = this.handleDeletePage.bind(this);
-        this.handleUpdatePage = this.handleUpdatePage.bind(this);
     }
     /**
      * Servicies
@@ -51,65 +46,6 @@ class App extends React.Component {
             }
         }));
     }
-    handleOptionChange( event ){
-        this.setState(Object.assign({}, this.state, {
-            create: {
-                community: event.target.value
-            }
-        }));
-    }
-    handleSavePage( event ){
-        event.preventDefault();
-        const form = document.querySelector('form#create_page');
-
-        const title = form.querySelector('[name=title]').value;
-        const pagIndex = form.querySelector('[name=index]').value
-        const comIndex = form.querySelector('[name=community]').value;
-        const board = Array.from(form.querySelectorAll('[name=board]:checked')).map((board)=>{
-            return this.props.community.list[comIndex].board[board.value]._id;
-        });
-
-        if( pagIndex < 0 ){ return false; }
-        if( title.length === 0 || title === '' ){ return false; }
-        if( board.length === 0 ){ return false; }
-        
-        const savePage = axios({
-            url: '/api/page',
-            method: 'post',
-            data: {
-                title: title,
-                index: pagIndex,
-                community: this.props.community.list[comIndex].name,
-                board: board
-            } 
-        }).then((response)=>{
-            console.log('[created page!!!]');
-            this.props.getPageList();
-        }).catch((error)=>{
-            console.log('[failure create page...]');
-        });
-    }
-    handleDeletePage( page ){
-        if( confirm("정말로 삭제 하시겠습니까?") ){
-            const deletePage = axios({
-                url: '/api/page',
-                method: 'delete',
-                data: {
-                    title: page.title,
-                    index: page.index
-                }
-            }).then((response)=>{
-                this.props.getPageList();
-            }).catch((error)=>{
-                console.log( error );
-            });
-        }
-    }
-    // Create Board
-    handleUpdatePage( page ){
-        console.log('[update]', page );
-    }
-
     /**
      * Life Cycle
      */
@@ -121,11 +57,15 @@ class App extends React.Component {
     }
 
     componentWillReceiveProps(nextProps){
-        if( JSON.stringify(nextProps.page) !== JSON.stringify(this.props.page) ){
+        if( nextProps.page.status !== 'READY' && JSON.stringify(nextProps.page) !== JSON.stringify(this.props.page) ){
+            let current = this.state.current.index;
+            if( current > 0 && nextProps.page.length < this.props.page.length ){
+                current -= 1;
+            }
             this.setState( Object.assign({}, this.state, {
                 current: {
-                    index: this.state.current.index,
-                    page: this.state.current.index > -1 ? nextProps.page.list[this.state.current.index] : 'home'
+                    index: current,
+                    page: current > -1 ? nextProps.page.list[current] : 'home'
                 }
             }));
         }
@@ -139,35 +79,8 @@ class App extends React.Component {
         }
         return true;
     }
-    componentWillUpdate(){
-        
-    }
 
     render(){
-        let PageWrapper;
-        if( this.state.current.page === 'empty' ){
-            PageWrapper = <EmptyPage
-                            handler={{
-                                onAgree: this.handleSavePage
-                            }}
-                            options={{
-                                pageIndex: this.props.page.length,
-                                community: this.state.create.community,
-                                list: this.props.community.list,
-                            }}/>
-        } else if ( this.state.current.page === 'home' ){
-            PageWrapper = <Home />
-        } else {
-            /**
-             * Page Setting을 여기에서 추가해줘야할듯
-             */
-            PageWrapper = <Page 
-                            page={ this.state.current.page }
-                            handler={{
-                                deletePage: this.handleDeletePage,
-                                updatePage: this.handleUpdatePage
-                            }}/>
-        }
         return (
             <div id="app">
                 <Header 
@@ -185,21 +98,15 @@ class App extends React.Component {
                             max: this.props.page.length-1
                         }}
                         disable={ this.props.page.length === 0 }/>
-                    { PageWrapper }
+                    {
+                        this.state.current.page === 'home'
+                        ? <Home />
+                        : <Page page={ this.state.current.page } />
+                    }
                 </section>
+                
             </div>
         )
-    }
-    componentDidUpdate(){
-        if( this.state.current.page === 'empty' ){
-            // Set Material_modal
-            $('.modal').modal();
-            $('#CreatePage').modal('open');
-            // Set Material_select
-            $('select').material_select();
-            $('#set_community').off('change', this.handleOptionChange );
-            $('#set_community').on('change', this.handleOptionChange );
-        }
     }
 }
 App.defaultProps = defaultProps;

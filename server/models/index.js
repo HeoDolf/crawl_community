@@ -1,4 +1,5 @@
-module.exports.Community = require('./community');
-module.exports.Member = require('./member');
-module.exports.Page = require('./page');
-module.exports.Board = require('./board');
+module.exports.Community = require('./community.js');
+module.exports.Member = require('./member.js');
+module.exports.Page = require('./page.js');
+module.exports.Board = require('./board.js');
+module.exports.Content = require('./content.js');

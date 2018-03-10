@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const express = require('express');
 const { Page, Community, Board } = require('./../../models');
 
@@ -10,31 +11,21 @@ const session = {
 }
 // Insert
 Router.post('/page', (req,res)=>{
-    Community.findOne(
-        { 
-            name:req.body.community
-        }, 
-        function(error, exist){
-        if( error ) return res.status(500).json({errorCode: 500, error: error});
-        const page = new Page({
-            title: req.body.title,
-            _creator: session.user._id,
-            _community: exist._id,
-            index: req.body.index,
-            _board: req.body.board
-        });
-        page.save(function(error, page){
-            if( error ) return res.status(500).json({errorCode: 500, error: error });
-            res.redirect('/');
-        });
+    const page = new Page({
+        index: req.body.index,
+        title: req.body.title,
+        _creator: session.user._id,
+    });
+    page.save(function(error, page){
+        if( error ) return res.status(500).json({errorCode: 500, error: error });
+        res.redirect('/');
     });
 });
 // Delete
 Router.delete('/page', (req,res)=>{
     Page.remove({
+        _id: req.body.page,
         _creator: session.user._id,
-        title: req.body.title,
-        index: req.body.index
     }, function(error, result){
         if( error ) return res.status(500).json({
             errorCode: 500,
@@ -50,23 +41,77 @@ Router.delete('/page', (req,res)=>{
         });
     });
 });
+Router.delete('/page/board', (req,res)=>{
+    Page.update({
+        _creator: session.user._id,
+        _id: req.body.page
+    },{
+        $pull: { _board: req.body.board }
+    }, function(error, result){
+        if( error ) return res.status(500).json({
+            errorCode: 500,
+            error: error,
+            msg: ''
+        });
+        res.status(200).json({
+            result: result
+        });
+    });
+});
 
-// Find All
+// Update
+Router.put('/page/board', (req,res)=>{
+    Page.update({
+        _creator: session.user._id,
+        _id: req.body.page
+    },{
+        $push: { _board : req.body.board._id  }
+    },function(error, result){
+        if( error ) return res.status(500).json({
+            errorCode: 500,
+            error: error,
+            msg: ''
+        });
+        
+        // Session Check
+        if( req.session.board ){
+            let flag = true;
+            for(let i = 0; i < req.session.board.length; i++){
+                console.log('', req.session.board[i].community, req.body.board.community )
+                if( req.session.board[i].community === req.body.board.community 
+                    && req.session.board[i].name === req.body.board.name ){
+                        flag = false;
+                        break;
+                    }
+            }
+            if( flag ){
+                req.session.board.push({
+                    community: req.body.board.community,
+                    board: req.body.board.name,
+                    baseTime: "00:00:00",
+                    contents: []
+                });
+            }
+        }
+        res.status(200).json({
+            result: result
+        });
+    });
+});
+
+// Select
 Router.get('/page', (req,res)=>{
     Page.find(
         {   // Condition
             _creator: session.user._id,
         },
         {   // Selector
-            _id: 0, _creator: 0, __v: 0
+            _creator: 0, __v: 0
         },
         {   // Option
             sort: { index: 1 }
         }
     ).populate({
-        path: '_community',
-        select: 'name name_kor -_id'
-    }).populate({
         path: '_board'
     }).exec(function(error, pages){
         if( error ) return res.status(500).json({
@@ -74,33 +119,11 @@ Router.get('/page', (req,res)=>{
             error: error,
             msg: "Page Find Error"
         });
-
-        req.session.board = []; // reset
-        for(let i = 0; i < pages.length; i++){
-            initSession( req.session, pages[i] );
-        }
-        console.log( req.session );
-
         return res.status(200).json({
             list: pages
         });
     });
 });
-
-function initSession( session, page ){
-    // if( !session.page ){ session.page = []; }
-    // session.page.push( page );
-
-    if( !session.board ){ session.board = []; }
-    for(let i = 0; i < page._board.length; i++){
-        session.board.push({
-            community: page._community.name,
-            board: page._board[i].name,
-            baseTime: "00:00:00",
-            contents: []
-        });
-    }
-}
 
 
 module.exports = Router;

@@ -12,6 +12,7 @@ const defaultIncludes = [SRC_DIR];
 
 module.exports = {
     entry: [
+        'babel-polyfill',
         SRC_DIR+'/index.js',
         SRC_DIR+'/style.css'
     ],
@@ -45,7 +46,6 @@ module.exports = {
             }
         ]
     },
-    devtool: 'inline-source-map',
     plugins:[
         new HtmlWebpackPlugin({
             template: helper.root( 'public/index.html' ),
@@ -54,7 +54,7 @@ module.exports = {
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('production')
         }),
-        new BabiliWebpackPlugin()
+        new BabiliWebpackPlugin(/* options, override */)
     ],
     stats: {
         colors: true,

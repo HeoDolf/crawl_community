@@ -9,13 +9,13 @@ const EmptyPage = ({ handler, options })=>{
     return (
         <div className="wrapper empty valign-wrapper">
             <div className="img-wrapper">
-                <a href={`#${modal_id}`}><img src={ image }/></a>
+                <a href={`#${ modal_id }`}><img src={ image }/></a>
             </div>
-            <PageSetting 
-                    id={modal_id} 
+            {/* <PageSetting 
+                    id={ modal_id } 
                     title="페이지 생성" 
-                    handler={handler} 
-                    options={options}/>
+                    handler={ handler }
+                    options={ options }/> */}
         </div>
     )
 }

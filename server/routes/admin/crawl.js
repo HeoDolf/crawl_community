@@ -1,17 +1,19 @@
 const express = require('express');
 const carwler = require('./../../utils/Crawler');
 
+const { Content } = require('./../../models');
+
 const Router = express.Router();
 
+// content로 바꿔야됨
 Router.get('/crawler/:community/:board', (req,res)=>{
     const community = req.params.community;
     const board = req.params.board;
 
-    // Session이 없으면 다음을 진행하면 안되지.
     const session = getSession(req.session, {community, board});
-    if( !session ) return res.status(500).json({
-        errorCode: 500,
-        error: "Session Error: Invalid Index"
+    if( !session ) return res.status(404).json({
+        errorCode: 404,
+        error: "Session Error: Not Found Board Sesssion"
     });
     // Run Crawler
     const baseTime = req.query.baseTime !== 'null' ? req.query.baseTime : session.baseTime;
@@ -26,7 +28,6 @@ Router.get('/crawler/:community/:board', (req,res)=>{
 
         return res.status(200).json({
             community: community,
-            board: board,
             pages: data.pages,
             baseTime: session.baseTime,
             list: {
@@ -38,6 +39,31 @@ Router.get('/crawler/:community/:board', (req,res)=>{
         return res.status(error.errorCode).json(error);
     });
 });
+
+Router.get('/content/:community/:board', (req,res)=>{
+    const baseTime = req.query.baseTime;
+    Content.find({
+        name: req.params.board,
+        community : req.params.community,
+        "content.date": {
+            $gt: new Date( baseTime )
+        }
+    },function(error, result){
+        if( error ) return res.status(500).json({
+            errorCode: 500,
+            error: error,
+            msg: "Find Content Error"
+        });
+        return res.status(200).json({
+            list: {
+                new: result
+            }
+        })
+    });
+});
+
+
+
 
 function getSession( session, data ){
     if( typeof session.board === 'undefined' ){ return false; }
