@@ -5,13 +5,15 @@ const fs = require('fs');
 
 const parser = require('./CrawlerParser.js');
 
-const Crawler = function( board, baseTime, user ){
+const Crawler = function( board, user ){
     this.baseDate = {}
     this.baseDate.text = board.lastUpdate;
     this.baseDate.time = new Date(this.baseDate.text).getTime()
 
     this.setting = {
+        // Names
         community: board.community.name,
+        board: board.name,
         // For URL
         host: board.community.host,
         uri: board.uri,
@@ -38,6 +40,10 @@ Crawler.prototype.makeURL = function( page ){
  * 1. Runner
  */
 Crawler.prototype.run = function( callback ){
+
+    console.log('[crawler-run]', this.setting.community, this.setting.board, this.baseDate.text );    
+
+
     const that = this;
     return new Promise(function(resolve, reject){
         // Login Check
@@ -71,17 +77,11 @@ Crawler.prototype.run = function( callback ){
             return callback( null, {
                 pages: pages, 
                 contents: contents
+            }, {
+                community: this.setting.community,
+                board: this.setting.board,
             })            
         });
-        // return new Promise(function(resolve, reject){
-        //     that.scraper( that.setting.startPage, function(error, pages, contents){
-        //         if( error ) return reject( error );
-        //         resolve({
-        //             pages: pages,
-        //             contents: contents
-        //         });
-        //     });
-        // });
     });
 }
 /**

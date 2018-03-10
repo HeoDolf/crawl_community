@@ -6,6 +6,7 @@
   "scripts": {
     "db": "mongod -dbpath c:\\programming\\mongodb\\data",
     "server": "nodemon ./server",
+    "scrap": "node ./config/Scraper.js",
     "prod": "webpack --config webpack.build.config.js",
     "build": "webpack --config webpack.build.config.js",
     "dev": "webpack-dev-server --hot --host localhost --port 4000 --config=./webpack.dev.config.js"

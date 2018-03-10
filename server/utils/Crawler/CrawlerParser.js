@@ -26,7 +26,7 @@ module.exports = {
                 const uploadTime = $item.children('.date').text().trim();
 
                 const date_arr = [ TODAY, uploadTime ];
-                const date = new Date(date.join(' '));
+                const date = new Date(date_arr.join(' '));
                 
                 if( uploadTime.split(':').length == 1 
                     || baseTime >= date.getTime() ){ 
@@ -96,22 +96,6 @@ module.exports = {
     },
     // TODO: Update
     'humoruniv': {
-        getList: ($)=>{return $('#cnts_list_new > div:first-child > table:not(.list_hd2) > tbody > tr[id]')},
-        getItem: ( $contents )=>{
-            let $wrDate = $contents.children('.li_date');
-            const regDate = ( $wrDate.children('.w_date').text() + " " + $wrDate.children('.w_time').text()).replace(/\r?\n$/,'');
-            
-            let cnt = {}
-            cnt.no = $contents.attr('id').replace('li_chk_pds-','');
-            if( cnt.no > this.state.content_id ){
-                cnt.title = $contents.children('.li_sbj').text();
-                cnt.writer = $contents.find('.li_icn .hu_nick_txt').text();
-                cnt.regDate = regDate;
-                cnt.url = $contents.find('.li_sbj > a[href]').first().attr('href');
-                return cnt;
-            }
-            return false;
-        },
         getContent: ( $, baseTime )=>{
             const $list = $('#cnts_list_new > div:first-child > table:not(.list_hd2) > tbody > tr[id]');
             let contents = [];
@@ -120,10 +104,12 @@ module.exports = {
             for(let i = 0; i < $list.length; i++){
                 const $item = $list.eq(i);
                 const uploadTime = $item.find('.li_date > .w_time').text().trim();
-                const date = [ TODAY, uploadTime ];
+                
+                const date_arr = [ TODAY, uploadTime ];
+                const date = new Daet(date_arr.join(' '));
         
                 if( uploadTime.split(':').length == 1 
-                    || baseTime >= new Date(date.join(' ')).getTime() ){ 
+                    || baseTime >= date.getTime() ){ 
                         checkNextPage = false;
                         break; 
                 }
@@ -133,7 +119,8 @@ module.exports = {
                     title: $item.find('.li_sbj > a').text().split('\n')[0],
                     writer: $item.find('.li_icn .hu_nick_txt').text().trim(),
                     url: host.humoruniv + "/" + $item.find('.li_sbj > a[href]').first().attr('href'),
-                    date: date
+                    date: date,
+                    date_arr: date_arr
                 });
             }
             return {
