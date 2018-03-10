@@ -2,6 +2,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
+// socket
+import openSocket from 'socket.io-client';
+const socket = openSocket('http://localhost:3001');
+socket.on('receive msg', (msg)=>{
+    console.log('[receive]', msg)
+});
+socket.emit('send msg', "server - hi");
+
 // Actions
 import { getPageList, getContentList } from './../../actions/getList.act.js'
 // Components
@@ -30,6 +38,7 @@ class BoadrItem extends React.Component {
      * Servicies
      */
     getContent( community, board ){
+        // 여기에 결국에는 그 뭐시냐 그게 필요 한건가...
         this.setState(Object.assign({}, this.state,{
             loaded: false
         }));
@@ -81,6 +90,8 @@ class BoadrItem extends React.Component {
      * Life Cycle
      */
     componentDidMount(){
+        socket.emit('connected', "Heo");
+
         // TODO: ...
         const community = this.props.board.community.name;
         const board = this.props.board.name;

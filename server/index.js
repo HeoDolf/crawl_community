@@ -47,4 +47,4 @@ app.use((err, req, res, next)=>{
 });
 
 // Connect to Server
-app.listen(PORT, ()=>console.log('SERVER CONNECTION!!!', PORT));
+const server = app.listen(PORT, ()=>console.log('SERVER CONNECTION!!!', PORT));

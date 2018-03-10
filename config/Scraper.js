@@ -1,8 +1,22 @@
-// 이걸 루프로 돌리면 될 듯.
+// Default
 const moment = require('moment');
 const db = require('./../server/config/database');
 const { Community, Board, Content } = require('./../server/models');
 const crawler = require('./../server/utils/Crawler');
+// Socket
+const app = require('express')();
+const server = require('http').createServer(app);
+const io = require('socket.io')( server );
+server.listen(3001, ()=>console.log("[socket-connection]"));
+
+
+io.on('connection', (client)=>{
+    client.on('send msg', (msg)=>{
+        console.log("[receive]", msg);
+    });
+    client.emit("receive msg", "Hi");
+});
+io.emit('receive msg','im master');
 
 // 이 딜레이도 게시판마다 글 리젠 속도가 다르니까
 // 거기에 맞춰서 저장하고 가져오는 걸로...
