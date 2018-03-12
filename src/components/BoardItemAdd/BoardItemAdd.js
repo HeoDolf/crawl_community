@@ -3,7 +3,7 @@ import image from './../../assets/image/plus-th.png'
 
 const SelectCommunity = ({ list, handler })=>{
     return (
-        <div className="community_selector input-field">
+        <div className="selector community_selector input-field">
             <select id="community_selector" name="community" defaultValue=''>
                 <option value='' disabled>Community</option>
                 {
@@ -22,7 +22,7 @@ const SelectCommunity = ({ list, handler })=>{
 }
 const SelectBoard = ({ list })=>{
     return (
-        <div className="board_selector input-field">
+        <div className="selector board_selector input-field">
             <select id="board_selector" name="board" defaultValue=''>
                 <option value='' disabled>Board</option>
                 {
@@ -40,27 +40,28 @@ const SelectBoard = ({ list })=>{
     )
 }
 const BoardItemAdd = ({ mode, community, selected, handler })=>{
-    console.log( selected );
-
     return (
         <div className="board-item add valign-wrapper">
-            <div className={`wrapper ${ mode }`}>
             {
                 mode === 'ready'
                 ?
+                <div className={`${ mode } valign-wrapper`}>
                     <a onClick={ handler.add }><img src={ image }/></a>
+                </div>
                 :
-                    <div>
-                        <SelectCommunity list={community} handler={ handler.selector } />
-                        {
-                            selected >= 0
-                            ? <SelectBoard list={ community[selected].board }/>
-                            : null
-                        }
-                        <a onClick={ handler.submit }>submit</a> 
+                <div className={`${ mode }`}>
+                    <SelectCommunity list={community} handler={ handler.selector } />
+                    {
+                        selected >= 0
+                        ? <SelectBoard list={ community[selected].board }/>
+                        : null
+                    }
+                    <div className="controller row">
+                        <a className="col s6" onClick={ handler.cancel }>cancel</a>
+                        <a className="col s6" onClick={ handler.submit }>submit</a>
                     </div>
+                </div>
             }  
-            </div>
         </div>
     )
 }

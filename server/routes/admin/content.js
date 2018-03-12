@@ -5,7 +5,10 @@ const { Content } = require('./../../models');
 
 // All Content For Home
 Router.get('/content/all', (req, res)=>{
-    Content.find(null,null,{ sort: { "content.date" : -1 } }, (error, contents)=>{
+    Content.find()
+    .sort({ "content.date" : -1 })
+    .limit(10)
+    .exec(function( error, contents ){
         if( error ) throw { code: 500, error: error, msg: "Get All-Contents Error" }
         return res.status(200).json({
             length: contents.length,
@@ -18,28 +21,44 @@ Router.get('/content/all', (req, res)=>{
 Router.get('/content/:community', (req, res)=>{
     Content.find({
         community: req.params.community
-    }
-    , null
-    , { sort: { "content.date" : -1 }}
-    , function( error, contents ){
+    })
+    .sort({ "content.date" : -1 })
+    .limit(10)
+    .exec(function( error, contents ){
         if( error ) throw { erroCode: 500, error: error, msg: "Get Community-contents Error"}
         return res.status(200).json({
             lengtH: contents.length,
             lsit: contents
         })
-    })
+    });
 });
 
 // Individual Board Content For Personal
-Router.get('/content/:community/:board', (req,res)=>{
-    console.log( req.params );
+Router.get('/content/:community/:board/', (req,res)=>{
     Content.find({
         community: req.params.community,
         board: req.params.board,
-    }
-    , null
-    , { sort: { "content.date" : -1 } }
-    , function( error, contents ){
+    })
+    .sort({ "content.date" : -1 })
+    .limit(10)
+    .exec(function( error, contents ){
+        if( error ) throw { code: 500, error: error, msg: "Get Board-Contents Error"}
+        return res.status(200).json({
+            length: contents.length,
+            list: contents
+        })
+    });
+    // .skip((page-1)*2).limit(2);
+});
+Router.get('/content/:community/:board/:lastId', (req,res)=>{
+    Content.find({
+        community: req.params.community,
+        board: req.params.board,
+        "content.no": { $lt: parseInt( req.params.lastId ) }
+    })
+    .sort({ "content.date" : -1 })
+    .limit(10)
+    .exec(function( error, contents ){
         if( error ) throw { code: 500, error: error, msg: "Get Board-Contents Error"}
         return res.status(200).json({
             length: contents.length,
@@ -47,5 +66,7 @@ Router.get('/content/:community/:board', (req,res)=>{
         })
     });
 });
+
+
 
 module.exports = Router;

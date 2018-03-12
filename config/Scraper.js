@@ -3,31 +3,16 @@ const moment = require('moment');
 const db = require('./../server/config/database');
 const { Community, Board, Content } = require('./../server/models');
 const crawler = require('./../server/utils/Crawler');
-// Socket
-const app = require('express')();
-const server = require('http').createServer(app);
-const io = require('socket.io')( server );
-server.listen(3001, ()=>console.log("[socket-connection]"));
-
-
-io.on('connection', (client)=>{
-    client.on('send msg', (msg)=>{
-        console.log("[receive]", msg);
-    });
-    client.emit("receive msg", "Hi");
-});
-io.emit('receive msg','im master');
 
 // 이 딜레이도 게시판마다 글 리젠 속도가 다르니까
 // 거기에 맞춰서 저장하고 가져오는 걸로...
-const DELAY = 10000;
+const DELAY = 30000;
 
 const communityInfo = new Promise((resolve, reject)=>{
     Community.find(
-    {
-        name: 'humoruniv',
-    },
-    {
+        // { name: 'gezip' }
+        null
+    , {
         _id: 0, name: 1, board: 1
     }).populate({
         path: "board",
@@ -88,7 +73,7 @@ function handleCrawler( error, result, info ){
             community: info.community,
             board: info.board,
             content: el,
-            regDate: new Date()
+            regDate: new Date() // ISO로 저장되며, 540분이 차이가 남
         }
     });
     try {
@@ -99,6 +84,8 @@ function handleCrawler( error, result, info ){
                 "community.name": info.community
             },{
                 $set: { 
+                    // (1) 2018-03-12 13:13:00  ->  (2) 2018-03-12T04:13:00Z
+                    // (1) 형식의 날자 데이터는 ISO 형식으로 바뀌면서 540분이 차이가 남.
                     lastUpdate:  contents[0].content.date // + ( 540 * 60 * 1000 ); // isSeoulTime
                 }
             }, function(error, updated){

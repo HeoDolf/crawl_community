@@ -23,15 +23,27 @@ module.exports = {
 
             for(let i = 0; i < $list.length; i++){
                 const $item = $list.eq(i);
-                const uploadTime = $item.children('.date').text().trim();
+                const cntDate = $item.children('.date').text().trim();
 
-                const date_arr = [ TODAY, uploadTime ];
+                let date_arr;
+                if( cntDate.split(':').length > 0 ){
+                    // Time
+                    date_arr = [
+                        TODAY,
+                        cntDate
+                    ]
+                } else {
+                    // Date
+                    date_arr = [
+                        cntDate.replace('.','-'),
+                        "00:00:00"  // Unkwon Time
+                    ]
+                }
                 const date = new Date(date_arr.join(' '));
                 
-                if( uploadTime.split(':').length == 1 
-                    || baseTime >= date.getTime() ){ 
-                        checkNextPage = false;
-                        break; 
+                if( baseTime >= date.getTime() ){ 
+                    checkNextPage = false;
+                    break; 
                 }
 
                 contents.push({
@@ -68,15 +80,30 @@ module.exports = {
 
             for(let i = 0; i < $list.length; i++){
                 const $item = $list.eq(i);
-                const uploadTime = $item.children('.wr-date').text().trim();
+                const cntDate = $item.children('.wr-date').text().trim();
 
-                const date_arr = [ TODAY, uploadTime ];
+                let date_arr;
+                if( cntDate.split(':').length > 0 ){
+                    // Time
+                    // HH:MM ex) 14:30
+                    date_arr = [
+                        TODAY,
+                        cntDate
+                    ]
+                } else {
+                    // Date
+                    // MM:DD ex) 03.12
+                    date_arr = [
+                        `${new Date().getFullYear()}-${cntDate.replace('.', '-')}`,
+                        '00:00:00'  // Unkown Time
+                    ]
+                }
+
                 const date = new Date(date_arr.join(' '));
 
-                if( uploadTime.split(':').length == 1 
-                    || baseTime >= date.getTime() ){ 
-                        checkNextPage = false;
-                        break; 
+                if( baseTime >= date.getTime() ){ 
+                    checkNextPage = false;
+                    break; 
                 }
 
                 contents.push({
@@ -103,19 +130,19 @@ module.exports = {
         
             for(let i = 0; i < $list.length; i++){
                 const $item = $list.eq(i);
-                const uploadTime = $item.find('.li_date > .w_time').text().trim();
-                
-                const date_arr = [ TODAY, uploadTime ];
+                const date_arr = [ 
+                    $item.find('.li_date > .w_date').text(), 
+                    $item.find('.li_date > .w_time').text()
+                ];
                 const date = new Date(date_arr.join(' '));
         
-                if( uploadTime.split(':').length == 1 
-                    || baseTime >= date.getTime() ){ 
-                        checkNextPage = false;
-                        break; 
+                if( baseTime >= date.getTime() ){ 
+                    checkNextPage = false;
+                    break; 
                 }
         
                 contents.push({
-                    no: $item.attr('id').replace('li_chk_pds-',''),
+                    no: $item.attr('id').split('-')[1],
                     title: $item.find('.li_sbj > a').text().split('\n')[0],
                     writer: $item.find('.li_icn .hu_nick_txt').text().trim(),
                     url: "http://web.humoruniv.com/board/humor/" + $item.find('.li_sbj > a[href]').first().attr('href'),

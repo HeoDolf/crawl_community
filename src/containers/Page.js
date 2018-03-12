@@ -28,7 +28,9 @@ class Page extends React.Component {
         this.handleDeletePage = this.handleDeletePage.bind(this);
 
         this.handleAddBoard = this.handleAddBoard.bind(this);
-        this.handleSubmitBoard = this.handleSubmitBoard.bind(this);
+        this.handleCreateBoardSubmit = this.handleCreateBoardSubmit.bind(this);
+        this.handleCreateBoardCancel = this.handleCreateBoardCancel.bind(this);
+
         this.handleCommunitySelector = this.handleCommunitySelector.bind(this);
         this.handleBoardSelector = this.handleBoardSelector.bind(this);
     }
@@ -45,6 +47,7 @@ class Page extends React.Component {
             }
         }));
     }
+
     handleCommunitySelector( event ){
         const comIndex = event.target.value;
         if( this.state.add.comIndex !== comIndex ){
@@ -72,7 +75,7 @@ class Page extends React.Component {
     }
     // 이거는 App 에서 받아와야 하지 않을까?
     // 아니면 여기서 getPageList Action 실행시키면 되겠군
-    handleSubmitBoard( event ){
+    handleCreateBoardSubmit( event ){
         event.preventDefault();
         const data = {
             page: this.props.page._id,
@@ -88,6 +91,13 @@ class Page extends React.Component {
             console.log( error );
         });
     }
+    handleCreateBoardCancel( event ){
+        event.preventDefault();
+        this.setState(Object.assign({}, this.state, {
+            add: defaultState.add
+        }));
+    }
+
 
     handleCreatePage( event ){
         event.preventDefault();
@@ -183,7 +193,7 @@ class Page extends React.Component {
             )
         }
         return (
-            <div className="wrapper">
+            <div className="page-wrapper">
                 <p className="valign-wrapper">
                     <a className="page-title">{this.props.page.title}</a>
                     <span className="page-setting">
@@ -206,13 +216,14 @@ class Page extends React.Component {
                         );
                     })
                 }
-                <BoardItemAdd 
+                <BoardItemAdd
                     mode={ this.state.add.mode }
                     community={ this.props.community.list }
                     selected={ this.state.add.comIndex }
                     handler={{
                         add: this.handleAddBoard,
-                        submit: this.handleSubmitBoard,
+                        submit: this.handleCreateBoardSubmit,
+                        cancel: this.handleCreateBoardCancel,
                         selector: this.handleCommunitySelector
                     }}/>
                 </div>

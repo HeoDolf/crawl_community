@@ -35,18 +35,35 @@ const ContentItem = ({ content, isNew })=>{
 }
 
 const ContentList = ({ contents, display })=>{
-    let list = [];
-    for(let index = 0; index < contents.length; index++){
-        const item = contents[index];
-        list.push(
+    let news = [];
+    let olds = [];
+
+    for(let index = 0; index < contents.new.length; index++){
+        const item = contents.new[index];
+        news.push(
             <ContentItem key={index} content={item.content} isNew={true} />
         )
-        if( list.length >= display[1] ){ break; }
     }
+    // for(let index = 0; index < contents.old.length; index++){
+    for(let index = 0; index < contents.old.length; index++){
+        const item = contents.old[index];
+        olds.push(
+            <ContentItem key={index} content={item.content} isNew={false} />
+        )
+        // if( index > display[1] ){
+        //     break;
+        // }
+    }
+
     return (
-        <div className="content-list">
+        <div className="content-wrapper">
             <ul className="collection">
-                { list }
+                {
+                    news
+                }
+                {
+                    olds
+                }
             </ul>
         </div>
     )

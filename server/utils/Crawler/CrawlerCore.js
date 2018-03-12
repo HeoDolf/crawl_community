@@ -10,7 +10,7 @@ const iconv = new Iconv('euc-kr', 'utf-8//translit//ignore');
 const Crawler = function( board, user ){
     this.baseDate = {}
     this.baseDate.text = board.lastUpdate;
-    this.baseDate.time = new Date(this.baseDate.text).getTime()
+    this.baseDate.time = new Date(this.baseDate.text).getTime();
 
     this.setting = {
         // Names
@@ -45,7 +45,6 @@ Crawler.prototype.run = function( callback ){
 
     console.log('[crawler-run]', this.setting.community, this.setting.board, this.baseDate.text );    
 
-
     const that = this;
     return new Promise(function(resolve, reject){
         // Login Check
@@ -71,8 +70,8 @@ Crawler.prototype.run = function( callback ){
         }
     }).then(( cookie )=>{
                 // Set Cookie-Jar
-        this.setting.cookieJar = cookie;
-        this.scraper( this.setting.startPage, ( error, pages, contents )=>{
+        that.setting.cookieJar = cookie;
+        that.scraper( that.setting.startPage, ( error, pages, contents )=>{
             // failure
             if( error ) return callback( error );
             // success
@@ -80,8 +79,8 @@ Crawler.prototype.run = function( callback ){
                 pages: pages, 
                 contents: contents
             }, {
-                community: this.setting.community,
-                board: this.setting.board,
+                community: that.setting.community,
+                board: that.setting.board,
             })            
         });
     });
@@ -90,13 +89,14 @@ Crawler.prototype.run = function( callback ){
  * 2. Scraper
  */
 Crawler.prototype.scraper = function( page, callback ){
+    const that = this;
     const options = {
-        url: this.makeURL( page ),
-        headers: this.setting.header,
-        jar: this.setting.cookieJar,
+        url: that.makeURL( page ),
+        headers: that.setting.header,
+        jar: that.setting.cookieJar,
         encoding: null  // binary
     }
-    const that = this;
+    console.log( options.url );
     const scrap = request( options, function(error, response, buffer){
         if( error ) return callback({
             errorCode: 500, 
@@ -108,8 +108,6 @@ Crawler.prototype.scraper = function( page, callback ){
         if( that.setting.community === 'humoruniv' ){
             body = iconv.convert( buffer );  // Convert 'euc-kr' to 'utf-8'
         }
-
-        fs.writeFileSync('./test.html', buffer);
 
         const $ = cheerio.load( body.toString() );
         const result = that.parser.getContent( $, that.baseDate.time );
