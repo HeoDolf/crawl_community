@@ -23,10 +23,10 @@ module.exports = {
 
             for(let i = 0; i < $list.length; i++){
                 const $item = $list.eq(i);
-                const cntDate = $item.children('.date').text().trim();
 
+                let cntDate = $item.children('.date').text().trim();
                 let date_arr;
-                if( cntDate.split(':').length > 0 ){
+                if( cntDate.split(':').length > 1 ){
                     // Time
                     date_arr = [
                         TODAY,
@@ -34,13 +34,14 @@ module.exports = {
                     ]
                 } else {
                     // Date
+                    cntDate = cntDate.replace('.','-');
                     date_arr = [
-                        cntDate.replace('.','-'),
+                        cntDate,
                         "00:00:00"  // Unkwon Time
                     ]
                 }
+
                 const date = new Date(date_arr.join(' '));
-                
                 if( baseTime >= date.getTime() ){ 
                     checkNextPage = false;
                     break; 
@@ -80,10 +81,10 @@ module.exports = {
 
             for(let i = 0; i < $list.length; i++){
                 const $item = $list.eq(i);
-                const cntDate = $item.children('.wr-date').text().trim();
 
+                let cntDate = $item.children('.wr-date').text().trim();
                 let date_arr;
-                if( cntDate.split(':').length > 0 ){
+                if( cntDate.split(':').length > 1 ){
                     // Time
                     // HH:MM ex) 14:30
                     date_arr = [
@@ -93,14 +94,14 @@ module.exports = {
                 } else {
                     // Date
                     // MM:DD ex) 03.12
+                    cntDate = cntDate.replace('.','-');
                     date_arr = [
-                        `${new Date().getFullYear()}-${cntDate.replace('.', '-')}`,
+                        `${new Date().getFullYear()}-${cntDate}`,
                         '00:00:00'  // Unkown Time
                     ]
                 }
 
                 const date = new Date(date_arr.join(' '));
-
                 if( baseTime >= date.getTime() ){ 
                     checkNextPage = false;
                     break; 

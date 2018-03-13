@@ -1,6 +1,4 @@
 import React from 'react'
-import './SideButton.css'
-
 
 function nextPage( current, length, handler ){
     if( current < length.max ){
@@ -18,8 +16,6 @@ function prevPage( current, length, handler ){
     }
     handler( current );
 }
-
-
 const SideButton = ({ disable, current, length, onPageChange })=>{
     return (
         <div className='side-button valign-wrapper'>
@@ -33,4 +29,4 @@ const SideButton = ({ disable, current, length, onPageChange })=>{
     )
 }
 
-export default SideButton
+export { SideButton }

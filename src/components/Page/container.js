@@ -1,28 +1,29 @@
 // Libaries, Modules
-import React from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import axios from 'axios'
+// Presenter
+import { AddBoard, PageSetting } from './presenter.js'
+// Other Components
+import BoardTile from './../BoardTile';
 
-// Actions
-import { getPageList } from './../actions/getList.act.js'
-// Components
-import { BoardItem, BoardItemAdd, PageSetting } from './../components'
-
-const defaultProps = {
-    
-}
 const defaultState = {
+    animate: true,
+    motion: 'fadeInRight',
     add: {
         mode: 'ready',
         comIndex: -1,
         bodIndex: -1
     }
 }
-class Page extends React.Component {
+class Container extends Component {
+
     constructor(props, context){
         super(props, context);
 
         this.state = defaultState;
+
 
         this.handleCreatePage = this.handleCreatePage.bind(this);
         this.handleDeletePage = this.handleDeletePage.bind(this);
@@ -171,12 +172,16 @@ class Page extends React.Component {
     componentWillReceiveProps(nextProps){
         if( JSON.stringify(nextProps.page) !== JSON.stringify( this.props.page )){
             $('#community_selector, #board_selector').material_select();
+
             this.setState(Object.assign({}, this.state, {
                 add: defaultState.add
             }));
         }
     }
 
+    componentWillUpdate(){
+
+    }
 
     render(){
         if( this.props.page === 'empty' ){
@@ -192,11 +197,20 @@ class Page extends React.Component {
                     }}/>
             )
         }
+
         return (
-            <div className="page-wrapper">
+            <div className={ `page-wrapper` }>
                 <p className="valign-wrapper">
                     <a className="page-title">{this.props.page.title}</a>
                     <span className="page-setting">
+                        {/* Set Layout: List */}
+                        <a className={ `page-layout ${this.props.page.layout === 'list' ? 'active' : ''}` } href="#layout_list">
+                            <i className="material-icons small">format_list_numbered</i>
+                        </a>
+                        {/* Set Layout: Tile */}
+                        <a className={ `page-layout ${this.props.page.layout === 'tile' ? 'active' : ''}` } href="#layout_table">
+                            <i className="material-icons small">border_all</i>
+                        </a>
                         <a href="#setting">
                             <i className="material-icons small">settings</i>
                         </a>
@@ -206,26 +220,25 @@ class Page extends React.Component {
                     </span>
                 </p>
                 <div className="board-wrapper">
-                { 
-                    this.props.page._board.map((board, index)=>{
+                    {/* 지금까지 작성한건 layout:tile 방식... 이름도 Tile로 바꿔야 할 듯.*/}
+                    { this.props.page._board.map((board, index)=>{
                         return (
-                            <BoardItem 
+                            <BoardTile 
                                 key={ index } 
                                 page={ this.props.page } 
                                 board={ board }/>
                         );
-                    })
-                }
-                <BoardItemAdd
-                    mode={ this.state.add.mode }
-                    community={ this.props.community.list }
-                    selected={ this.state.add.comIndex }
-                    handler={{
-                        add: this.handleAddBoard,
-                        submit: this.handleCreateBoardSubmit,
-                        cancel: this.handleCreateBoardCancel,
-                        selector: this.handleCommunitySelector
-                    }}/>
+                    })}
+                    <AddBoard
+                        mode={ this.state.add.mode }
+                        community={ this.props.community.list }
+                        selected={ this.state.add.comIndex }
+                        handler={{
+                            add: this.handleAddBoard,
+                            submit: this.handleCreateBoardSubmit,
+                            cancel: this.handleCreateBoardCancel,
+                            selector: this.handleCommunitySelector
+                        }}/>
                 </div>
             </div>
         )
@@ -255,20 +268,12 @@ class Page extends React.Component {
     }
 }
 
-Page.defaultProps = defaultProps;
+Container.defaultProps = {
 
-const mapStateToProps = (state)=>{
-    return {
-        community: state.CommunityReducer
-    }
-}
-const mapDispatchToProps = (dispatch)=>{
-    return {
-        getPageList: ()=>dispatch( getPageList() ),
-    }
+};
+Container.propTypes = {
+    community: PropTypes.object.isRequired,
+    getPageList: PropTypes.func.isRequired
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)( Page )
+export default Container

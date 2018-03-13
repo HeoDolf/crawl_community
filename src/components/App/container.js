@@ -1,14 +1,14 @@
 // Libaries, Modules
-import React from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import axios from 'axios'
-// Actions
-import { getPageList, getCommunityList } from './../actions/getList.act.js'
-// Components
-import { Header, SideButton } from './../components'
-// Containers 
-import Page from './Page.js'
-import Home from './Home.js'
+// Presenter
+import { SideButton } from './presenter'
+// Components 
+import Page from './../Page'
+import Header from './../Header'
+// Style
+import './style.css'
 
 const defaultProps = {
     description: "Main App",
@@ -18,7 +18,7 @@ const defaultProps = {
     }
 }
 
-class App extends React.Component {
+class Container extends Component {
     constructor(props, context){
         super(props, context);
 
@@ -38,7 +38,6 @@ class App extends React.Component {
      * 이거 나중에 다 Actions으로 만들어 보자
      */
     handlePageChange( pageIndex ){
-        // 가져오는게 끝났을 때 없데이트 하면 좋을 듯 한데
         this.setState( Object.assign({}, this.state, {
             current: {
                 index: pageIndex,
@@ -100,8 +99,8 @@ class App extends React.Component {
                         disable={ this.props.page.length === 0 }/>
                     {
                         this.state.current.page === 'home'
-                        ? <Home />
-                        : <Page page={ this.state.current.page } />
+                        ? <div className="wrapper"><a>Home</a></div>
+                        : <Page index={ this.state.current.index } page={ this.state.current.page } />
                     }
                 </section>
                 
@@ -109,21 +108,13 @@ class App extends React.Component {
         )
     }
 }
-App.defaultProps = defaultProps;
+Container.defaultProps = defaultProps;
+Container.propTypes = {
+    page: PropTypes.object.isRequired,
+    community: PropTypes.object.isRequired,
 
-const mapStateToProps = (state)=>{
-    return {
-        page: state.PageReducer,
-        community: state.CommunityReducer
-    }
+    getPageList: PropTypes.func.isRequired,
+    getCommunityList: PropTypes.func.isRequired
 }
-const mapDispatchToProps = (dispatch)=>{
-    return {
-        getPageList: ()=>dispatch( getPageList() ),
-        getCommunityList: ()=>dispatch( getCommunityList( true ) ),
-    }
-}
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(App)
+
+export default Container

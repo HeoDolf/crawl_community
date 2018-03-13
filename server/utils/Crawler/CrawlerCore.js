@@ -43,7 +43,7 @@ Crawler.prototype.makeURL = function( page ){
  */
 Crawler.prototype.run = function( callback ){
 
-    console.log('[crawler-run]', this.setting.community, this.setting.board, this.baseDate.text );    
+    // console.log('[crawler-run]', this.setting.community, this.setting.board, this.baseDate.text );    
 
     const that = this;
     return new Promise(function(resolve, reject){
@@ -96,7 +96,6 @@ Crawler.prototype.scraper = function( page, callback ){
         jar: that.setting.cookieJar,
         encoding: null  // binary
     }
-    console.log( options.url );
     const scrap = request( options, function(error, response, buffer){
         if( error ) return callback({
             errorCode: 500, 

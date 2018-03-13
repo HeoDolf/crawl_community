@@ -2,12 +2,45 @@
 const moment = require('moment');
 const db = require('./../server/config/database');
 const { Community, Board, Content } = require('./../server/models');
-const crawler = require('./../server/utils/Crawler');
+const Crawler = require('./../server/utils/Crawler');
+// Socket
+const app = require('express')();
+const server = require('http').createServer(app);
+const io = require('socket.io')( server );
+server.listen(3001, ()=>console.log("[socket-connection]"));
 
-// 이 딜레이도 게시판마다 글 리젠 속도가 다르니까
-// 거기에 맞춰서 저장하고 가져오는 걸로...
-const DELAY = 30000;
+io.on('connection', (client)=>{
+    client.emit('connected');
 
+    client.on('join the room', (room)=>{
+        console.log('[join the room]', room);
+        
+        client.currentRoom = room;
+        client.join(room);
+    });
+    client.on('leave the room', ()=>{
+        console.log('[leave the room]', client.currentRoom );
+        
+        client.leave( client.currentRoom );
+    });
+    client.on('change the room', ( newRoom )=>{
+        console.log('[room change', client.currentRoom,'to',newRoom,']');
+
+        client.leave( client.currentRoom );
+        client.currentRoom = newRoom;
+        client.join( newRoom );
+    });
+
+    client.on('disconnect', (reason)=>{
+        console.log("[disconnect]", reason);
+        client.emit('disconnected');
+    });
+});
+
+/**
+ * 여기서 어떻게 보내줄 것인가..r
+ */
+const DELAY = 10 * 1000;
 const communityInfo = new Promise((resolve, reject)=>{
     Community.find(
         // { name: 'gezip' }
@@ -31,8 +64,9 @@ const communityInfo = new Promise((resolve, reject)=>{
                     board = community.board[j];
                     data.push({
                         community: community.name,
-                        board: board.name
-                    })
+                        board: board.name,
+                        nsp: io.of(`/${community.name}/${board.name}`)
+                    });
                 }
             }
             resolve( data );
@@ -44,29 +78,31 @@ const communityInfo = new Promise((resolve, reject)=>{
             });
         }
     });
-});
-communityInfo.then(( data )=>{
+}).then(( data )=>{
     try {
         // // Handle Crawler: loop
         for(let index=0; index < data.length; index++){
             // const index = 0;
             const community = data[index].community
             const board = data[index].board;
-            crawler( community, board, 0, handleCrawler);
+
+            Crawler( community, board, 0, handleCrawler );
         }
     } catch (error){
         return Promise.reject( error );
     }
 }).catch((error)=>{
     // Handle Error
+    console.error( error );
+    process.exit();
 });
 
 function handleCrawler( error, result, info ){
     if( error ) return console.error( error );
     if( result.contents.length === 0 ){
         // Re-call: crawler
-        console.log( "No New Contents", info);
-        return crawler(info.community, info.board, DELAY, handleCrawler);
+        // console.log( "No New Contents", info);
+        return Crawler(info.community, info.board, DELAY, handleCrawler);
     }
     const contents = result.contents.map((el, index)=>{
         return {
@@ -90,8 +126,13 @@ function handleCrawler( error, result, info ){
                 }
             }, function(error, updated){
                 if( error ) return console.error( error );
-                console.log(`[update ${info.community} ${info.board}]`, contents.length );
-                return crawler(info.community, info.board, DELAY, handleCrawler);
+                
+                const roomName = `${info.community}_${info.board}`; 
+                console.log(`[update ${roomName}]`, contents.length );
+
+                io.to(roomName).emit( 'update content', info );
+                
+                return Crawler(info.community, info.board, DELAY, handleCrawler);
             });
         });
     } catch (error) {

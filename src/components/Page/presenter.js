@@ -1,7 +1,7 @@
 import React from 'react'
 import image from './../../assets/image/plus-th.png'
 
-const SelectCommunity = ({ list, handler })=>{
+const CommunitySelector = ({ list, handler })=>{
     return (
         <div className="selector community_selector input-field">
             <select id="community_selector" name="community" defaultValue=''>
@@ -20,7 +20,7 @@ const SelectCommunity = ({ list, handler })=>{
         </div>
     )
 }
-const SelectBoard = ({ list })=>{
+const BoardSelector = ({ list })=>{
     return (
         <div className="selector board_selector input-field">
             <select id="board_selector" name="board" defaultValue=''>
@@ -39,7 +39,7 @@ const SelectBoard = ({ list })=>{
         </div>
     )
 }
-const BoardItemAdd = ({ mode, community, selected, handler })=>{
+const AddBoard = ({ mode, community, selected, handler })=>{
     return (
         <div className="board-item add valign-wrapper">
             {
@@ -50,10 +50,10 @@ const BoardItemAdd = ({ mode, community, selected, handler })=>{
                 </div>
                 :
                 <div className={`${ mode }`}>
-                    <SelectCommunity list={community} handler={ handler.selector } />
+                    <CommunitySelector list={community} handler={ handler.selector } />
                     {
                         selected >= 0
-                        ? <SelectBoard list={ community[selected].board }/>
+                        ? <BoardSelector list={ community[selected].board }/>
                         : null
                     }
                     <div className="controller row">
@@ -66,4 +66,39 @@ const BoardItemAdd = ({ mode, community, selected, handler })=>{
     )
 }
 
-export default BoardItemAdd
+// Modal
+const FixedFooter = ({ id, title, children, onAgree })=>{
+    return (
+        <div id={ id } className="modal modal-fixed-footer">
+            <div className="modal-content">
+                <h4>{ title }</h4>
+                { children }
+            </div>
+                <div className="modal-footer">
+                <a className="modal-action modal-close waves-effect waves-green btn-flat" onClick={onAgree}>Save</a>
+                <a href="#!" className="modal-action modal-close waves-effect waves-red btn-flat ">Cancel</a>
+            </div>
+        </div>
+    )
+}
+const PageSetting = ({ id, title, handler, index, options })=>{
+    const selected = options.community;
+    return (
+        <FixedFooter id={id} title={ title } onAgree={ handler.onAgree } onDegree={ handler.onDegree } >
+            <form id="create_page" className="row">
+                <div className="row">
+                    <div className="input-field col s2">
+                        <input id="page_index" name="index" type="text" value={ options.pageIndex } readOnly/>
+                        <label htmlFor="page_index" className="active">Index</label>
+                    </div>
+                    <div className="input-field col s10">
+                        <input id="page_title" name="title" type="text"/>
+                        <label htmlFor="page_title">Title</label>
+                    </div>
+                </div>
+            </form>
+        </FixedFooter>
+    )
+}
+
+export { AddBoard, PageSetting }

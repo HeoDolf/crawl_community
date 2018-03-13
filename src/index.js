@@ -10,7 +10,7 @@ import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import reducers from './reducers'
 
-import App from './containers/App.js'
+import App from './components/App'
 import './style.css';
 
 const store = createStore( reducers, applyMiddleware(thunk) );
@@ -30,7 +30,7 @@ const render = Component => {
 render(App);
 
 if (module.hot) {
-  module.hot.accept('./containers/App.js', () => {
+  module.hot.accept('./components/App', () => {
     render(App)
   });
 }

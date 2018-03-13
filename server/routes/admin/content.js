@@ -14,7 +14,7 @@ Router.get('/content/all', (req, res)=>{
             length: contents.length,
             list: contents
         });
-    })
+    });
 });
 
 // All Content in Community 
@@ -50,11 +50,11 @@ Router.get('/content/:community/:board/', (req,res)=>{
     });
     // .skip((page-1)*2).limit(2);
 });
-Router.get('/content/:community/:board/:lastId', (req,res)=>{
+Router.get('/content/:community/:board/:lastContent', (req,res)=>{
     Content.find({
         community: req.params.community,
         board: req.params.board,
-        "content.no": { $lt: parseInt( req.params.lastId ) }
+        "content.no": { $lt: parseInt( req.params.lastContent ) }
     })
     .sort({ "content.date" : -1 })
     .limit(10)

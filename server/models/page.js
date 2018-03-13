@@ -10,8 +10,8 @@ module.exports = mongoose.model('page', new Schema(
         display: { type: Number, enum:[0,1], default: 1 },          // 0 none, 1 show
         layout: {
             type: String, 
-            enum : ['vertical', 'horizontal'], 
-            default: 'vertical' 
+            enum : ['tile', 'list'], 
+            default: 'tile' 
         },
         regDate: { type: Date, default: Date.now }
     },
